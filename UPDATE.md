@@ -61,6 +61,66 @@ curl -s -o /dev/null -w "%{http_code}\n" https://fam-hulten.github.io/glosor/aud
 
 ---
 
+## Arkivering av ord (Johanna #14643 + #14647)
+
+**Syfte:** Ord som inte längre är aktiva (t.ex. avslutade kapitel, utgångna veckor) ska INTE visas i appen, men INTE heller raderas — de ska finnas kvar i git-historik.
+
+### Hur man arkiverar
+
+Lägg till två fält i `glosor-data.json` på det ord som ska bort:
+
+```json
+{
+  "id": "05",
+  "sv": "någonstans",
+  "en": "somewhere",
+  "active": false,              // NYTT — markerar som arkiverad
+  "archived_at": "2026-09-08",  // NYTT — ISO-datum för historik
+  ...
+}
+```
+
+### Tekniskt
+
+- `app.js` filtererar bort ord med `active: false` vid `loadData()`:
+  ```javascript
+  words = allWords.filter(w => w.active !== false);
+  ```
+- `active !== false` betyder: ord utan `active`-fält är default aktiva (bakåtkompatibelt).
+- Progress-bar räknar BARA aktiva ord (totalsiffra = antal synliga ord).
+- Audio-filer stannar kvar i `audio/` (refereras inte från JSON, finns kvar i git-historik).
+- **Ingen UI-markering** för arkiverade ord (ren app, arkivering är admin-grej).
+
+### Verifiering
+
+```bash
+# Räkna aktiva vs arkiverade
+python3 -c "
+import json
+with open('glosor-data.json') as f:
+    data = json.load(f)
+total = len(data['words'])
+archived = [w for w in data['words'] if w.get('active') == False]
+print(f'Aktiva: {total - len(archived)}/{total}')
+print(f'Arkiverade: {[w[\"id\"] for w in archived]}')
+"
+```
+
+### Återaktivera
+
+Ta bort `active`-fältet (eller sätt till `true`):
+
+```json
+{
+  "id": "05",
+  ...
+  // "active": false,    ← ta bort denna rad
+  "archived_at": "2026-09-08"  // valfritt: behåll eller ta bort
+}
+```
+
+---
+
 ## VIKTIGA konstanter (rör ALDRIG utan diskussion)
 
 ### Voice IDs (MiniMax T2A)
