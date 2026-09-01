@@ -12,17 +12,28 @@ Voice IDs (verifierade 2026-09-01, rattstavning/AUDIO-PIPELINE.md):
 - SV: Swedish_male_1_v1
 - EN: English_expressive_narrator
 
-Prompt (Johanna direktiv #14549 + #14612):
-- SV: "Skriv ordet <ord>"  (INTE "Säg", INGA #-tecken — läses som "number")
-- EN: "Write the word <ord>"
+Prompter (Johanna direktiv, verifierade genom upprepad pushback 2026-09-01):
+
+SV (Johanna #14549 + #14628 + #14631):
+    'Skriv ordet #"<ord>"'
+    - # fungerar som paus-separator i MiniMax T2A för SV-rösten
+    - citationstecken runtom ordet för tydlig avgränsning
+    - TEST: paus hörbar, inget "number"-artefakt
+
+EN (Johanna #14628 + #14631):
+    'Write the word "<ord>"'
+    - UTAN #-tecknet (Engelsk-rösten läser # som "number", INTE paus)
+    - citationstecken runtom ordet
+    - TEST: inget "number"-artefakt
 
 Auth (memory/audio-permanent-fix.md):
-- mmx auth login --api-key "$(cat /tmp/.mmx-key)"  (UTAN --region!)
-- mmx-config i /home/node/.mmx/ (sudo + entrypoint-chown krävs)
+    mmx auth login --api-key "$(cat /tmp/.mmx-key)"  (UTAN --region!)
+    mmx-config i /home/node/.mmx/ (sudo + entrypoint-chown krävs)
 
 Exempel:
     python3 gen_audio.py
     python3 gen_audio.py --out-dir /tmp/test-audio --data-json ./glosor-data.json
+    python3 gen_audio.py --dry-run
 """
 import argparse
 import json
@@ -48,7 +59,6 @@ def check_mmx_auth() -> bool:
         )
         if r.returncode != 0:
             return False
-        # Sök efter 'method' i output (kan vara JSON eller formatted)
         return '"method":' in r.stdout or "method:" in r.stdout
     except Exception as e:
         print(f"  ✗ auth check misslyckades: {e}", file=sys.stderr)
@@ -91,6 +101,12 @@ def main():
         action="store_true",
         help="Visa vad som skulle genereras utan att köra"
     )
+    parser.add_argument(
+        "--lang",
+        choices=["sv", "en", "both"],
+        default="both",
+        help="Vilket språk: sv, en eller both (default: both)"
+    )
     args = parser.parse_args()
 
     # Läs data
@@ -109,7 +125,8 @@ def main():
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"Genererar {len(words)} SV + {len(words)} EN = {len(words)*2} filer")
+    n_total = len(words) * (2 if args.lang == "both" else 1)
+    print(f"Genererar {n_total} filer (lang={args.lang})")
     print(f"Output: {out_dir.resolve()}")
     print(f"Voice:  SV={VOICE_SV}, EN={VOICE_EN}, model={MODEL}, speed={SPEED}")
     print()
@@ -118,46 +135,50 @@ def main():
     if not args.dry_run:
         if not check_mmx_auth():
             print("✗ mmx auth inte konfigurerad!", file=sys.stderr)
-            print("  Kör: mmx auth login --api-key \"$(cat /tmp/.mmx-key)\"", file=sys.stderr)
+            print('  Kör: mmx auth login --api-key "$(cat /tmp/.mmx-key)"', file=sys.stderr)
             sys.exit(1)
         print("✓ mmx auth OK")
         print()
 
     # Generera
     ok = fail = 0
-    for w in words:
-        wid = w["id"]
-        sv = w["sv"]
-        en = w["en"]
 
-        # SV: "Skriv ordet <ord>"  (Johanna #14549)
-        out_sv = out_dir / f"{wid}-sv.mp3"
-        text_sv = f'Skriv ordet "{sv}"'
-        if args.dry_run:
-            print(f"  [dry-run] {out_sv.name}: '{text_sv}'")
-            ok += 1
-        elif synth(text_sv, VOICE_SV, out_sv):
-            print(f"  ✓ {out_sv.name}")
-            ok += 1
-        else:
-            print(f"  ✗ {out_sv.name}")
-            fail += 1
+    # SV: 'Skriv ordet #"<ord>"' — # funkar som paus-separator för SV-rösten
+    if args.lang in ("sv", "both"):
+        for w in words:
+            wid = w["id"]
+            sv = w["sv"]
+            out_sv = out_dir / f"{wid}-sv.mp3"
+            text_sv = f'Skriv ordet #"{sv}"'  # MED # (paus) + citationstecken
+            if args.dry_run:
+                print(f"  [dry-run] {out_sv.name}: '{text_sv}'")
+                ok += 1
+            elif synth(text_sv, VOICE_SV, out_sv):
+                print(f"  ✓ {out_sv.name}")
+                ok += 1
+            else:
+                print(f"  ✗ {out_sv.name}")
+                fail += 1
 
-        # EN: "Write the word <ord>"  (motsvarighet, UTAN #)
-        out_en = out_dir / f"{wid}-en.mp3"
-        text_en = f'Write the word "{en}"'
-        if args.dry_run:
-            print(f"  [dry-run] {out_en.name}: '{text_en}'")
-            ok += 1
-        elif synth(text_en, VOICE_EN, out_en):
-            print(f"  ✓ {out_en.name}")
-            ok += 1
-        else:
-            print(f"  ✗ {out_en.name}")
-            fail += 1
+    # EN: 'Write the word "<ord>"' — UTAN # (läses som "number" i EN-rösten)
+    if args.lang in ("en", "both"):
+        for w in words:
+            wid = w["id"]
+            en = w["en"]
+            out_en = out_dir / f"{wid}-en.mp3"
+            text_en = f'Write the word "{en}"'  # UTAN # + citationstecken
+            if args.dry_run:
+                print(f"  [dry-run] {out_en.name}: '{text_en}'")
+                ok += 1
+            elif synth(text_en, VOICE_EN, out_en):
+                print(f"  ✓ {out_en.name}")
+                ok += 1
+            else:
+                print(f"  ✗ {out_en.name}")
+                fail += 1
 
     print()
-    print(f"Resultat: {ok}/{len(words)*2} ok, {fail}/{len(words)*2} fail")
+    print(f"Resultat: {ok}/{n_total} ok, {fail}/{n_total} fail")
     sys.exit(0 if fail == 0 else 1)
 
 
