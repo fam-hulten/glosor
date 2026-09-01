@@ -197,3 +197,44 @@ mmx auth login --api-key "$(cat /tmp/.mmx-key)"   # UTAN --region!
 - `scripts/gen_audio.py` — själva scriptet (verifiera att det är uppdaterat med rätt prompter)
 - `rattstavning/AUDIO-PIPELINE.md` — auktoritativ källa för voice-IDs
 - `openclaw-infrastructure/docker-entrypoint.sh` — chown-sektion (commit fe20122)
+
+---
+
+## Roadmap — framtida features (Johanna #14643)
+
+**Syfte:** Hålla koll på nästa steg för appen, dokumenterade men INTE implementerade ännu.
+
+### Bilder för varje ord
+- **Status:** Diskuterat, ej påbörjat
+- **Plan:** Hitta/lägg till bilder (PNG/JPG) för varje ord i `images/<id>.png` eller liknande
+- **App:** Visa bild bredvid svenskt ord (hjälper barn med språkstörning att koppla ord → objekt)
+- **Källa:** Kan scrapas från Glosor.eu eller använda fria bildbanker (Unsplash, Pixabay)
+
+### Sentence examples (exempelmeningar)
+- **Status:** Diskuterat, ej påbörjat
+- **Plan:** Utöka `glosor-data.json` med `example_sv` och `example_en` per ord
+- **App:** Visa exempelmening efter rätt svar (eller vid "reveal"-knappen)
+
+### Paper mode (utskriftsvänligt)
+- **Status:** Diskuterat, ej påbörjat
+- **Plan:** Generera PDF/HTML med alla aktiva ord för utskrift — barnet kan öva offline
+- **Verktyg:** `wkhtmltopdf` eller liknande (Tectonic finns redan i workspace)
+
+### "I can't find my dad" — utöka med fler kapitel
+- **Status:** Pågående (nästa vecka)
+- **Plan:** Lägg till ord 12, 13, ... i `glosor-data.json` när nya glosor-kapitel tillkommer
+- **Audio:** Kör `python3 scripts/gen_audio.py --lang both --out-dir audio/` för nya ord
+
+### Förbättrad felåterkoppling
+- **Status:** Idé
+- **Plan:** När barnet skriver fel, visa rätt svar med ljud (SV) + färg-kod
+- **Möjligt:** Streak-systemet finns redan (se app.js)
+
+### Multi-device sync (PWA state)
+- **Status:** Idé
+- **Plan:** Spara streak/progress i `localStorage` ELLER remote (Firebase?)
+- **Just nu:** Allt är client-side, ingen persistence
+
+---
+
+**Senast uppdaterad:** 2026-09-01 (efter arkiverings-feature)
