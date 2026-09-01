@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color"="#4f46e5">
+  <meta name="description" content="Glosor - öva svenska → engelska med audio på båda språken, jämför med facit">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Glosor">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css?v=1">
+  <title>Glosor</title>
+</head>
+<body>
+  <header>
+    <h1 id="title" contenteditable="true">Glosor — Klass 4 Lejonskolan</h1>
+    <p class="subtitle">Lyssna, skriv det engelska ordet och jämför med facit</p>
+    <button id="shuffleBtn" class="shuffle-btn" aria-label="Blanda om orden">🔀 Blanda om</button>
+  </header>
+
+  <button id="revealBtn" class="primary reveal-main" aria-label="Visa rätt svar">👁 Visa svaret</button>
+
+  <main class="card">
+    <div class="streak-counter" id="streakCounter" aria-label="Radda rätt">🔥 <span id="streakNum">0</span></div>
+    <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+    <div class="counter"><span id="current">1</span> av <span id="total">8</span></div>
+
+    <div class="sv-word" id="svWord">—</div>
+    <p class="hint" id="hint">Lyssna, skriv det engelska ordet och tryck Rätta.</p>
+
+    <div class="audio-indicator" id="audioIndicator" role="status" aria-live="polite">🔊 Spelar…</div>
+
+    <div class="input-row">
+      <input type="text"
+             id="guessInput"
+             class="guess-input"
+             placeholder="Skriv det engelska ordet…"
+             autocomplete="off"
+             autocorrect="off"
+             autocapitalize="off"
+             spellcheck="false"
+             inputmode="text"
+             aria-label="Skriv det engelska ordet">
+    </div>
+
+    <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+
+    <div class="controls">
+      <button class="primary" id="listenSvBtn" aria-label="Lyssna på svenska">🇸🇪 Lyssna (SV)</button>
+      <button class="primary" id="listenEnBtn" aria-label="Lyssna på engelska">🇬🇧 Lysska (EN)</button>
+      <button class="success" id="checkBtn" aria-label="Rätta ditt svar">✓ Rätta</button>
+      <button id="shareBtn" aria-label="Dela appen">↗ Dela</button>
+    </div>
+
+    <div class="nav">
+      <button id="prevBtn" aria-label="Föregående ord">← Bak</button>
+      <button id="nextBtn" class="primary-next" aria-label="Nästa ord">Nästa →</button>
+    </div>
+
+    <p class="kbd-hint">
+      <span class="kbd">←</span> <span class="kbd">→</span> navigera ·
+      <span class="kbd">S</span> svenska ·
+      <span class="kbd">E</span> engelska ·
+      <span class="kbd">Enter</span> rätta ·
+      <span class="kbd">V</span> visa
+    </p>
+  </main>
+
+  <footer class="install-hint" id="installHint" hidden>
+    <p>💡 Tips: Lägg till på hemskärmen för att använda offline.</p>
+    <button id="installBtn" hidden>Lägg till</button>
+    <button id="dismissInstall" aria-label="Stäng">✕</button>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
