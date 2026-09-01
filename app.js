@@ -44,7 +44,9 @@ async function loadData() {
     const res = await fetch('glosor-data.json', { cache: 'no-store' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-    words = data.words || [];
+    const allWords = data.words || [];
+    // Filtrera bort arkiverade ord (active: false). active !== false = default aktiv.
+    words = allWords.filter(w => w.active !== false);
     meta = data.meta || {};
     if (meta.title) titleEl.textContent = meta.title;
     if (meta.subtitle) subtitleEl.textContent = meta.subtitle;

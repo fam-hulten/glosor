@@ -19,7 +19,9 @@
       "en": "with",
       "en_alts": "",
       "audio_sv": "audio/02-sv.mp3",
-      "audio_en": "audio/02-en.mp3"
+      "audio_en": "audio/02-en.mp3",
+      "active": false,
+      "archived_at": "2026-09-01"
     },
     {
       "id": "03",
@@ -51,7 +53,9 @@
       "en": "Have you got...?",
       "en_alts": "",
       "audio_sv": "audio/06-sv.mp3",
-      "audio_en": "audio/06-en.mp3"
+      "audio_en": "audio/06-en.mp3",
+      "active": false,
+      "archived_at": "2026-09-01"
     },
     {
       "id": "07",
@@ -83,7 +87,9 @@
       "en": "street",
       "en_alts": "",
       "audio_sv": "audio/10-sv.mp3",
-      "audio_en": "audio/10-en.mp3"
+      "audio_en": "audio/10-en.mp3",
+      "active": false,
+      "archived_at": "2026-09-01"
     },
     {
       "id": "11",
