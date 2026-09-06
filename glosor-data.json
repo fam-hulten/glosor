@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "Glosor — Klass 4 Lejonskolan",
-    "subtitle": "Lyssna, skriv ordet och jämför med facit",
-    "source": "Blandat (engelska + rättstavning 2026-09-06)"
+    "title": "I can't find my dad — Klass 4 Lejonskolan",
+    "subtitle": "Lyssna, skriv det engelska ordet och jämför med facit",
+    "source": "Glosor.eu (Lejonfemmorna), 2026-08-31"
   },
   "words": [
     {
@@ -92,73 +92,6 @@
       "en_alts": "",
       "audio_sv": "audio/11-sv.mp3",
       "audio_en": "audio/11-en.mp3"
-    },
-    {
-      "id": "12",
-      "sv": "underlig",
-      "en": "underlig",
-      "en_alts": "",
-      "audio_sv": "audio/12-sv.mp3",
-      "audio_en": "audio/12-sv.mp3",
-      "note": "Tveksam: kaut är inte standardord — kan vara klart/klaut/felavläsning"
-    },
-    {
-      "id": "13",
-      "sv": "försvann",
-      "en": "försvann",
-      "en_alts": "",
-      "audio_sv": "audio/13-sv.mp3",
-      "audio_en": "audio/13-sv.mp3"
-    },
-    {
-      "id": "14",
-      "sv": "minsann",
-      "en": "minsann",
-      "en_alts": "",
-      "audio_sv": "audio/14-sv.mp3",
-      "audio_en": "audio/14-sv.mp3"
-    },
-    {
-      "id": "15",
-      "sv": "avund",
-      "en": "avund",
-      "en_alts": "",
-      "audio_sv": "audio/15-sv.mp3",
-      "audio_en": "audio/15-sv.mp3"
-    },
-    {
-      "id": "16",
-      "sv": "hann",
-      "en": "hann",
-      "en_alts": "",
-      "audio_sv": "audio/16-sv.mp3",
-      "audio_en": "audio/16-sv.mp3",
-      "note": "Apostrof före 'hann' i original — antas vara citattecken/notation, ej del av ordet"
-    },
-    {
-      "id": "17",
-      "sv": "ändå",
-      "en": "ändå",
-      "en_alts": "",
-      "audio_sv": "audio/17-sv.mp3",
-      "audio_en": "audio/17-sv.mp3"
-    },
-    {
-      "id": "18",
-      "sv": "runt",
-      "en": "runt",
-      "en_alts": "",
-      "audio_sv": "audio/18-sv.mp3",
-      "audio_en": "audio/18-sv.mp3"
-    },
-    {
-      "id": "19",
-      "sv": "kaut",
-      "en": "kaut",
-      "en_alts": "",
-      "audio_sv": "audio/19-sv.mp3",
-      "audio_en": "audio/19-sv.mp3",
-      "note": "Tveksam: kaut är inte standardord — kan vara klart/klaut/felavläsning"
     }
   ]
 }
