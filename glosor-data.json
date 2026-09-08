@@ -1,95 +1,221 @@
 {
   "meta": {
-    "title": "I can't find my dad — Klass 4 Lejonskolan",
+    "title": "The Family — Klass 4 Lejonskolan",
     "subtitle": "Lyssna, skriv det engelska ordet och jämför med facit",
-    "source": "Glosor.eu (Lejonfemmorna), 2026-08-31"
+    "source": "Glosor.eu (Lejonfemmorna), 2026-09-08"
   },
   "words": [
     {
       "id": "01",
-      "sv": "ursäkta mig",
-      "en": "Excuse me",
-      "en_alts": "",
+      "sv": "morfar/farfar",
+      "en": "grandpa",
+      "en_alts": "grandfather",
       "audio_sv": "audio/01-sv.mp3",
       "audio_en": "audio/01-en.mp3"
     },
     {
       "id": "02",
-      "sv": "med",
-      "en": "with",
+      "sv": "honung",
+      "en": "honey",
       "en_alts": "",
       "audio_sv": "audio/02-sv.mp3",
       "audio_en": "audio/02-en.mp3"
     },
     {
       "id": "03",
-      "sv": "hitta",
-      "en": "find",
+      "sv": "Herr",
+      "en": "Mr",
       "en_alts": "",
       "audio_sv": "audio/03-sv.mp3",
       "audio_en": "audio/03-en.mp3"
     },
     {
       "id": "04",
-      "sv": "han är",
-      "en": "he's",
-      "en_alts": "he is",
+      "sv": "kött",
+      "en": "meat",
+      "en_alts": "",
       "audio_sv": "audio/04-sv.mp3",
       "audio_en": "audio/04-en.mp3"
     },
     {
       "id": "05",
-      "sv": "någonstans",
-      "en": "somewhere",
+      "sv": "rakt",
+      "en": "straight",
       "en_alts": "",
       "audio_sv": "audio/05-sv.mp3",
       "audio_en": "audio/05-en.mp3"
     },
     {
       "id": "06",
-      "sv": "Har du...?",
-      "en": "Have you got...?",
+      "sv": "Fru",
+      "en": "Mrs",
       "en_alts": "",
       "audio_sv": "audio/06-sv.mp3",
       "audio_en": "audio/06-en.mp3"
     },
     {
       "id": "07",
-      "sv": "på väg",
-      "en": "on my way",
+      "sv": "hud",
+      "en": "skin",
       "en_alts": "",
       "audio_sv": "audio/07-sv.mp3",
       "audio_en": "audio/07-en.mp3"
     },
     {
       "id": "08",
-      "sv": "vid",
-      "en": "by",
+      "sv": "också",
+      "en": "too",
       "en_alts": "",
       "audio_sv": "audio/08-sv.mp3",
       "audio_en": "audio/08-en.mp3"
     },
     {
       "id": "09",
-      "sv": "telefon",
-      "en": "phone",
+      "sv": "familj",
+      "en": "family",
       "en_alts": "",
       "audio_sv": "audio/09-sv.mp3",
       "audio_en": "audio/09-en.mp3"
     },
     {
       "id": "10",
-      "sv": "gata",
-      "en": "street",
+      "sv": "lockigt",
+      "en": "curly",
       "en_alts": "",
       "audio_sv": "audio/10-sv.mp3",
       "audio_en": "audio/10-en.mp3"
     },
     {
       "id": "11",
+      "sv": "mat",
+      "en": "food",
+      "en_alts": "",
+      "audio_sv": "audio/11-sv.mp3",
+      "audio_en": "audio/11-en.mp3"
+    },
+    {
+      "id": "12",
+      "sv": "fisk",
+      "en": "fish",
+      "en_alts": "",
+      "audio_sv": "audio/12-sv.mp3",
+      "audio_en": "audio/12-en.mp3"
+    },
+    {
+      "id": "13",
+      "sv": "godis",
+      "en": "candy",
+      "en_alts": "sweets",
+      "audio_sv": "audio/13-sv.mp3",
+      "audio_en": "audio/13-en.mp3"
+    },
+    {
+      "id": "01-old",
+      "sv": "ursäkta mig",
+      "en": "Excuse me",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/01-sv.mp3",
+      "audio_en": "audio/01-en.mp3"
+    },
+    {
+      "id": "02-old",
+      "sv": "med",
+      "en": "with",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/02-sv.mp3",
+      "audio_en": "audio/02-en.mp3"
+    },
+    {
+      "id": "03-old",
+      "sv": "hitta",
+      "en": "find",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/03-sv.mp3",
+      "audio_en": "audio/03-en.mp3"
+    },
+    {
+      "id": "04-old",
+      "sv": "han är",
+      "en": "he's",
+      "en_alts": "he is",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/04-sv.mp3",
+      "audio_en": "audio/04-en.mp3"
+    },
+    {
+      "id": "05-old",
+      "sv": "någonstans",
+      "en": "somewhere",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/05-sv.mp3",
+      "audio_en": "audio/05-en.mp3"
+    },
+    {
+      "id": "06-old",
+      "sv": "Har du...?",
+      "en": "Have you got...?",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/06-sv.mp3",
+      "audio_en": "audio/06-en.mp3"
+    },
+    {
+      "id": "07-old",
+      "sv": "på väg",
+      "en": "on my way",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/07-sv.mp3",
+      "audio_en": "audio/07-en.mp3"
+    },
+    {
+      "id": "08-old",
+      "sv": "vid",
+      "en": "by",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/08-sv.mp3",
+      "audio_en": "audio/08-en.mp3"
+    },
+    {
+      "id": "09-old",
+      "sv": "telefon",
+      "en": "phone",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/09-sv.mp3",
+      "audio_en": "audio/09-en.mp3"
+    },
+    {
+      "id": "10-old",
+      "sv": "gata",
+      "en": "street",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/10-sv.mp3",
+      "audio_en": "audio/10-en.mp3"
+    },
+    {
+      "id": "11-old",
       "sv": "väg",
       "en": "street",
       "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
       "audio_sv": "audio/11-sv.mp3",
       "audio_en": "audio/11-en.mp3"
     }
