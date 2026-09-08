@@ -2,11 +2,13 @@
 
 **Syfte:** Uppdatera eller utöka audio-filer när nya ord tillkommer eller när någon ska ändra i befintliga.
 
-**Processordning (VIKTIGT — lärdom från 2026-09-01):**
+**Processordning (VIKTIGT — lärdom från 2026-09-01 + 2026-09-08):**
 
 1. **Diskutera FÖRST, generera SEN.** Aldrig `mmx speech synthesize` direkt efter en pushback — diskutera fram rätt approach med användaren.
 2. **Lyssna på FÖREGÅENDE audio innan du ändrar något.** Öppna appen på https://fam-hulten.github.io/glosor/ och hör hur orden låter nu.
 3. **Verifiera röst-prompten fungerar** med `--dry-run` (eller litet test) innan batch.
+4. **Läs ALLTID både SV + EN från worksheten** (läxa 2026-09-08). Eleven ska lära sig SPECIFIKT det ord läraren valt på worksheten — inte en "korrekt" översättning från mitt eget huvud. Om worksheten säger `godis → treat`, är det `treat` som gäller, inte `candy`/`sweets`. **Aldrig gissa översättningar.** Om bilden bara visar SV-kolumnen: fråga Johanna om EN, eller be om bild igen — generera ALDRIG audio med egna översättningar.
+   - **Pågående åtgärd:** 'The Family'-temat (13 ord, 2026-09-08) är uppladdat med gissade översättningar. Måste regenereras när worksheten finns tillgänglig igen.
 
 ---
 
