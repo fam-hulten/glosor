@@ -9,7 +9,7 @@
       "id": "01",
       "sv": "morfar/farfar",
       "en": "grandpa",
-      "en_alts": "grandfather",
+      "en_alts": "",
       "audio_sv": "audio/01-sv.mp3",
       "audio_en": "audio/01-en.mp3"
     },
@@ -105,7 +105,7 @@
       "id": "13",
       "sv": "godis",
       "en": "candy",
-      "en_alts": "sweets",
+      "en_alts": "",
       "audio_sv": "audio/13-sv.mp3",
       "audio_en": "audio/13-en.mp3"
     },
