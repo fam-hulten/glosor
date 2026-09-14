@@ -2,13 +2,72 @@
 
 **Syfte:** Uppdatera eller utöka audio-filer när nya ord tillkommer eller när någon ska ändra i befintliga.
 
+---
+
+## v3 Arkitektur (queue + self-assessment, 2026-09-14)
+
+**Bakgrund:** Johanna ville ha samma flow som `fam-hulten/begrepp` — användaren markerar själv rätt/fel efter Rätta, fel ord flyttas till slutet av kön och kommer tillbaka tills alla är avbockade.
+
+### Datamodell (i `app.js`)
+
+```javascript
+let allWords = [];              // alla aktiva ord (från JSON, arkiverade filtrerade bort)
+let queue = [];                 // kö av ord-ID:n som INTE är avbockade ännu
+let masteredThisSession = [];   // ID:n som klarats under sessionen
+let sessionRepeats = 0;         // antal gånger ett ord flyttats till slutet av kön
+let currentCard = null;         // aktuellt ord-objekt (queue[0])
+let revealed = false;           // har svaret visats (via Rätta)?
+let streak = 0;                 // antal rätt i rad (nollställs vid fel)
+```
+
+### Session-flöde
+
+1. `init()`: Fisher-Yates-shuffle av `allWords.map(w => w.id)` → `queue`. `masteredThisSession = []`, `streak = 0`.
+2. `nextCard()`: om `queue.length === 0` → `showSummary()`. Annars: `currentCard = allWords.find(w => w.id === queue[0])`. `renderCard()` play'ar SV-audio automatiskt efter 400ms.
+3. `checkGuess()` (klick på Rätta / Enter): auto-jämför `guessInput.value` mot `currentCard.en` (case-insensitive, trim). Visar feedback + rätt svar. **`revealed = true`**, selfAssess-knappar visas. **Auto-fokus** på Rätt om auto-check sa rätt, Fel om fel — användaren kan overrida.
+4. `selfAssess(correct)` (klick på Rätt/Fel eller `R`/`F`):
+   - Om **rätt**: `queue.shift()`, `masteredThisSession.push(currentCard.id)`, `streak++`.
+   - Om **fel**: `queue.shift()`, `queue.push(cardId)` (till slutet av kön), `sessionRepeats++`, `streak = 0`.
+   - Anropa `nextCard()`.
+5. `showSummary()`: dölj `<main class="card">`, visa `<section class="summary">` med `masteredThisSession.length`, `sessionRepeats`, och "Börja om"-knapp.
+6. `startOver()` / `shuffleWords()`: anropa `init()` igen.
+
+### Progress bar (`.progress-dot`)
+
+- Avbockade (`< masteredThisSession.length`): grön (`var(--success)`)
+- Aktiv (= `masteredThisSession.length`): blå + förstorad (`var(--primary)`)
+- Övriga: grå (`var(--border)`)
+
+### Tangentbord
+
+- `Enter` (i input): Rätta (om ej revealed)
+- `R` / `r`: Rätt (om revealed)
+- `F` / `f`: Fel (om revealed)
+- `S` / `s`: Spela SV-audio
+- `E` / `e`: Spela EN-audio
+
+### Service worker cache-version
+
+`sw.js` har `CACHE_NAME = 'glosor-vN'`. **Bump N vid varje HTML/CSS/JS-ändring** så att användare får ny kod vid nästa besök. Aktiva sessioner kan behöva en hard refresh (DevTools → Application → Service Workers → Unregister) om SW inte uppdateras automatiskt.
+
+### Relation till begrepp
+
+Samma mönster (`queue[]`, `masteredThisSession[]`, `selfAssess(correct)`, `showSummary()`). Skillnaden:
+- Glosor har typing-input + auto-check (begrepp är ren flashcard).
+- Glosor har ett progress-bar-mönster (begrepp har samma).
+- Glosor saknar mode-switching (begrepp har forward/reverse).
+
+Om begrepp ändras — kolla om glosor bör följa efter (eller tvärtom). Annars riskerar de att divergera.
+
+---
+
 **Processordning (VIKTIGT — lärdom från 2026-09-01 + 2026-09-08):**
 
 1. **Diskutera FÖRST, generera SEN.** Aldrig `mmx speech synthesize` direkt efter en pushback — diskutera fram rätt approach med användaren.
 2. **Lyssna på FÖREGÅENDE audio innan du ändrar något.** Öppna appen på https://fam-hulten.github.io/glosor/ och hör hur orden låter nu.
 3. **Verifiera röst-prompten fungerar** med `--dry-run` (eller litet test) innan batch.
 4. **Läs ALLTID både SV + EN från worksheten** (läxa 2026-09-08). Eleven ska lära sig SPECIFIKT det ord läraren valt på worksheten — inte en "korrekt" översättning från mitt eget huvud. Om worksheten säger `godis → treat`, är det `treat` som gäller, inte `candy`/`sweets`. **Aldrig gissa översättningar.** Om bilden bara visar SV-kolumnen: fråga Johanna om EN, eller be om bild igen — generera ALDRIG audio med egna översättningar.
-   - **Pågående åtgärd:** 'The Family'-temat (13 ord, 2026-09-08) är uppladdat med gissade översättningar. Måste regenereras när worksheten finns tillgänglig igen.
+   - **Upplöst 2026-09-14:** 'The Family'-tematet (13 ord, 2026-09-08) hade delvis gissade översättningar. Regenererades INTE (verifierad OK), men **audio-filerna är bevarade** som `tf-old-01..13` om framtida regenerering behövs.
 
 ---
 
@@ -63,7 +122,7 @@ curl -s -o /dev/null -w "%{http_code}\n" https://fam-hulten.github.io/glosor/aud
 
 ---
 
-## Arkivering av ord (Johanna #14643 + #14647)
+## Arkivering av ord (Johanna #14643 + #14647 + #15044)
 
 **Syfte:** Ord som inte längre är aktiva (t.ex. avslutade kapitel, utgångna veckor) ska INTE visas i appen, men INTE heller raderas — de ska finnas kvar i git-historik.
 
@@ -92,6 +151,20 @@ Lägg till två fält i `glosor-data.json` på det ord som ska bort:
 - Progress-bar räknar BARA aktiva ord (totalsiffra = antal synliga ord).
 - Audio-filer stannar kvar i `audio/` (refereras inte från JSON, finns kvar i git-historik).
 - **Ingen UI-markering** för arkiverade ord (ren app, arkivering är admin-grej).
+- `scripts/gen_audio.py` filtrerar också bort arkiverade ord — scriptet genererar bara audio för aktiva ord, så historiska audio-filer skrivs inte över av misstag.
+
+### Audio-arkiveringsmönster (2026-09-14, etablerat för "The Family")
+
+När ett helt kapitel (med många ord) arkiveras, **flytta audio-filerna** till ett nytt namn innan nya genereras:
+
+- Befintliga aktiva filer: `audio/01-sv.mp3`, `audio/02-sv.mp3`, ..., `audio/13-sv.mp3`
+- Flytta till: `audio/<tema>-old-01-sv.mp3`, `audio/<tema>-old-02-sv.mp3`, ..., `audio/<tema>-old-13-sv.mp3`
+- Exempel: `The Family` → `tf-old-01-sv.mp3` ... `tf-old-13-sv.mp3` (commit f07144d)
+- ID:n i JSON följer samma mönster: `tf-old-01`, `tf-old-02`, ...
+
+**Varför:** Om man behåller ID:n `01-13` för nya aktiva ord och genererar ny audio, skrivs den gamla audio:en över och går förlorad. Genom att flytta filerna + döpa om ID:n bevaras allt i git-historik.
+
+**Aldrig radera audio-filer.** Alltid git-versionshanterade.
 
 ### Verifiering
 
@@ -181,6 +254,28 @@ mmx auth login --api-key "$(cat /tmp/.mmx-key)"   # UTAN --region!
 
 ## Historik (för kontext)
 
+- **2026-09-14**: **v3 — queue + self-assessment** (commit f566cb4)
+  - Portat från `fam-hulten/begrepp`: queue[] istället för currentIndex, selfAssess(correct), summary-skärm
+  - Auto-fokus på Rätt/Fel efter check (användaren kan overrida)
+  - Streak ökar på ratt, nollställs på fel
+  - Tangentbord: R = rätt, F = fel (när revealed)
+  - Tog bort stora top-reveal + prev/next-knappar
+  - `sw.js` CACHE_NAME: `glosor-v1` → `glosor-v3`
+  - README + UPDATE.md uppdaterade
+
+- **2026-09-14**: Cykel-fel korrigering (commit 3aac540)
+  - id 05: "cykel/bike" → "cykler/cycles" (plural, recurring — inte fordon)
+  - Audio regenererad för bara id 05 (2 filer via temp-data-json, sparade 22 onödiga API-anrop)
+
+- **2026-09-14**: **Do you like cars?** — nytt kapitel (commit f07144d)
+  - 12 nya ord från worksheten "Do you like cars?" (årskurs 2 / Lejonskolan)
+  - The Family (13 ord) arkiverat som `tf-old-01..13`, audio bevarat
+  - `gen_audio.py` får archive-filter (skippar aktiva ord från script-körning)
+  - `01-old..11-old`-audio-paths fixade (pekade tidigare på aktiva ord)
+
+- **2026-09-08**: The Family-temat (13 ord) — första kompletta kapitel-deploy
+  - Vissa översättningar gissade (läxa — numera strikt regel att läsa både SV+EN från worksheten)
+
 - **2026-09-01**: Första audio-generering. 6 commits pga flera pushbacks:
   - 5c423f0: första försöket (hade "Säg ordet" + #)
   - 1ccdded: fixade till "Skriv ordet"
@@ -239,4 +334,4 @@ mmx auth login --api-key "$(cat /tmp/.mmx-key)"   # UTAN --region!
 
 ---
 
-**Senast uppdaterad:** 2026-09-01 (efter arkiverings-feature)
+**Senast uppdaterad:** 2026-09-14 (v3-arkitektur + dokyu-uppdatering)
