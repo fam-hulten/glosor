@@ -157,10 +157,17 @@ def main():
 
     with open(data_path) as f:
         data = json.load(f)
-    words = data.get("words", [])
+    # Filtrera bort arkiverade ord (active: false) — samma filter som app.js loadData()
+    # Annars skulle scriptet generera audio för historiska ord och skriva över
+    # bevarade audio-filer.
+    all_words = data.get("words", [])
+    words = [w for w in all_words if w.get("active") != False]
     if not words:
-        print(f"✗ Inga ord i {data_path}", file=sys.stderr)
+        print(f"✗ Inga aktiva ord i {data_path} (alla är arkiverade?)", file=sys.stderr)
         sys.exit(1)
+    archived_count = len(all_words) - len(words)
+    if archived_count:
+        print(f"ⓘ Hoppar över {archived_count} arkiverade ord (active:false)")
 
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)

@@ -1,113 +1,105 @@
 {
   "meta": {
-    "title": "The Family — Klass 4 Lejonskolan",
-    "subtitle": "Lyssna, skriv det engelska ordet och jämför med facit",
-    "source": "Glosor.eu (Lejonfemmorna), 2026-09-08"
+    "title": "Do you like cars? — Klass 4 Lejonskolan",
+    "subtitle": "Välkommen till årskurs 2 — Lyssna, skriv det engelska ordet och jämför med facit",
+    "source": "Glosor.eu (Lejonskolan), 2026-09-14"
   },
   "words": [
     {
       "id": "01",
-      "sv": "morfar/farfar",
-      "en": "grandpa",
+      "sv": "saker",
+      "en": "things",
       "en_alts": "",
       "audio_sv": "audio/01-sv.mp3",
       "audio_en": "audio/01-en.mp3"
     },
     {
       "id": "02",
-      "sv": "honung",
-      "en": "honey",
+      "sv": "hjul",
+      "en": "wheel",
       "en_alts": "",
       "audio_sv": "audio/02-sv.mp3",
       "audio_en": "audio/02-en.mp3"
     },
     {
       "id": "03",
-      "sv": "Herr",
-      "en": "Mr",
+      "sv": "lillasyster",
+      "en": "little sister",
       "en_alts": "",
       "audio_sv": "audio/03-sv.mp3",
       "audio_en": "audio/03-en.mp3"
     },
     {
       "id": "04",
-      "sv": "kött",
-      "en": "meat",
+      "sv": "hennes",
+      "en": "her",
       "en_alts": "",
       "audio_sv": "audio/04-sv.mp3",
       "audio_en": "audio/04-en.mp3"
     },
     {
       "id": "05",
-      "sv": "rakt",
-      "en": "straight",
+      "sv": "cykel",
+      "en": "bike",
       "en_alts": "",
       "audio_sv": "audio/05-sv.mp3",
       "audio_en": "audio/05-en.mp3"
     },
     {
       "id": "06",
-      "sv": "Fru",
-      "en": "Mrs",
+      "sv": "vild",
+      "en": "wild",
       "en_alts": "",
       "audio_sv": "audio/06-sv.mp3",
       "audio_en": "audio/06-en.mp3"
     },
     {
       "id": "07",
-      "sv": "hud",
-      "en": "skin",
+      "sv": "hans",
+      "en": "his",
       "en_alts": "",
       "audio_sv": "audio/07-sv.mp3",
       "audio_en": "audio/07-en.mp3"
     },
     {
       "id": "08",
-      "sv": "också",
-      "en": "too",
+      "sv": "motorcykel",
+      "en": "motorbike",
       "en_alts": "",
       "audio_sv": "audio/08-sv.mp3",
       "audio_en": "audio/08-en.mp3"
     },
     {
       "id": "09",
-      "sv": "familj",
-      "en": "family",
+      "sv": "häftig",
+      "en": "awesome",
       "en_alts": "",
       "audio_sv": "audio/09-sv.mp3",
       "audio_en": "audio/09-en.mp3"
     },
     {
       "id": "10",
-      "sv": "lockigt",
-      "en": "curly",
+      "sv": "dotter",
+      "en": "daughter",
       "en_alts": "",
       "audio_sv": "audio/10-sv.mp3",
       "audio_en": "audio/10-en.mp3"
     },
     {
       "id": "11",
-      "sv": "mat",
-      "en": "food",
+      "sv": "förare",
+      "en": "driver",
       "en_alts": "",
       "audio_sv": "audio/11-sv.mp3",
       "audio_en": "audio/11-en.mp3"
     },
     {
       "id": "12",
-      "sv": "fisk",
-      "en": "fish",
+      "sv": "personer",
+      "en": "people",
       "en_alts": "",
       "audio_sv": "audio/12-sv.mp3",
       "audio_en": "audio/12-en.mp3"
-    },
-    {
-      "id": "13",
-      "sv": "godis",
-      "en": "candy",
-      "en_alts": "",
-      "audio_sv": "audio/13-sv.mp3",
-      "audio_en": "audio/13-en.mp3"
     },
     {
       "id": "01-old",
@@ -116,8 +108,8 @@
       "en_alts": "",
       "active": false,
       "archived_at": "2026-09-08T05:13:00Z",
-      "audio_sv": "audio/01-sv.mp3",
-      "audio_en": "audio/01-en.mp3"
+      "audio_sv": "audio/01-old-sv.mp3",
+      "audio_en": "audio/01-old-en.mp3"
     },
     {
       "id": "02-old",
@@ -126,8 +118,8 @@
       "en_alts": "",
       "active": false,
       "archived_at": "2026-09-08T05:13:00Z",
-      "audio_sv": "audio/02-sv.mp3",
-      "audio_en": "audio/02-en.mp3"
+      "audio_sv": "audio/02-old-sv.mp3",
+      "audio_en": "audio/02-old-en.mp3"
     },
     {
       "id": "03-old",
@@ -136,8 +128,8 @@
       "en_alts": "",
       "active": false,
       "archived_at": "2026-09-08T05:13:00Z",
-      "audio_sv": "audio/03-sv.mp3",
-      "audio_en": "audio/03-en.mp3"
+      "audio_sv": "audio/03-old-sv.mp3",
+      "audio_en": "audio/03-old-en.mp3"
     },
     {
       "id": "04-old",
@@ -146,8 +138,8 @@
       "en_alts": "he is",
       "active": false,
       "archived_at": "2026-09-08T05:13:00Z",
-      "audio_sv": "audio/04-sv.mp3",
-      "audio_en": "audio/04-en.mp3"
+      "audio_sv": "audio/04-old-sv.mp3",
+      "audio_en": "audio/04-old-en.mp3"
     },
     {
       "id": "05-old",
@@ -156,8 +148,8 @@
       "en_alts": "",
       "active": false,
       "archived_at": "2026-09-08T05:13:00Z",
-      "audio_sv": "audio/05-sv.mp3",
-      "audio_en": "audio/05-en.mp3"
+      "audio_sv": "audio/05-old-sv.mp3",
+      "audio_en": "audio/05-old-en.mp3"
     },
     {
       "id": "06-old",
@@ -166,8 +158,8 @@
       "en_alts": "",
       "active": false,
       "archived_at": "2026-09-08T05:13:00Z",
-      "audio_sv": "audio/06-sv.mp3",
-      "audio_en": "audio/06-en.mp3"
+      "audio_sv": "audio/06-old-sv.mp3",
+      "audio_en": "audio/06-old-en.mp3"
     },
     {
       "id": "07-old",
@@ -176,8 +168,8 @@
       "en_alts": "",
       "active": false,
       "archived_at": "2026-09-08T05:13:00Z",
-      "audio_sv": "audio/07-sv.mp3",
-      "audio_en": "audio/07-en.mp3"
+      "audio_sv": "audio/07-old-sv.mp3",
+      "audio_en": "audio/07-old-en.mp3"
     },
     {
       "id": "08-old",
@@ -186,8 +178,8 @@
       "en_alts": "",
       "active": false,
       "archived_at": "2026-09-08T05:13:00Z",
-      "audio_sv": "audio/08-sv.mp3",
-      "audio_en": "audio/08-en.mp3"
+      "audio_sv": "audio/08-old-sv.mp3",
+      "audio_en": "audio/08-old-en.mp3"
     },
     {
       "id": "09-old",
@@ -196,8 +188,8 @@
       "en_alts": "",
       "active": false,
       "archived_at": "2026-09-08T05:13:00Z",
-      "audio_sv": "audio/09-sv.mp3",
-      "audio_en": "audio/09-en.mp3"
+      "audio_sv": "audio/09-old-sv.mp3",
+      "audio_en": "audio/09-old-en.mp3"
     },
     {
       "id": "10-old",
@@ -206,8 +198,8 @@
       "en_alts": "",
       "active": false,
       "archived_at": "2026-09-08T05:13:00Z",
-      "audio_sv": "audio/10-sv.mp3",
-      "audio_en": "audio/10-en.mp3"
+      "audio_sv": "audio/10-old-sv.mp3",
+      "audio_en": "audio/10-old-en.mp3"
     },
     {
       "id": "11-old",
@@ -216,8 +208,138 @@
       "en_alts": "",
       "active": false,
       "archived_at": "2026-09-08T05:13:00Z",
-      "audio_sv": "audio/11-sv.mp3",
-      "audio_en": "audio/11-en.mp3"
+      "audio_sv": "audio/11-old-sv.mp3",
+      "audio_en": "audio/11-old-en.mp3"
+    },
+    {
+      "id": "tf-old-01",
+      "sv": "morfar/farfar",
+      "en": "grandpa",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-01-sv.mp3",
+      "audio_en": "audio/tf-old-01-en.mp3"
+    },
+    {
+      "id": "tf-old-02",
+      "sv": "honung",
+      "en": "honey",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-02-sv.mp3",
+      "audio_en": "audio/tf-old-02-en.mp3"
+    },
+    {
+      "id": "tf-old-03",
+      "sv": "Herr",
+      "en": "Mr",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-03-sv.mp3",
+      "audio_en": "audio/tf-old-03-en.mp3"
+    },
+    {
+      "id": "tf-old-04",
+      "sv": "kött",
+      "en": "meat",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-04-sv.mp3",
+      "audio_en": "audio/tf-old-04-en.mp3"
+    },
+    {
+      "id": "tf-old-05",
+      "sv": "rakt",
+      "en": "straight",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-05-sv.mp3",
+      "audio_en": "audio/tf-old-05-en.mp3"
+    },
+    {
+      "id": "tf-old-06",
+      "sv": "Fru",
+      "en": "Mrs",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-06-sv.mp3",
+      "audio_en": "audio/tf-old-06-en.mp3"
+    },
+    {
+      "id": "tf-old-07",
+      "sv": "hud",
+      "en": "skin",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-07-sv.mp3",
+      "audio_en": "audio/tf-old-07-en.mp3"
+    },
+    {
+      "id": "tf-old-08",
+      "sv": "också",
+      "en": "too",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-08-sv.mp3",
+      "audio_en": "audio/tf-old-08-en.mp3"
+    },
+    {
+      "id": "tf-old-09",
+      "sv": "familj",
+      "en": "family",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-09-sv.mp3",
+      "audio_en": "audio/tf-old-09-en.mp3"
+    },
+    {
+      "id": "tf-old-10",
+      "sv": "lockigt",
+      "en": "curly",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-10-sv.mp3",
+      "audio_en": "audio/tf-old-10-en.mp3"
+    },
+    {
+      "id": "tf-old-11",
+      "sv": "mat",
+      "en": "food",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-11-sv.mp3",
+      "audio_en": "audio/tf-old-11-en.mp3"
+    },
+    {
+      "id": "tf-old-12",
+      "sv": "fisk",
+      "en": "fish",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-12-sv.mp3",
+      "audio_en": "audio/tf-old-12-en.mp3"
+    },
+    {
+      "id": "tf-old-13",
+      "sv": "godis",
+      "en": "candy",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-13-sv.mp3",
+      "audio_en": "audio/tf-old-13-en.mp3"
     }
   ]
 }
