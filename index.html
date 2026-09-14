@@ -11,22 +11,20 @@
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-  <link rel="stylesheet" href="styles.css?v=1">
+  <link rel="stylesheet" href="styles.css?v=3">
   <title>Glosor</title>
 </head>
 <body>
   <header>
     <h1 id="title" contenteditable="true">Glosor — Klass 4 Lejonskolan</h1>
-    <p class="subtitle">Lyssna, skriv det engelska ordet och jämför med facit</p>
+    <p class="subtitle">Lyssna, skriv det engelska ordet och tryck Rätta</p>
     <button id="shuffleBtn" class="shuffle-btn" aria-label="Blanda om orden">🔀 Blanda om</button>
   </header>
-
-  <button id="revealBtn" class="primary reveal-main" aria-label="Visa rätt svar">👁 Visa svaret</button>
 
   <main class="card">
     <div class="streak-counter" id="streakCounter" aria-label="Radda rätt">🔥 <span id="streakNum">0</span></div>
     <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
-    <div class="counter"><span id="current">1</span> av <span id="total">8</span></div>
+    <div class="counter"><span id="current">1</span> av <span id="total">12</span></div>
 
     <div class="sv-word" id="svWord">—</div>
     <p class="hint" id="hint">Lyssna, skriv det engelska ordet och tryck Rätta.</p>
@@ -50,24 +48,31 @@
 
     <div class="controls">
       <button class="primary" id="listenSvBtn" aria-label="Lyssna på svenska">🇸🇪 Lyssna (SV)</button>
-      <button class="primary" id="listenEnBtn" aria-label="Lyssna på engelska">🇬🇧 Lysska (EN)</button>
+      <button class="primary" id="listenEnBtn" aria-label="Lyssna på engelska">🇬🇧 Lyssna (EN)</button>
       <button class="success" id="checkBtn" aria-label="Rätta ditt svar">✓ Rätta</button>
       <button id="shareBtn" aria-label="Dela appen">↗ Dela</button>
     </div>
 
-    <div class="nav">
-      <button id="prevBtn" aria-label="Föregående ord">← Bak</button>
-      <button id="nextBtn" class="primary-next" aria-label="Nästa ord">Nästa →</button>
+    <div class="self-assess hidden" id="selfAssess">
+      <button class="success" id="rattBtn" aria-label="Jag skrev rätt">✓ Rätt</button>
+      <button class="danger" id="felBtn" aria-label="Jag skrev fel">✗ Fel</button>
     </div>
 
     <p class="kbd-hint">
-      <span class="kbd">←</span> <span class="kbd">→</span> navigera ·
-      <span class="kbd">S</span> svenska ·
-      <span class="kbd">E</span> engelska ·
       <span class="kbd">Enter</span> rätta ·
-      <span class="kbd">V</span> visa
+      <span class="kbd">R</span> rätt ·
+      <span class="kbd">F</span> fel ·
+      <span class="kbd">S</span> svenska ·
+      <span class="kbd">E</span> engelska
     </p>
   </main>
+
+  <section class="summary hidden" id="summary">
+    <h2>Bra jobbat!</h2>
+    <p>Du klarade <strong id="summaryMastered">0</strong> av <strong id="summaryTotal">12</strong> ord!</p>
+    <p class="summary-repeats">Upprepningar: <strong id="summaryRepeats">0</strong></p>
+    <button class="primary" id="startOverBtn" aria-label="Börja om">🔄 Börja om</button>
+  </section>
 
   <footer class="install-hint" id="installHint" hidden>
     <p>💡 Tips: Lägg till på hemskärmen för att använda offline.</p>
@@ -75,6 +80,6 @@
     <button id="dismissInstall" aria-label="Stäng">✕</button>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>

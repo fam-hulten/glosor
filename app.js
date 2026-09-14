@@ -1,9 +1,13 @@
-// Glosor — PWA
-// Loads glosor-data.json, presents Swedish words with audio (sv + en), lets user type the English translation.
+// Glosor — PWA v3 (queue + self-assessment, samma mönster som begrepp)
+// Laddar glosor-data.json, queue-baserad träning med ratt/fel self-assessment.
+// Efter Rätta: användaren markerar själv om det blev rätt eller fel. Fel ord
+// flyttas till slutet av kön. Session klar när alla ord är avbockade.
 
-let words = [];
-let meta = {};
-let currentIndex = 0;
+let allWords = [];
+let queue = [];
+let masteredThisSession = [];
+let sessionRepeats = 0;
+let currentCard = null;
 let revealed = false;
 let streak = 0;
 let deferredInstallPrompt = null;
@@ -11,6 +15,7 @@ let deferredInstallPrompt = null;
 const audio = new Audio();
 audio.preload = 'auto';
 
+const cardEl = document.querySelector('.card');
 const svWordEl = document.getElementById('svWord');
 const audioIndicator = document.getElementById('audioIndicator');
 const currentSpan = document.getElementById('current');
@@ -25,32 +30,34 @@ const feedbackEl = document.getElementById('feedback');
 const listenSvBtn = document.getElementById('listenSvBtn');
 const listenEnBtn = document.getElementById('listenEnBtn');
 const checkBtn = document.getElementById('checkBtn');
-const revealBtn = document.getElementById('revealBtn');
+const selfAssessEl = document.getElementById('selfAssess');
+const rattBtn = document.getElementById('rattBtn');
+const felBtn = document.getElementById('felBtn');
 const shareBtn = document.getElementById('shareBtn');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-
-const installHint = document.getElementById('installHint');
-const installBtn = document.getElementById('installBtn');
-const dismissInstallBtn = document.getElementById('dismissInstall');
 const shuffleBtn = document.getElementById('shuffleBtn');
 const streakCounter = document.getElementById('streakCounter');
 const streakNum = document.getElementById('streakNum');
+const installHint = document.getElementById('installHint');
+const installBtn = document.getElementById('installBtn');
+const dismissInstallBtn = document.getElementById('dismissInstall');
+const summaryEl = document.getElementById('summary');
+const startOverBtn = document.getElementById('startOverBtn');
+const summaryMasteredEl = document.getElementById('summaryMastered');
+const summaryRepeatsEl = document.getElementById('summaryRepeats');
+const summaryTotalEl = document.getElementById('summaryTotal');
 
-const allButtons = () => [listenSvBtn, listenEnBtn, checkBtn, revealBtn, shareBtn, prevBtn, nextBtn];
+const allButtons = () => [listenSvBtn, listenEnBtn, checkBtn, rattBtn, felBtn, shareBtn, shuffleBtn];
 
 async function loadData() {
   try {
     const res = await fetch('glosor-data.json', { cache: 'no-store' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-    const allWords = data.words || [];
-    // Filtrera bort arkiverade ord (active: false). active !== false = default aktiv.
-    words = allWords.filter(w => w.active !== false);
-    meta = data.meta || {};
+    allWords = (data.words || []).filter(w => w.active !== false);
+    const meta = data.meta || {};
     if (meta.title) titleEl.textContent = meta.title;
     if (meta.subtitle) subtitleEl.textContent = meta.subtitle;
-    if (!words.length) throw new Error('Inga glosor i datafilen');
+    if (!allWords.length) throw new Error('Inga glosor i datafilen');
     init();
   } catch (err) {
     console.error('Kunde inte ladda glosor-data.json:', err);
@@ -67,45 +74,63 @@ function showError(msg) {
 }
 
 function init() {
-  // Slumpa ordning en gång per session
-  for (let i = words.length - 1; i > 0; i--) {
+  // Shuffle IDs (Fisher-Yates) — samma mönster som begrepp init()
+  const ids = allWords.map(w => w.id);
+  for (let i = ids.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [words[i], words[j]] = [words[j], words[i]];
+    [ids[i], ids[j]] = [ids[j], ids[i]];
   }
-  totalSpan.textContent = words.length;
+  queue = ids;
+  masteredThisSession = [];
+  sessionRepeats = 0;
+  streak = 0;
+  totalSpan.textContent = allWords.length;
+  if (summaryTotalEl) summaryTotalEl.textContent = allWords.length;
+  updateStreak();
   renderProgress();
-  updateUI();
-  // Spela svenska audio automatiskt vid start
+  nextCard();
+}
+
+function nextCard() {
+  if (queue.length === 0) {
+    showSummary();
+    return;
+  }
+  const id = queue[0];
+  currentCard = allWords.find(w => w.id === id);
+  if (!currentCard) {
+    queue.shift();
+    nextCard();
+    return;
+  }
+  revealed = false;
+  renderCard();
+}
+
+function renderCard() {
+  if (!currentCard) return;
+  svWordEl.textContent = currentCard.sv;
+  currentSpan.textContent = masteredThisSession.length + 1;
+  feedbackEl.textContent = '';
+  feedbackEl.className = 'feedback';
+  guessInput.value = '';
+  guessInput.disabled = false;
+  guessInput.focus();
+  audioIndicator.classList.remove('playing', 'error');
+  audioIndicator.textContent = '';
+
+  // Nollställ self-assessment state för nytt kort
+  selfAssessEl.classList.add('hidden');
+  checkBtn.disabled = false;
+
+  renderProgress();
+  // Spela SV-audio automatiskt efter 400ms (samma som begrepp INITIAL_DELAY_MS)
   setTimeout(() => playAudio('sv'), 400);
 }
 
-function shuffleWords() {
-  for (let i = words.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [words[i], words[j]] = [words[j], words[i]];
-  }
-  currentIndex = 0;
-  updateUI();
-  playAudio('sv');
-  shuffleBtn.textContent = '✅';
-  setTimeout(() => { shuffleBtn.textContent = '🔀 Blanda om'; }, 800);
-}
-
-function renderProgress() {
-  progressBar.innerHTML = '';
-  words.forEach((_, i) => {
-    const dot = document.createElement('div');
-    dot.className = 'progress-dot';
-    if (i < currentIndex) dot.classList.add('completed');
-    if (i === currentIndex) dot.classList.add('active');
-    progressBar.appendChild(dot);
-  });
-}
-
 function playAudio(lang) {
-  const word = words[currentIndex];
-  if (!word) return;
-  const audioFile = lang === 'en' ? word.audio_en : word.audio_sv;
+  if (!currentCard) return;
+  const audioFile = lang === 'en' ? currentCard.audio_en : currentCard.audio_sv;
   if (!audioFile) {
     audioIndicator.textContent = `⚠️ Ingen ${lang === 'en' ? 'engelsk' : 'svensk'} audio för detta ord`;
     audioIndicator.classList.add('error');
@@ -120,98 +145,114 @@ function playAudio(lang) {
   if (p && p.catch) p.catch(err => console.error('Audio playback failed:', err));
 }
 
+function normalize(str) {
+  return str.toLowerCase().trim();
+}
+
 function escapeHtml(str) {
   return String(str).replace(/[&<>"']/g, m => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   })[m]);
 }
 
-function normalize(str) {
-  return str.toLowerCase().trim();
+function checkGuess() {
+  if (!currentCard || revealed) return;
+  const guess = normalize(guessInput.value);
+  const correct = normalize(currentCard.en);
+  const alts = (currentCard.en_alts || '').split(',').map(s => normalize(s)).filter(Boolean);
+  const allCorrect = [correct, ...alts];
+  const isCorrect = guess && allCorrect.includes(guess);
+
+  if (guess) {
+    if (isCorrect) {
+      feedbackEl.innerHTML = `✓ Rätt! <span class="en-answer">${escapeHtml(currentCard.en)}</span>`;
+      feedbackEl.className = 'feedback feedback-correct';
+    } else {
+      feedbackEl.innerHTML = `✗ Inte rätt.<br>Du skrev: <strong>${escapeHtml(guessInput.value.trim())}</strong><br>Rätt: <span class="en-answer">${escapeHtml(currentCard.en)}</span>`;
+      feedbackEl.className = 'feedback feedback-wrong';
+    }
+  } else {
+    feedbackEl.innerHTML = `Svar: <span class="en-answer">${escapeHtml(currentCard.en)}</span>`;
+    feedbackEl.className = 'feedback feedback-reveal';
+  }
+
+  revealed = true;
+  selfAssessEl.classList.remove('hidden');
+  checkBtn.disabled = true;
+
+  // Auto-fokusera föreslagen knapp (användaren kan overrida)
+  if (isCorrect) {
+    rattBtn.focus();
+  } else {
+    felBtn.focus();
+  }
 }
 
-function checkGuess() {
-  const word = words[currentIndex];
-  const guess = normalize(guessInput.value);
-  if (!guess) {
-    feedbackEl.textContent = 'Skriv ditt svar först';
-    feedbackEl.className = 'feedback feedback-hint';
-    return;
-  }
-  const correct = normalize(word.en);
-  // Acceptera flera alternativ om word.en_alts finns (kommaseparerade)
-  const alts = (word.en_alts || '').split(',').map(s => normalize(s)).filter(Boolean);
-  const allCorrect = [correct, ...alts];
-  if (allCorrect.includes(guess)) {
-    feedbackEl.innerHTML = `✓ Rätt! <span class="en-answer">${escapeHtml(word.en)}</span>`;
-    feedbackEl.className = 'feedback feedback-correct';
-    revealBtn.textContent = '👁 Visa svaret';
-    revealed = false;
+function selfAssess(correct) {
+  if (!currentCard || !revealed) return;
+
+  if (correct) {
+    queue.shift();
+    masteredThisSession.push(currentCard.id);
     streak++;
-    streakNum.textContent = streak;
-    streakCounter.classList.add('visible');
+  } else {
+    // Flytta aktuellt kort från front till slutet av kön (begrepp-mönster)
+    const cardId = queue.shift();
+    queue.push(cardId);
+    sessionRepeats++;
+    streak = 0;
+  }
+
+  updateStreak();
+  renderProgress();
+  nextCard();
+}
+
+function renderProgress() {
+  progressBar.innerHTML = '';
+  for (let i = 0; i < allWords.length; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'progress-dot';
+    if (i < masteredThisSession.length) dot.classList.add('completed');
+    else if (i === masteredThisSession.length) dot.classList.add('active');
+    progressBar.appendChild(dot);
+  }
+}
+
+function updateStreak() {
+  streakNum.textContent = streak;
+  streakCounter.classList.toggle('visible', streak > 0);
+  if (streak > 0) {
     streakCounter.classList.remove('pulse');
     void streakCounter.offsetWidth;
     streakCounter.classList.add('pulse');
     setTimeout(() => streakCounter.classList.remove('pulse'), 500);
-  } else {
-    feedbackEl.innerHTML = `✗ Inte rätt.<br>Du skrev: <strong>${escapeHtml(guessInput.value.trim())}</strong><br>Rätt: <span class="en-answer">${escapeHtml(word.en)}</span>`;
-    feedbackEl.className = 'feedback feedback-wrong';
-    streak = 0;
-    streakCounter.classList.remove('visible');
   }
 }
 
-function reveal() {
-  const word = words[currentIndex];
-  const guess = guessInput.value.trim();
-  if (revealed) {
-    feedbackEl.textContent = '';
-    feedbackEl.className = 'feedback';
-    revealed = false;
-    revealBtn.textContent = '👁 Visa svaret';
-    return;
-  }
-  const userPart = guess ? `Du skrev: <strong>${escapeHtml(guess)}</strong><br>` : '';
-  feedbackEl.innerHTML = `${userPart}Svar: <span class="en-answer">${escapeHtml(word.en)}</span>`;
-  feedbackEl.className = 'feedback feedback-reveal';
-  revealed = true;
-  revealBtn.textContent = '🙈 Dölj';
+function showSummary() {
+  cardEl.classList.add('hidden');
+  summaryEl.classList.remove('hidden');
+  if (summaryMasteredEl) summaryMasteredEl.textContent = masteredThisSession.length;
+  if (summaryRepeatsEl) summaryRepeatsEl.textContent = sessionRepeats;
+  if (summaryTotalEl) summaryTotalEl.textContent = allWords.length;
 }
 
-function nextWord() {
-  if (currentIndex < words.length - 1) {
-    const card = document.querySelector('.card');
-    card.classList.add('slide-out-left');
-    setTimeout(() => {
-      currentIndex++;
-      updateUI();
-      playAudio('sv');
-      card.classList.remove('slide-out-left');
-      card.classList.add('slide-in');
-      setTimeout(() => card.classList.remove('slide-in'), 300);
-    }, 250);
-  }
+function startOver() {
+  cardEl.classList.remove('hidden');
+  summaryEl.classList.add('hidden');
+  init();
 }
 
-function prevWord() {
-  if (currentIndex > 0) {
-    const card = document.querySelector('.card');
-    card.classList.add('slide-out-right');
-    setTimeout(() => {
-      currentIndex--;
-      updateUI();
-      playAudio('sv');
-      card.classList.remove('slide-out-right');
-      card.classList.add('slide-in');
-      setTimeout(() => card.classList.remove('slide-in'), 300);
-    }, 250);
-  }
+function shuffleWords() {
+  init();
+  shuffleBtn.textContent = '✅';
+  setTimeout(() => { shuffleBtn.textContent = '🔀 Blanda om'; }, 800);
 }
 
 async function shareApp() {
   const shareData = {
-    title: meta.title || 'Glosor',
+    title: titleEl.textContent || 'Glosor',
     text: 'Öva glosor med audio på svenska och engelska',
     url: window.location.href
   };
@@ -231,7 +272,6 @@ async function shareApp() {
     setTimeout(() => { shareBtn.textContent = orig; }, 2000);
   } catch (err) {
     console.error('Clipboard failed:', err);
-    shareBtn.textContent = '⚠️ Kunde inte dela';
   }
 }
 
@@ -239,32 +279,28 @@ async function shareApp() {
 listenSvBtn.addEventListener('click', () => playAudio('sv'));
 listenEnBtn.addEventListener('click', () => playAudio('en'));
 checkBtn.addEventListener('click', checkGuess);
-revealBtn.addEventListener('click', reveal);
+rattBtn.addEventListener('click', () => selfAssess(true));
+felBtn.addEventListener('click', () => selfAssess(false));
 shareBtn.addEventListener('click', shareApp);
-nextBtn.addEventListener('click', nextWord);
-prevBtn.addEventListener('click', prevWord);
+shuffleBtn.addEventListener('click', shuffleWords);
+startOverBtn.addEventListener('click', startOver);
 
 guessInput.addEventListener('keydown', e => {
   if (e.key === 'Enter') {
     e.preventDefault();
-    if (e.shiftKey) reveal();
-    else checkGuess();
+    if (!revealed) checkGuess();
   }
 });
 
 document.addEventListener('keydown', e => {
   if (e.target.tagName === 'INPUT' || e.target.isContentEditable) return;
-  if (e.key === 'ArrowRight') { e.preventDefault(); nextWord(); }
-  else if (e.key === 'ArrowLeft') { e.preventDefault(); prevWord(); }
-  else if (e.key === 's' || e.key === 'S') { e.preventDefault(); playAudio('sv'); }
+  if (e.key === 's' || e.key === 'S') { e.preventDefault(); playAudio('sv'); }
   else if (e.key === 'e' || e.key === 'E') { e.preventDefault(); playAudio('en'); }
-  else if (e.key === 'v' || e.key === 'V') { e.preventDefault(); reveal(); }
+  else if (e.key === 'r' || e.key === 'R') { if (revealed) selfAssess(true); }
+  else if (e.key === 'f' || e.key === 'F') { if (revealed) selfAssess(false); }
 });
 
-audio.addEventListener('ended', () => {
-  audioIndicator.classList.remove('playing');
-});
-
+audio.addEventListener('ended', () => audioIndicator.classList.remove('playing'));
 audio.addEventListener('error', () => {
   audioIndicator.classList.remove('playing');
   audioIndicator.classList.add('error');
@@ -288,35 +324,7 @@ installBtn?.addEventListener('click', async () => {
   if (outcome === 'accepted') console.log('PWA install accepted');
 });
 
-dismissInstallBtn?.addEventListener('click', () => {
-  installHint.hidden = true;
-});
-
-shuffleBtn?.addEventListener('click', shuffleWords);
-
-function updateUI() {
-  const word = words[currentIndex];
-  currentSpan.textContent = currentIndex + 1;
-  revealed = false;
-  feedbackEl.textContent = '';
-  feedbackEl.className = 'feedback';
-  guessInput.value = '';
-  guessInput.disabled = false;
-  revealBtn.textContent = '👁 Visa svaret';
-  streak = 0;
-  streakCounter.classList.remove('visible');
-
-  if (word) {
-    svWordEl.textContent = word.sv;
-  }
-
-  audioIndicator.classList.remove('playing', 'error');
-  audioIndicator.textContent = '';
-  prevBtn.disabled = currentIndex === 0;
-  nextBtn.disabled = currentIndex === words.length - 1;
-  renderProgress();
-  guessInput.focus();
-}
+dismissInstallBtn?.addEventListener('click', () => { installHint.hidden = true; });
 
 // Service worker
 if ('serviceWorker' in navigator) {
