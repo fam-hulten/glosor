@@ -1,7 +1,8 @@
-// Glosor — PWA v3 (queue + self-assessment, samma mönster som begrepp)
+// Glosor — PWA v4 (queue + self-assessment, pappersläge)
 // Laddar glosor-data.json, queue-baserad träning med ratt/fel self-assessment.
-// Efter Rätta: användaren markerar själv om det blev rätt eller fel. Fel ord
-// flyttas till slutet av kön. Session klar när alla ord är avbockade.
+// Efter Rätta: svaret visas som facit. Användaren markerar själv om det
+// blev rätt eller fel på papper. Fel ord flyttas till slutet av kön.
+// Session klar när alla ord är avbockade.
 
 let allWords = [];
 let queue = [];
@@ -24,7 +25,6 @@ const progressBar = document.getElementById('progressBar');
 const titleEl = document.getElementById('title');
 const subtitleEl = document.querySelector('.subtitle');
 const hintEl = document.getElementById('hint');
-const guessInput = document.getElementById('guessInput');
 const feedbackEl = document.getElementById('feedback');
 
 const listenSvBtn = document.getElementById('listenSvBtn');
@@ -70,7 +70,6 @@ function showError(msg) {
   hintEl.textContent = msg;
   hintEl.classList.add('error-state');
   allButtons().forEach(b => b.disabled = true);
-  guessInput.disabled = true;
 }
 
 function init() {
@@ -113,9 +112,6 @@ function renderCard() {
   currentSpan.textContent = masteredThisSession.length + 1;
   feedbackEl.textContent = '';
   feedbackEl.className = 'feedback';
-  guessInput.value = '';
-  guessInput.disabled = false;
-  guessInput.focus();
   audioIndicator.classList.remove('playing', 'error');
   audioIndicator.textContent = '';
 
@@ -157,35 +153,12 @@ function escapeHtml(str) {
 
 function checkGuess() {
   if (!currentCard || revealed) return;
-  const guess = normalize(guessInput.value);
-  const correct = normalize(currentCard.en);
-  const alts = (currentCard.en_alts || '').split(',').map(s => normalize(s)).filter(Boolean);
-  const allCorrect = [correct, ...alts];
-  const isCorrect = guess && allCorrect.includes(guess);
-
-  if (guess) {
-    if (isCorrect) {
-      feedbackEl.innerHTML = `✓ Rätt! <span class="en-answer">${escapeHtml(currentCard.en)}</span>`;
-      feedbackEl.className = 'feedback feedback-correct';
-    } else {
-      feedbackEl.innerHTML = `✗ Inte rätt.<br>Du skrev: <strong>${escapeHtml(guessInput.value.trim())}</strong><br>Rätt: <span class="en-answer">${escapeHtml(currentCard.en)}</span>`;
-      feedbackEl.className = 'feedback feedback-wrong';
-    }
-  } else {
-    feedbackEl.innerHTML = `Svar: <span class="en-answer">${escapeHtml(currentCard.en)}</span>`;
-    feedbackEl.className = 'feedback feedback-reveal';
-  }
-
+  // Pappersläge: visa facit, låt användaren självskatta rätt/fel
+  feedbackEl.innerHTML = `Svar: <span class="en-answer">${escapeHtml(currentCard.en)}</span>`;
+  feedbackEl.className = 'feedback feedback-reveal';
   revealed = true;
   selfAssessEl.classList.remove('hidden');
   checkBtn.disabled = true;
-
-  // Auto-fokusera föreslagen knapp (användaren kan overrida)
-  if (isCorrect) {
-    rattBtn.focus();
-  } else {
-    felBtn.focus();
-  }
 }
 
 function selfAssess(correct) {
@@ -285,17 +258,11 @@ shareBtn.addEventListener('click', shareApp);
 shuffleBtn.addEventListener('click', shuffleWords);
 startOverBtn.addEventListener('click', startOver);
 
-guessInput.addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    if (!revealed) checkGuess();
-  }
-});
-
 document.addEventListener('keydown', e => {
   if (e.target.tagName === 'INPUT' || e.target.isContentEditable) return;
   if (e.key === 's' || e.key === 'S') { e.preventDefault(); playAudio('sv'); }
   else if (e.key === 'e' || e.key === 'E') { e.preventDefault(); playAudio('en'); }
+  else if (e.key === 'Enter') { e.preventDefault(); if (!revealed) checkGuess(); }
   else if (e.key === 'r' || e.key === 'R') { if (revealed) selfAssess(true); }
   else if (e.key === 'f' || e.key === 'F') { if (revealed) selfAssess(false); }
 });

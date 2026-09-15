@@ -4,6 +4,31 @@
 
 ---
 
+## v4 Arkitektur (pappersläge — input-rutan borttagen, 2026-09-15)
+
+**Bakgrund:** Zacharias skriver bara på papper. Input-rutan + auto-keyboard var störande. Rätta-knappen visar nu bara facit direkt (samma kod som tidigare när input var tom). Efteråt markerar eleven själv rätt/fel på papper ↔ facit.
+
+**Tekniska ändringar:**
+
+- **HTML:** `<div class="input-row">` + `<input id="guessInput">` borttaget helt. Subtitle/hint-text uppdaterad till "Lyssna, skriv svaret på papper och tryck Rätta för att se facit".
+- **JS (`app.js`):**
+  - `guessInput`-referensen borttagen (const, focus, value, disabled, keydown-listener).
+  - `guessInput.focus()` borttagen i `renderCard()` → tangentbordet poppar INTE upp automatiskt.
+  - `checkGuess()` förenklad: visar bara `Svar: <en-answer>` (samma som tidigare "tom guess"-gren). Auto-fokus på Rätt/Fel borttaget (visste inte om det var rätt — input fanns ju inte).
+  - `Enter` flyttad från input-keydown till global keydown handler (fungerar fortfarande som "rätta" utan input).
+- **SW:** `CACHE_NAME` bumpad `glosor-v3` → `glosor-v4`.
+- **CSS:** `.input-row` och `.guess-input`-regler borttagna (main + mobile media query + dark mode).
+
+**Tangentbord (oförändrat för R/F/S/E, Enter flyttad till global):**
+
+- `Enter`: Rätta (om ej revealed) — global keydown nu
+- `R` / `r`: Rätt (om revealed)
+- `F` / `f`: Fel (om revealed)
+- `S` / `s`: Spela SV-audio
+- `E` / `e`: Spela EN-audio
+
+---
+
 ## v3 Arkitektur (queue + self-assessment, 2026-09-14)
 
 **Bakgrund:** Johanna ville ha samma flow som `fam-hulten/begrepp` — användaren markerar själv rätt/fel efter Rätta, fel ord flyttas till slutet av kön och kommer tillbaka tills alla är avbockade.
@@ -24,7 +49,7 @@ let streak = 0;                 // antal rätt i rad (nollställs vid fel)
 
 1. `init()`: Fisher-Yates-shuffle av `allWords.map(w => w.id)` → `queue`. `masteredThisSession = []`, `streak = 0`.
 2. `nextCard()`: om `queue.length === 0` → `showSummary()`. Annars: `currentCard = allWords.find(w => w.id === queue[0])`. `renderCard()` play'ar SV-audio automatiskt efter 400ms.
-3. `checkGuess()` (klick på Rätta / Enter): auto-jämför `guessInput.value` mot `currentCard.en` (case-insensitive, trim). Visar feedback + rätt svar. **`revealed = true`**, selfAssess-knappar visas. **Auto-fokus** på Rätt om auto-check sa rätt, Fel om fel — användaren kan overrida.
+3. `checkGuess()` (klick på Rätta / Enter): visar facit (`Svar: <en-answer>`). **`revealed = true`**, selfAssess-knappar visas. **Ingen auto-fokus** (sedan v4 — vet inte om det var rätt, användaren jämför med papper).
 4. `selfAssess(correct)` (klick på Rätt/Fel eller `R`/`F`):
    - Om **rätt**: `queue.shift()`, `masteredThisSession.push(currentCard.id)`, `streak++`.
    - Om **fel**: `queue.shift()`, `queue.push(cardId)` (till slutet av kön), `sessionRepeats++`, `streak = 0`.
@@ -38,13 +63,15 @@ let streak = 0;                 // antal rätt i rad (nollställs vid fel)
 - Aktiv (= `masteredThisSession.length`): blå + förstorad (`var(--primary)`)
 - Övriga: grå (`var(--border)`)
 
-### Tangentbord
+### Tangentbord (v3 — input-läge)
 
 - `Enter` (i input): Rätta (om ej revealed)
 - `R` / `r`: Rätt (om revealed)
 - `F` / `f`: Fel (om revealed)
 - `S` / `s`: Spela SV-audio
 - `E` / `e`: Spela EN-audio
+
+> **Från och med v4 (pappersläge):** input-rutan är borttagen. `Enter` är nu global keydown och fungerar utan input. Övriga tangenter oförändrade.
 
 ### Service worker cache-version
 
@@ -53,7 +80,7 @@ let streak = 0;                 // antal rätt i rad (nollställs vid fel)
 ### Relation till begrepp
 
 Samma mönster (`queue[]`, `masteredThisSession[]`, `selfAssess(correct)`, `showSummary()`). Skillnaden:
-- Glosor har typing-input + auto-check (begrepp är ren flashcard).
+- Glosor är i **pappersläge** (sedan v4): Rätta visar facit, användaren jämför med papper och markerar rätt/fel. Begrepp är ren flashcard (visar fråga, användaren tänker ut svar, klickar Rätta för att se facit).
 - Glosor har ett progress-bar-mönster (begrepp har samma).
 - Glosor saknar mode-switching (begrepp har forward/reverse).
 
@@ -254,6 +281,14 @@ mmx auth login --api-key "$(cat /tmp/.mmx-key)"   # UTAN --region!
 
 ## Historik (för kontext)
 
+- **2026-09-15**: **v4 — pappersläge** (input-ruta borttagen)
+  - Zacharias skriver på papper → input-rutan + auto-keyboard togs bort
+  - `checkGuess()` förenklad till "visa facit"
+  - Auto-fokus på Rätt/Fel borttaget (visste inte vad som var rätt utan input)
+  - `Enter` flyttad från input-keydown till global handler
+  - SW `CACHE_NAME`: `glosor-v3` → `glosor-v4`
+  - README + UPDATE.md uppdaterade
+
 - **2026-09-14**: **v3 — queue + self-assessment** (commit f566cb4)
   - Portat från `fam-hulten/begrepp`: queue[] istället för currentIndex, selfAssess(correct), summary-skärm
   - Auto-fokus på Rätt/Fel efter check (användaren kan overrida)
@@ -334,4 +369,4 @@ mmx auth login --api-key "$(cat /tmp/.mmx-key)"   # UTAN --region!
 
 ---
 
-**Senast uppdaterad:** 2026-09-14 (v3-arkitektur + dokyu-uppdatering)
+**Senast uppdaterad:** 2026-09-15 (v4 — pappersläge, input-ruta borttagen)

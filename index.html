@@ -11,13 +11,13 @@
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
   <title>Glosor</title>
 </head>
 <body>
   <header>
     <h1 id="title" contenteditable="true">Glosor — Klass 4 Lejonskolan</h1>
-    <p class="subtitle">Lyssna, skriv det engelska ordet och tryck Rätta</p>
+    <p class="subtitle">Lyssna, skriv svaret på papper och tryck Rätta för att se facit</p>
     <button id="shuffleBtn" class="shuffle-btn" aria-label="Blanda om orden">🔀 Blanda om</button>
   </header>
 
@@ -27,22 +27,9 @@
     <div class="counter"><span id="current">1</span> av <span id="total">12</span></div>
 
     <div class="sv-word" id="svWord">—</div>
-    <p class="hint" id="hint">Lyssna, skriv det engelska ordet och tryck Rätta.</p>
+    <p class="hint" id="hint">Lyssna, skriv svaret på papper och tryck Rätta för att se facit.</p>
 
     <div class="audio-indicator" id="audioIndicator" role="status" aria-live="polite">🔊 Spelar…</div>
-
-    <div class="input-row">
-      <input type="text"
-             id="guessInput"
-             class="guess-input"
-             placeholder="Skriv det engelska ordet…"
-             autocomplete="off"
-             autocorrect="off"
-             autocapitalize="off"
-             spellcheck="false"
-             inputmode="text"
-             aria-label="Skriv det engelska ordet">
-    </div>
 
     <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
 
@@ -80,6 +67,6 @@
     <button id="dismissInstall" aria-label="Stäng">✕</button>
   </footer>
 
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>
