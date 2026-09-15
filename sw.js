@@ -1,7 +1,7 @@
 // Glosor service worker
 // Strategy: cache-first for app shell, network-first for data (glosor-data.json).
 
-const CACHE_NAME = 'glosor-v4';
+const CACHE_NAME = 'glosor-v5';
 const APP_SHELL = [
   './',
   'index.html',

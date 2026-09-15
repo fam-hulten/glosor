@@ -4,6 +4,66 @@
 
 ---
 
+## v5 Arkitektur (pronunciation_dict — verifierat IPA, 2026-09-15)
+
+**Bakgrund:** Worksheten "Do you like cars?" har `cykel/bike` (inte `cykler/cycles`). MiniMax TTS defaultade till fel uttal på två sätt: (1) hårt c (`kykel` = "följd/serie"-betydelsen), (2) långt y /yː/ (samma "följd/serie"-varianten). Verifierat mot sv.wiktionary.org/wiki/cykel (citerar SAOL — samma källa som svenska.se).
+
+### IPA-verifiering (sv.wiktionary.org/wiki/cykel)
+
+| Betydelse | IPA | Uttal |
+|-----------|-----|-------|
+| **fordon** (bike) | **/²sʏkːɛl/** | kort y /ʏ/ + dubbel k /kː/ |
+| händelser (period) | /²syːkɛl/ | långt y /yː/ + enkel k |
+
+TTS:n producerade "händelser"-varianten (default瑞典). Vi vill ha "fordon"-varianten.
+
+### pronunciation_dict (MiniMax T2A)
+
+API-parameter: `pronunciation_dict.tone` (lista av `original/ersättning`-par).
+mmx-cli: `--pronunciation <from>/<to>` (repeatable).
+
+**Exempel:**
+```
+--pronunciation cykel/sykkel
+--pronunciation motorcykel/motorsykkel
+```
+
+**Logik:** Stavningen med dubbel konsonant (`-kk-`) tvingar kort vokal enligt svensk ortografi. Norsk stavning (`sykkel`, `motorsykkel`) är fonologiskt identisk med svenskt fordon-uttal — IPA /²sʏkːɛl/ matchar exakt.
+
+### Pre-flight check (VIKTIGT — lärdom 2026-09-15)
+
+**Innan TTS-generering:** slå upp IPA på sv.wiktionary.org (eller svenska.se om åtkomligt). Speciellt för ord med:
+- Tvetydig uttal (cykel = fordon vs period — olika IPA!)
+- Compound words (motorcykel, barncykel — samma cykel-suffix-regel)
+- Ovanlig fonetik
+
+Sparar iterations-tid (försök 1 → försök 2 → försök 3 denna gång pga missad pre-check).
+
+### Förändringar i v5
+
+- `glosor-data.json`: id 05 `cykler/cycles` → `cykel/bike` (rätt mot worksheten)
+- `audio/05-sv.mp3`: regenererad med `cykel/sykkel`
+- `audio/05-en.mp3`: regenererad för nya EN-ordet `bike`
+- `audio/08-sv.mp3`: regenererad med `motorcykel/motorsykkel`
+- `sw.js`: CACHE_NAME `glosor-v4` → `glosor-v5`
+- `index.html`: `?v=4` → `?v=5` (CSS + JS cache-bust)
+- Ingen app-kod-ändring (v4 pappersläge orörd)
+
+### Andra TTS-kontroller (referens, från MiniMax-docs)
+
+- `--pitch`, `--volume`, `--speed` — rör inte uttal
+- `<#x#>` paustecken i texten (0.01–99.99s) — för rytm
+- `language_boost: auto` (default) / explicit `--language Swedish`
+- Inga IPA/SSML-funktioner i T2A-API:t vi använder — `pronunciation_dict` är huvudalternativet
+
+### Uttals-källor (för framtida pre-checks)
+
+- **sv.wiktionary.org/wiki/<ord>** — bäst för svenska ord, citerar SAOL, har IPA + uttal
+- **svenska.se** — SAOL/SO/SAOB auktoritativt, men JS-renderad (svår att fetch:a automatiskt)
+- **en.wikipedia.org/wiki/Help:IPA/Swedish** — auktoritativ IPA-tabell, fonem-beskrivningar
+
+---
+
 ## v4 Arkitektur (pappersläge — input-rutan borttagen, 2026-09-15)
 
 **Bakgrund:** Zacharias skriver bara på papper. Input-rutan + auto-keyboard var störande. Rätta-knappen visar nu bara facit direkt (samma kod som tidigare när input var tom). Efteråt markerar eleven själv rätt/fel på papper ↔ facit.
@@ -281,6 +341,13 @@ mmx auth login --api-key "$(cat /tmp/.mmx-key)"   # UTAN --region!
 
 ## Historik (för kontext)
 
+- **2026-09-15**: **v5 — pronunciation_dict** (verifierat IPA, kort y via dubbel-k)
+  - worksheten "Do you like cars?" har `cykel/bike` (inte `cykler/cycles`)
+  - IPA verifierat mot sv.wiktionary.org/wiki/cykel (citerar SAOL)
+  - `pronunciation_dict.tone` (mmx: `--pronunciation`) löser både c- och y-problem
+  - Stavning `sykkel` (norsk) = svenskt fordon-uttal /²sʏkːɛl/ exakt
+  - SW `CACHE_NAME`: `glosor-v4` → `glosor-v5`
+
 - **2026-09-15**: **v4 — pappersläge** (input-ruta borttagen)
   - Zacharias skriver på papper → input-rutan + auto-keyboard togs bort
   - `checkGuess()` förenklad till "visa facit"
@@ -369,4 +436,4 @@ mmx auth login --api-key "$(cat /tmp/.mmx-key)"   # UTAN --region!
 
 ---
 
-**Senast uppdaterad:** 2026-09-15 (v4 — pappersläge, input-ruta borttagen)
+**Senast uppdaterad:** 2026-09-15 (v5 — pronunciation_dict, IPA-verifierat)
