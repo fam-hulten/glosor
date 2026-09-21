@@ -1,105 +1,241 @@
 {
   "meta": {
-    "title": "Do you like cars? — Klass 4 Lejonskolan",
-    "subtitle": "Välkommen till årskurs 2 — Lyssna, skriv det engelska ordet och jämför med facit",
-    "source": "Glosor.eu (Lejonskolan), 2026-09-14"
+    "title": "Please Mum... — Klass 4 Lejonskolan",
+    "subtitle": "Lyssna, skriv det engelska ordet och jämför med facit",
+    "source": "Glosor.eu (Lejonskolan), 2026-09-21"
   },
   "words": [
     {
       "id": "01",
-      "sv": "saker",
-      "en": "things",
+      "sv": "skabbig",
+      "en": "scruffy",
       "en_alts": "",
       "audio_sv": "audio/01-sv.mp3",
       "audio_en": "audio/01-en.mp3"
     },
     {
       "id": "02",
-      "sv": "hjul",
-      "en": "wheel",
+      "sv": "mamma",
+      "en": "mum",
       "en_alts": "",
       "audio_sv": "audio/02-sv.mp3",
       "audio_en": "audio/02-en.mp3"
     },
     {
       "id": "03",
-      "sv": "lillasyster",
-      "en": "little sister",
+      "sv": "snälla",
+      "en": "please",
       "en_alts": "",
       "audio_sv": "audio/03-sv.mp3",
       "audio_en": "audio/03-en.mp3"
     },
     {
       "id": "04",
-      "sv": "hennes",
-      "en": "her",
+      "sv": "hus, villa",
+      "en": "house",
       "en_alts": "",
       "audio_sv": "audio/04-sv.mp3",
       "audio_en": "audio/04-en.mp3"
     },
     {
       "id": "05",
-      "sv": "cykel",
-      "en": "bike",
+      "sv": "vet",
+      "en": "know",
       "en_alts": "",
       "audio_sv": "audio/05-sv.mp3",
       "audio_en": "audio/05-en.mp3"
     },
     {
       "id": "06",
-      "sv": "vild",
-      "en": "wild",
+      "sv": "galen",
+      "en": "mad",
       "en_alts": "",
       "audio_sv": "audio/06-sv.mp3",
       "audio_en": "audio/06-en.mp3"
     },
     {
       "id": "07",
-      "sv": "hans",
-      "en": "his",
+      "sv": "husdjur",
+      "en": "pet",
       "en_alts": "",
       "audio_sv": "audio/07-sv.mp3",
       "audio_en": "audio/07-en.mp3"
     },
     {
       "id": "08",
-      "sv": "motorcykel",
-      "en": "motorbike",
+      "sv": "tråkig",
+      "en": "boring",
       "en_alts": "",
       "audio_sv": "audio/08-sv.mp3",
       "audio_en": "audio/08-en.mp3"
     },
     {
       "id": "09",
-      "sv": "häftig",
-      "en": "awesome",
+      "sv": "Vad sägs om en...?",
+      "en": "How about a...?",
       "en_alts": "",
       "audio_sv": "audio/09-sv.mp3",
       "audio_en": "audio/09-en.mp3"
     },
     {
       "id": "10",
-      "sv": "dotter",
-      "en": "daughter",
+      "sv": "fluffig",
+      "en": "fluffy",
       "en_alts": "",
       "audio_sv": "audio/10-sv.mp3",
       "audio_en": "audio/10-en.mp3"
     },
     {
       "id": "11",
-      "sv": "förare",
-      "en": "driver",
+      "sv": "affär",
+      "en": "shop",
       "en_alts": "",
       "audio_sv": "audio/11-sv.mp3",
       "audio_en": "audio/11-en.mp3"
     },
     {
       "id": "12",
-      "sv": "personer",
-      "en": "people",
+      "sv": "bra",
+      "en": "fine",
       "en_alts": "",
       "audio_sv": "audio/12-sv.mp3",
       "audio_en": "audio/12-en.mp3"
+    },
+    {
+      "id": "13",
+      "sv": "titta",
+      "en": "look",
+      "en_alts": "",
+      "audio_sv": "audio/13-sv.mp3",
+      "audio_en": "audio/13-en.mp3"
+    },
+    {
+      "id": "14",
+      "sv": "köpa",
+      "en": "buy",
+      "en_alts": "",
+      "audio_sv": "audio/14-sv.mp3",
+      "audio_en": "audio/14-en.mp3"
+    },
+    {
+      "id": "cars-old-01",
+      "sv": "saker",
+      "en": "things",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-01-sv.mp3",
+      "audio_en": "audio/cars-old-01-en.mp3"
+    },
+    {
+      "id": "cars-old-02",
+      "sv": "hjul",
+      "en": "wheel",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-02-sv.mp3",
+      "audio_en": "audio/cars-old-02-en.mp3"
+    },
+    {
+      "id": "cars-old-03",
+      "sv": "lillasyster",
+      "en": "little sister",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-03-sv.mp3",
+      "audio_en": "audio/cars-old-03-en.mp3"
+    },
+    {
+      "id": "cars-old-04",
+      "sv": "hennes",
+      "en": "her",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-04-sv.mp3",
+      "audio_en": "audio/cars-old-04-en.mp3"
+    },
+    {
+      "id": "cars-old-05",
+      "sv": "cykel",
+      "en": "bike",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-05-sv.mp3",
+      "audio_en": "audio/cars-old-05-en.mp3"
+    },
+    {
+      "id": "cars-old-06",
+      "sv": "vild",
+      "en": "wild",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-06-sv.mp3",
+      "audio_en": "audio/cars-old-06-en.mp3"
+    },
+    {
+      "id": "cars-old-07",
+      "sv": "hans",
+      "en": "his",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-07-sv.mp3",
+      "audio_en": "audio/cars-old-07-en.mp3"
+    },
+    {
+      "id": "cars-old-08",
+      "sv": "motorcykel",
+      "en": "motorbike",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-08-sv.mp3",
+      "audio_en": "audio/cars-old-08-en.mp3"
+    },
+    {
+      "id": "cars-old-09",
+      "sv": "häftig",
+      "en": "awesome",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-09-sv.mp3",
+      "audio_en": "audio/cars-old-09-en.mp3"
+    },
+    {
+      "id": "cars-old-10",
+      "sv": "dotter",
+      "en": "daughter",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-10-sv.mp3",
+      "audio_en": "audio/cars-old-10-en.mp3"
+    },
+    {
+      "id": "cars-old-11",
+      "sv": "förare",
+      "en": "driver",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-11-sv.mp3",
+      "audio_en": "audio/cars-old-11-en.mp3"
+    },
+    {
+      "id": "cars-old-12",
+      "sv": "personer",
+      "en": "people",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-12-sv.mp3",
+      "audio_en": "audio/cars-old-12-en.mp3"
     },
     {
       "id": "01-old",
