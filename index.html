@@ -11,7 +11,7 @@
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=8">
   <title>Glosor</title>
 </head>
 <body>
@@ -63,7 +63,13 @@
       <button class="danger" id="felBtn" aria-label="Jag skrev fel">✗ Fel</button>
     </div>
 
+    <div class="nav">
+      <button id="prevBtn" aria-label="Föregående ord">← Bak</button>
+      <button id="nextBtn" class="primary-next" aria-label="Nästa ord">Nästa →</button>
+    </div>
+
     <p class="kbd-hint">
+      <span class="kbd">←</span> <span class="kbd">→</span> navigera ·
       <span class="kbd">Enter</span> rätta ·
       <span class="kbd">R</span> rätt ·
       <span class="kbd">F</span> fel ·
@@ -85,6 +91,6 @@
     <button id="dismissInstall" aria-label="Stäng">✕</button>
   </footer>
 
-  <script src="app.js?v=7"></script>
+  <script src="app.js?v=8"></script>
 </body>
 </html>

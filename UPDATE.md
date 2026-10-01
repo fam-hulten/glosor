@@ -158,6 +158,55 @@ Om begrepp ändras — kolla om glosor bör följa efter (eller tvärtom). Annar
 
 ---
 
+## v7 Arkitektur (prev/next + drop self-mark i app-läge, 2026-10-01)
+
+**Bakgrund:** Efter att mode-toggle landats (v6) påpekade Johanna att self-mark-knapparna kändes "onödiga och dubbla" i app-läge — appen graderar ju redan. Diskussion ledde till: skippa self-mark helt i app-läge, lägg till ← Bak / Nästa →-navigation (samma mönster som rättstavning), auto-advance på rätt, manuell Nästa på fel.
+
+**Tekniska ändringar:**
+
+- **HTML (`index.html`):**
+  - Lade till `<div class="nav">` med `#prevBtn` (`← Bak`) + `#nextBtn` (`Nästa →`, primary-next styling).
+  - `<div class="self-assess hidden" id="selfAssess">` BEHÅLLEN — används fortfarande i papper-läge (där appen inte vet vad barnet skrev på pappret).
+  - Kbd-hint uppdaterad med `<span class="kbd">←</span> <span class="kbd">→</span> navigera`.
+  - Cache-bust `?v=7` → `?v=8`.
+- **JS (`app.js`):**
+  - Datamodell ändrad: `queue[]` + `nextCard()` → `order[]` + `currentIndex` + `renderCard()`. `order` är en dynamisk lista som shufflas en gång i `init()`; fel-ord flyttas till slutet via `order.splice(currentIndex, 1)` + `order.push(wordId)`.
+  - Nya funktioner `prevWord()` / `nextWord()` som justerar pekaren och anropar `renderCard()`.
+  - `checkGuess()` förgrenad på `appMode`:
+    - **Paper:** oförändrat från v6 (visar facit + self-mark).
+    - **App + rätt:** ✓ Rätt! visas, `setTimeout(nextWord, 800)` för auto-advance. INGA knappar visas.
+    - **App + fel:** ✗ Inte rätt med diff, ordet flyttas till slutet av `order`, currentIndex pekar på nästa ord. Användaren klickar `[Nästa →]` för att gå vidare. **Ingen self-mark alls i app-läge.**
+  - `selfAssess()` används nu BARA i papper-läge (app-läge graderas av `checkGuess()` direkt).
+  - `renderProgress()` använder `Set(masteredThisSession)` för completed dots (så att fel-ord som flyttats till slutet inte visar grön prick).
+  - Nav-knapparna har `disabled`-state: `prevBtn.disabled = currentIndex === 0`, `nextBtn.disabled = currentIndex === order.length - 1`. NextBtn re-enable:as automatiskt efter fel i app-läge (även om currentIndex inte ändrades).
+  - Tangentbord: ArrowLeft/ArrowRight för prev/next (skippar om target är INPUT).
+  - nextBtn får focus efter fel i app-läge (så tangentbordsmänniskan kan trycka Enter).
+- **CSS (`styles.css`):**
+  - `.nav` + `.primary-next` fanns REDAN definierade sedan tidigare (precis för detta ändamål, men använda inte). Inga stiländringar behövdes.
+- **SW:** `CACHE_NAME` `glosor-v7` → `glosor-v8`.
+
+**Navigation-mentalitet (v7):**
+
+- ← Bak / Nästa → är alltid synliga aktiva (förutom vid list-ändarna).
+- ← Bak går till föregående ord i `order[]` (rör inte mastery — användaren kan kolla om på ett tidigare ord).
+- Rätta påverkar `order[]` och `masteredThisSession[]` oavsett position.
+- Efter Rätta correct: auto-advance via `setTimeout(nextWord, 800)`.
+- Efter Rätta wrong (app): ordet flyttas till slutet, currentIndex pekar redan på nästa. Användaren klickar `[Nästa →]` (eller →).
+
+**Differens mot rättstavning:**
+
+- Rättstavning har INGEN auto-advance på correct — användaren klickar alltid Nästa → manuellt.
+- Glosor auto-advancar på correct i app-läge (Johanna-direktiv 2026-10-01: "på rätt så ja det kan vi göra").
+- Rättstavning har self-mark även i app-läge (med adaptiv svårighetsgradslogik). Glosor skippar self-mark helt i app-läge.
+- Båda har ← Bak / Nästa →.
+
+**Differens mot v6 (samma app, annan version):**
+
+- v6: queue[] + self-mark i BÅDA lägen.
+- v7: order[] + currentIndex + auto-advance correct + ← Bak / Nästa →. Self-mark BARA i papper-läge.
+
+---
+
 ## v6 Arkitektur (mode-toggle: papper/app, 2026-10-01)
 
 **Bakgrund:** Johanna ville ha samma valfrihet som i `fam-hulten/rattstavning` — kunna välja mellan att öva på papper (befintligt) eller att skriva in översättningen direkt på skärmen (nytt). Mönstret är direkt portat från rättstavning (data-mode="paper"/"app", checkGuess()-förgrening, diff-markering).
@@ -399,6 +448,14 @@ mmx auth login --api-key "$(cat /tmp/.mmx-key)"   # UTAN --region!
 
 ## Historik (för kontext)
 
+- **2026-10-01**: **v7 — prev/next + drop self-mark i app-läge**
+  - ← Bak / Nästa → tillagda (samma mönster som rättstavning).
+  - Queue + nextCard() bytt mot order[] + currentIndex + renderCard().
+  - checkGuess() förgrenad: paper = oförändrat (facit + self-mark); app = auto-advance på rätt (~0.8s), manuell Nästa på fel (ordet till slutet av order).
+  - Self-mark-knappar helt borttagna i app-läge (visas bara i papper-läge).
+  - renderProgress() baserad på Set av masteredThisSession (avetade även för ord som flyttats till slutet).
+  - SW `CACHE_NAME`: `glosor-v7` → `glosor-v8`
+  - README + UPDATE.md uppdaterade
 - **2026-10-01**: **v6 — mode-toggle (papper/app)**
   - Mode-toggle infogad: 📝 Papper / ⌨️ App. Default = papper (befintligt beteende).
   - App-läge: input-fält + bokstav-för-bokstav diff-markering vid fel (rätt/fel/saknas), samma mönster som rättstavning.

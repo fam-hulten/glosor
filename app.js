@@ -1,10 +1,19 @@
-// Glosor — PWA v6 (mode-toggle: papper/app + queue + self-assessment)
-// I pappersläge: Rätta visar facit direkt, användaren jämför med papper.
-// I app-läge: skriv in översättningen, Rätta jämför mot en (+ eventuella en_alts)
-// med bokstav-för-bokstav diff. Båda lägen avslutas med self-marking (✓ Rätt / ✗ Fel).
+// Glosor — PWA v7 (mode-toggle + prev/next + auto-advance på rätt)
+//
+// Läge:
+//   • Papper: Rätta visar facit direkt, användaren jämför med papper och
+//     markerar själv ✓ Rätt / ✗ Fel. Fel ord flyttas till slutet av listan.
+//   • App: Skriv in översättningen, Rätta jämför mot en (+ en_alts).
+//     Rätt → ✓ visas, auto-advance ~0.8s. Fel → ✗ med diff, [Nästa →] manuell.
+//     INGEN self-mark i app-läge — appen graderar.
+//
+// Navigation (alltid tillgänglig, båda lägen):
+//   • ← Bak / Nästa → navigerar genom listan.
+//   • Rätta påverkar listan (mastered + fel-ord till slutet) oavsett var vi är.
 
 let allWords = [];
-let queue = [];
+let order = [];           // Aktuell ordning av ord-ID:n (shufflas en gång, fel-ord flyttas dynamiskt)
+let currentIndex = 0;      // Pekare i order[]
 let masteredThisSession = [];
 let sessionRepeats = 0;
 let currentCard = null;
@@ -37,6 +46,8 @@ const inputRow = document.getElementById('inputRow');
 const selfAssessEl = document.getElementById('selfAssess');
 const rattBtn = document.getElementById('rattBtn');
 const felBtn = document.getElementById('felBtn');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
 const shareBtn = document.getElementById('shareBtn');
 const shuffleBtn = document.getElementById('shuffleBtn');
 const streakCounter = document.getElementById('streakCounter');
@@ -51,7 +62,7 @@ const summaryMasteredEl = document.getElementById('summaryMastered');
 const summaryRepeatsEl = document.getElementById('summaryRepeats');
 const summaryTotalEl = document.getElementById('summaryTotal');
 
-const allButtons = () => [listenSvBtn, listenEnBtn, checkBtn, rattBtn, felBtn, shareBtn, shuffleBtn];
+const allButtons = () => [listenSvBtn, listenEnBtn, checkBtn, rattBtn, felBtn, prevBtn, nextBtn, shareBtn, shuffleBtn];
 
 async function loadData() {
   try {
@@ -99,17 +110,17 @@ function setAppMode(mode) {
     b.classList.toggle('active', isActive);
     b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
   });
-  // Update hint based on mode
+  // Update hint
   if (mode === 'paper') {
     hintEl.textContent = 'Lyssna, skriv svaret på papper och tryck Rätta för att se facit.';
   } else {
     hintEl.textContent = 'Lyssna och skriv den engelska översättningen.';
   }
-  // Show/hide input row (hidden=true = döljd via HTML5-attributet)
+  // Show/hide input row
   if (inputRow) {
     inputRow.hidden = (mode === 'paper');
   }
-  // Reset transient state (så revealed-feedback inte blir kvar efter mode-byte)
+  // Reset transient state
   feedbackEl.textContent = '';
   feedbackEl.className = 'feedback';
   if (guessInput) {
@@ -122,13 +133,13 @@ function setAppMode(mode) {
 }
 
 function init() {
-  // Shuffle IDs (Fisher-Yates) — samma mönster som begrepp init()
-  const ids = allWords.map(w => w.id);
-  for (let i = ids.length - 1; i > 0; i--) {
+  // Fisher-Yates shuffle → order
+  order = allWords.map(w => w.id);
+  for (let i = order.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [ids[i], ids[j]] = [ids[j], ids[i]];
+    [order[i], order[j]] = [order[j], order[i]];
   }
-  queue = ids;
+  currentIndex = 0;
   masteredThisSession = [];
   sessionRepeats = 0;
   streak = 0;
@@ -136,51 +147,63 @@ function init() {
   if (summaryTotalEl) summaryTotalEl.textContent = allWords.length;
   updateStreak();
   renderProgress();
-  nextCard();
-}
-
-function nextCard() {
-  if (queue.length === 0) {
-    showSummary();
-    return;
-  }
-  const id = queue[0];
-  currentCard = allWords.find(w => w.id === id);
-  if (!currentCard) {
-    queue.shift();
-    nextCard();
-    return;
-  }
-  revealed = false;
   renderCard();
 }
 
 function renderCard() {
-  if (!currentCard) return;
+  if (currentIndex >= order.length) {
+    showSummary();
+    return;
+  }
+  const id = order[currentIndex];
+  currentCard = allWords.find(w => w.id === id);
+  if (!currentCard) {
+    currentIndex++;
+    renderCard();
+    return;
+  }
   svWordEl.textContent = currentCard.sv;
-  currentSpan.textContent = masteredThisSession.length + 1;
+  currentSpan.textContent = currentIndex + 1;
   feedbackEl.textContent = '';
   feedbackEl.className = 'feedback';
   audioIndicator.classList.remove('playing', 'error');
   audioIndicator.textContent = '';
 
-  // Nollställ self-assessment state för nytt kort
+  // Nollställ state
   selfAssessEl.classList.add('hidden');
   checkBtn.disabled = false;
-
-  // Nollställ input om app-läge
   if (guessInput) {
     guessInput.value = '';
     guessInput.disabled = false;
   }
+  revealed = false;
+
+  // Nav-knappar
+  if (prevBtn) prevBtn.disabled = currentIndex === 0;
+  if (nextBtn) nextBtn.disabled = currentIndex >= order.length - 1;
 
   renderProgress();
-  // Spela SV-audio automatiskt efter 400ms (samma som begrepp INITIAL_DELAY_MS)
+  // Spela SV-audio automatiskt efter 400ms
   setTimeout(() => playAudio('sv'), 400);
-
-  // Fokusera input om app-läge (efter att tangentbordet hunnit visas på skärm)
+  // Fokusera input om app-läge
   if (appMode === 'app' && guessInput) {
     setTimeout(() => guessInput.focus(), 500);
+  }
+}
+
+function nextWord() {
+  if (currentIndex < order.length - 1) {
+    currentIndex++;
+    renderCard();
+  } else if (currentIndex === order.length - 1) {
+    showSummary();
+  }
+}
+
+function prevWord() {
+  if (currentIndex > 0) {
+    currentIndex--;
+    renderCard();
   }
 }
 
@@ -222,10 +245,29 @@ function buildAcceptedAnswers(card) {
   return accepted;
 }
 
+function buildDiffFeedback(guessText, correctText) {
+  let highlightedGuess = '';
+  let i = 0;
+  while (i < guessText.length && i < correctText.length) {
+    if (guessText[i].toLowerCase() === correctText[i].toLowerCase()) {
+      highlightedGuess += escapeHtml(guessText[i]);
+    } else {
+      highlightedGuess += `<span class="wrong-letter">${escapeHtml(guessText[i])}</span>`;
+    }
+    i++;
+  }
+  if (guessText.length > correctText.length) {
+    highlightedGuess += `<span class="wrong-letter">${escapeHtml(guessText.slice(i))}</span>`;
+  } else if (guessText.length < correctText.length) {
+    highlightedGuess += `<span class="missing-letter">${escapeHtml(correctText.slice(i))}</span>`;
+  }
+  return `✗ Inte rätt.<br>Du skrev: <strong>${highlightedGuess}</strong><br>Rätt: <strong>${escapeHtml(correctText)}</strong>`;
+}
+
 function checkGuess() {
   if (!currentCard || revealed) return;
 
-  // Pappersläge: visa facit direkt (befintligt beteende — oförändrat sedan v4)
+  // Pappersläge: visa facit direkt, användaren jämför med papper och markerar själv.
   if (appMode === 'paper') {
     feedbackEl.innerHTML = `Svar: <span class="en-answer">${escapeHtml(currentCard.en)}</span>`;
     feedbackEl.className = 'feedback feedback-reveal';
@@ -246,67 +288,64 @@ function checkGuess() {
   const accepted = buildAcceptedAnswers(currentCard);
 
   if (accepted.includes(guess)) {
+    // Rätt: ✓ visas, auto-advance efter ~0.8s, INGA knappar
     feedbackEl.innerHTML = `✓ Rätt! <strong>${escapeHtml(currentCard.en)}</strong>`;
     feedbackEl.className = 'feedback feedback-correct';
-    revealed = true;
-    selfAssessEl.classList.remove('hidden');
     checkBtn.disabled = true;
     guessInput.disabled = true;
+    revealed = true;
+    masteredThisSession.push(currentCard.id);
+    streak++;
+    updateStreak();
+    renderProgress();
+    setTimeout(() => nextWord(), 800);
   } else {
-    // Bokstav-för-bokstav diff (samma mönster som rättstavning)
-    const guessText = guessInput.value.trim();
-    const correctText = currentCard.en;
-    let highlightedGuess = '';
-    let i = 0;
-    while (i < guessText.length && i < correctText.length) {
-      if (guessText[i].toLowerCase() === correctText[i].toLowerCase()) {
-        highlightedGuess += escapeHtml(guessText[i]);
-      } else {
-        highlightedGuess += `<span class="wrong-letter">${escapeHtml(guessText[i])}</span>`;
-      }
-      i++;
-    }
-    if (guessText.length > correctText.length) {
-      highlightedGuess += `<span class="wrong-letter">${escapeHtml(guessText.slice(i))}</span>`;
-    } else if (guessText.length < correctText.length) {
-      highlightedGuess += `<span class="missing-letter">${escapeHtml(correctText.slice(i))}</span>`;
-    }
-    feedbackEl.innerHTML = `✗ Inte rätt.<br>Du skrev: <strong>${highlightedGuess}</strong><br>Rätt: <strong>${escapeHtml(correctText)}</strong>`;
+    // Fel: ✗ med diff, ordet till slutet av listan, [Nästa →] manuell
+    feedbackEl.innerHTML = buildDiffFeedback(guessInput.value.trim(), currentCard.en);
     feedbackEl.className = 'feedback feedback-wrong';
-    revealed = true;
-    selfAssessEl.classList.remove('hidden');
     checkBtn.disabled = true;
     guessInput.disabled = true;
+    revealed = true;
+    streak = 0;
+    updateStreak();
+    sessionRepeats++;
+    // Flytta ordet till slutet av listan (currentIndex pekar nu på nästa)
+    const wordId = order.splice(currentIndex, 1)[0];
+    order.push(wordId);
+    renderProgress();
+    // Uppdatera nav-knappar (nextBtn kan ha blivit enabled)
+    if (nextBtn) nextBtn.disabled = false;
+    // Fokusera Nästa → så det är tydligt att det är nästa steg
+    if (nextBtn) nextBtn.focus();
   }
 }
 
 function selfAssess(correct) {
+  // Används bara i pappersläge (app-läge använder checkGuess direkt).
   if (!currentCard || !revealed) return;
 
   if (correct) {
-    queue.shift();
     masteredThisSession.push(currentCard.id);
     streak++;
   } else {
-    // Flytta aktuellt kort från front till slutet av kön (begrepp-mönster)
-    const cardId = queue.shift();
-    queue.push(cardId);
+    const wordId = order.splice(currentIndex, 1)[0];
+    order.push(wordId);
     sessionRepeats++;
     streak = 0;
   }
-
   updateStreak();
   renderProgress();
-  nextCard();
+  nextWord();
 }
 
 function renderProgress() {
   progressBar.innerHTML = '';
-  for (let i = 0; i < allWords.length; i++) {
+  const masteredSet = new Set(masteredThisSession);
+  for (let i = 0; i < order.length; i++) {
     const dot = document.createElement('div');
     dot.className = 'progress-dot';
-    if (i < masteredThisSession.length) dot.classList.add('completed');
-    else if (i === masteredThisSession.length) dot.classList.add('active');
+    if (masteredSet.has(order[i])) dot.classList.add('completed');
+    else if (i === currentIndex) dot.classList.add('active');
     progressBar.appendChild(dot);
   }
 }
@@ -373,6 +412,21 @@ listenEnBtn.addEventListener('click', () => playAudio('en'));
 checkBtn.addEventListener('click', checkGuess);
 rattBtn.addEventListener('click', () => selfAssess(true));
 felBtn.addEventListener('click', () => selfAssess(false));
+prevBtn?.addEventListener('click', prevWord);
+nextBtn?.addEventListener('click', () => {
+  // Om revealed (fel i app-läge, eller self-mark i papper-läge), hantera word-move
+  if (!revealed) {
+    nextWord();
+    return;
+  }
+  // I app-läge efter fel: ordet är redan flyttat till slutet, bara advance
+  if (appMode === 'app') {
+    nextWord();
+  } else {
+    // Papper-läge: användaren ska ha markerat först — om de trycker Nästa utan att markera, advance ändå
+    nextWord();
+  }
+});
 shareBtn.addEventListener('click', shareApp);
 shuffleBtn.addEventListener('click', shuffleWords);
 startOverBtn.addEventListener('click', startOver);
@@ -385,22 +439,26 @@ guessInput?.addEventListener('keydown', e => {
   }
 });
 
-// Mode toggle (📝 Papper / ⌨️ App)
+// Mode toggle
 modeToggle?.addEventListener('click', e => {
   const opt = e.target.closest('.mode-opt');
   if (!opt) return;
   const newMode = opt.dataset.mode;
   if (newMode === appMode) return;
   setAppMode(newMode);
-  // Rendera om aktuellt kort så input fokuseras + audio spelas
-  // (currentCard bevaras — samma ord, nytt läge)
   renderCard();
 });
 
+// Tangentbord: piltangenter för ← Bak / Nästa → (globalt — input-target hanteras ovan)
 document.addEventListener('keydown', e => {
-  // Skip om target är input eller contenteditable
-  if (e.target.tagName === 'INPUT' || e.target.isContentEditable) return;
-  if (e.key === 's' || e.key === 'S') { e.preventDefault(); playAudio('sv'); }
+  // Skip om target är input eller contenteditable (input-hanteraren tar Enter, men piltangenter bör också skipas om användaren redigerar)
+  if (e.target.tagName === 'INPUT' || e.target.isContentEditable) {
+    // Tillåt piltangenter för cursor-rörelse i input
+    return;
+  }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prevWord(); }
+  else if (e.key === 'ArrowRight') { e.preventDefault(); nextWord(); }
+  else if (e.key === 's' || e.key === 'S') { e.preventDefault(); playAudio('sv'); }
   else if (e.key === 'e' || e.key === 'E') { e.preventDefault(); playAudio('en'); }
   else if (e.key === 'Enter') { e.preventDefault(); if (!revealed) checkGuess(); }
   else if (e.key === 'r' || e.key === 'R') { if (revealed) selfAssess(true); }
