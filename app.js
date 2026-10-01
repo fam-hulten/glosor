@@ -1,8 +1,7 @@
-// Glosor — PWA v4 (queue + self-assessment, pappersläge)
-// Laddar glosor-data.json, queue-baserad träning med ratt/fel self-assessment.
-// Efter Rätta: svaret visas som facit. Användaren markerar själv om det
-// blev rätt eller fel på papper. Fel ord flyttas till slutet av kön.
-// Session klar när alla ord är avbockade.
+// Glosor — PWA v6 (mode-toggle: papper/app + queue + self-assessment)
+// I pappersläge: Rätta visar facit direkt, användaren jämför med papper.
+// I app-läge: skriv in översättningen, Rätta jämför mot en (+ eventuella en_alts)
+// med bokstav-för-bokstav diff. Båda lägen avslutas med self-marking (✓ Rätt / ✗ Fel).
 
 let allWords = [];
 let queue = [];
@@ -12,6 +11,9 @@ let currentCard = null;
 let revealed = false;
 let streak = 0;
 let deferredInstallPrompt = null;
+
+let appMode = 'paper'; // 'paper' | 'app' (persists in localStorage)
+const MODE_KEY = 'glosor-mode';
 
 const audio = new Audio();
 audio.preload = 'auto';
@@ -30,6 +32,8 @@ const feedbackEl = document.getElementById('feedback');
 const listenSvBtn = document.getElementById('listenSvBtn');
 const listenEnBtn = document.getElementById('listenEnBtn');
 const checkBtn = document.getElementById('checkBtn');
+const guessInput = document.getElementById('guessInput');
+const inputRow = document.getElementById('inputRow');
 const selfAssessEl = document.getElementById('selfAssess');
 const rattBtn = document.getElementById('rattBtn');
 const felBtn = document.getElementById('felBtn');
@@ -37,6 +41,7 @@ const shareBtn = document.getElementById('shareBtn');
 const shuffleBtn = document.getElementById('shuffleBtn');
 const streakCounter = document.getElementById('streakCounter');
 const streakNum = document.getElementById('streakNum');
+const modeToggle = document.getElementById('modeToggle');
 const installHint = document.getElementById('installHint');
 const installBtn = document.getElementById('installBtn');
 const dismissInstallBtn = document.getElementById('dismissInstall');
@@ -70,6 +75,50 @@ function showError(msg) {
   hintEl.textContent = msg;
   hintEl.classList.add('error-state');
   allButtons().forEach(b => b.disabled = true);
+}
+
+function loadMode() {
+  try {
+    const stored = localStorage.getItem(MODE_KEY);
+    if (stored === 'paper' || stored === 'app') appMode = stored;
+  } catch {}
+}
+
+function saveMode() {
+  try {
+    localStorage.setItem(MODE_KEY, appMode);
+  } catch {}
+}
+
+function setAppMode(mode) {
+  appMode = mode;
+  saveMode();
+  // Update toggle UI
+  modeToggle?.querySelectorAll('.mode-opt').forEach(b => {
+    const isActive = b.dataset.mode === mode;
+    b.classList.toggle('active', isActive);
+    b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+  // Update hint based on mode
+  if (mode === 'paper') {
+    hintEl.textContent = 'Lyssna, skriv svaret på papper och tryck Rätta för att se facit.';
+  } else {
+    hintEl.textContent = 'Lyssna och skriv den engelska översättningen.';
+  }
+  // Show/hide input row (hidden=true = döljd via HTML5-attributet)
+  if (inputRow) {
+    inputRow.hidden = (mode === 'paper');
+  }
+  // Reset transient state (så revealed-feedback inte blir kvar efter mode-byte)
+  feedbackEl.textContent = '';
+  feedbackEl.className = 'feedback';
+  if (guessInput) {
+    guessInput.value = '';
+    guessInput.disabled = false;
+  }
+  checkBtn.disabled = false;
+  selfAssessEl.classList.add('hidden');
+  revealed = false;
 }
 
 function init() {
@@ -119,9 +168,20 @@ function renderCard() {
   selfAssessEl.classList.add('hidden');
   checkBtn.disabled = false;
 
+  // Nollställ input om app-läge
+  if (guessInput) {
+    guessInput.value = '';
+    guessInput.disabled = false;
+  }
+
   renderProgress();
   // Spela SV-audio automatiskt efter 400ms (samma som begrepp INITIAL_DELAY_MS)
   setTimeout(() => playAudio('sv'), 400);
+
+  // Fokusera input om app-läge (efter att tangentbordet hunnit visas på skärm)
+  if (appMode === 'app' && guessInput) {
+    setTimeout(() => guessInput.focus(), 500);
+  }
 }
 
 function playAudio(lang) {
@@ -151,14 +211,73 @@ function escapeHtml(str) {
   })[m]);
 }
 
+function buildAcceptedAnswers(card) {
+  const accepted = [normalize(card.en)];
+  if (card.en_alts) {
+    card.en_alts.split(',').forEach(alt => {
+      const trimmed = alt.trim();
+      if (trimmed) accepted.push(normalize(trimmed));
+    });
+  }
+  return accepted;
+}
+
 function checkGuess() {
   if (!currentCard || revealed) return;
-  // Pappersläge: visa facit, låt användaren självskatta rätt/fel
-  feedbackEl.innerHTML = `Svar: <span class="en-answer">${escapeHtml(currentCard.en)}</span>`;
-  feedbackEl.className = 'feedback feedback-reveal';
-  revealed = true;
-  selfAssessEl.classList.remove('hidden');
-  checkBtn.disabled = true;
+
+  // Pappersläge: visa facit direkt (befintligt beteende — oförändrat sedan v4)
+  if (appMode === 'paper') {
+    feedbackEl.innerHTML = `Svar: <span class="en-answer">${escapeHtml(currentCard.en)}</span>`;
+    feedbackEl.className = 'feedback feedback-reveal';
+    revealed = true;
+    selfAssessEl.classList.remove('hidden');
+    checkBtn.disabled = true;
+    return;
+  }
+
+  // App-läge: jämför input mot facit
+  const guess = normalize(guessInput.value);
+  if (!guess) {
+    feedbackEl.textContent = 'Skriv ditt svar först';
+    feedbackEl.className = 'feedback feedback-hint';
+    return;
+  }
+
+  const accepted = buildAcceptedAnswers(currentCard);
+
+  if (accepted.includes(guess)) {
+    feedbackEl.innerHTML = `✓ Rätt! <strong>${escapeHtml(currentCard.en)}</strong>`;
+    feedbackEl.className = 'feedback feedback-correct';
+    revealed = true;
+    selfAssessEl.classList.remove('hidden');
+    checkBtn.disabled = true;
+    guessInput.disabled = true;
+  } else {
+    // Bokstav-för-bokstav diff (samma mönster som rättstavning)
+    const guessText = guessInput.value.trim();
+    const correctText = currentCard.en;
+    let highlightedGuess = '';
+    let i = 0;
+    while (i < guessText.length && i < correctText.length) {
+      if (guessText[i].toLowerCase() === correctText[i].toLowerCase()) {
+        highlightedGuess += escapeHtml(guessText[i]);
+      } else {
+        highlightedGuess += `<span class="wrong-letter">${escapeHtml(guessText[i])}</span>`;
+      }
+      i++;
+    }
+    if (guessText.length > correctText.length) {
+      highlightedGuess += `<span class="wrong-letter">${escapeHtml(guessText.slice(i))}</span>`;
+    } else if (guessText.length < correctText.length) {
+      highlightedGuess += `<span class="missing-letter">${escapeHtml(correctText.slice(i))}</span>`;
+    }
+    feedbackEl.innerHTML = `✗ Inte rätt.<br>Du skrev: <strong>${highlightedGuess}</strong><br>Rätt: <strong>${escapeHtml(correctText)}</strong>`;
+    feedbackEl.className = 'feedback feedback-wrong';
+    revealed = true;
+    selfAssessEl.classList.remove('hidden');
+    checkBtn.disabled = true;
+    guessInput.disabled = true;
+  }
 }
 
 function selfAssess(correct) {
@@ -258,7 +377,28 @@ shareBtn.addEventListener('click', shareApp);
 shuffleBtn.addEventListener('click', shuffleWords);
 startOverBtn.addEventListener('click', startOver);
 
+// Enter i input-fältet triggar Rätta (app-läge)
+guessInput?.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    if (!revealed) checkGuess();
+  }
+});
+
+// Mode toggle (📝 Papper / ⌨️ App)
+modeToggle?.addEventListener('click', e => {
+  const opt = e.target.closest('.mode-opt');
+  if (!opt) return;
+  const newMode = opt.dataset.mode;
+  if (newMode === appMode) return;
+  setAppMode(newMode);
+  // Rendera om aktuellt kort så input fokuseras + audio spelas
+  // (currentCard bevaras — samma ord, nytt läge)
+  renderCard();
+});
+
 document.addEventListener('keydown', e => {
+  // Skip om target är input eller contenteditable
   if (e.target.tagName === 'INPUT' || e.target.isContentEditable) return;
   if (e.key === 's' || e.key === 'S') { e.preventDefault(); playAudio('sv'); }
   else if (e.key === 'e' || e.key === 'E') { e.preventDefault(); playAudio('en'); }
@@ -301,5 +441,9 @@ if ('serviceWorker' in navigator) {
       .catch(err => console.error('SW registration failed:', err));
   });
 }
+
+// Initiera läge från localStorage (eller default = paper)
+loadMode();
+setAppMode(appMode);
 
 loadData();

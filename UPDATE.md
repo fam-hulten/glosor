@@ -158,6 +158,64 @@ Om begrepp ändras — kolla om glosor bör följa efter (eller tvärtom). Annar
 
 ---
 
+## v6 Arkitektur (mode-toggle: papper/app, 2026-10-01)
+
+**Bakgrund:** Johanna ville ha samma valfrihet som i `fam-hulten/rattstavning` — kunna välja mellan att öva på papper (befintligt) eller att skriva in översättningen direkt på skärmen (nytt). Mönstret är direkt portat från rättstavning (data-mode="paper"/"app", checkGuess()-förgrening, diff-markering).
+
+**Tekniska ändringar:**
+
+- **HTML (`index.html`):**
+  - Mode-toggle infogad mellan `<header>` och `<main class="card">`: två `<button class="mode-opt" data-mode="paper|app">`. Default-active = paper.
+  - Input-row återinförd i `.card` efter `audio-indicator`: `<div class="input-row" id="inputRow" hidden>` med `<input id="guessInput">`. `hidden`-attributet = döljd i papper-läge.
+  - Subtitle-texten ändrad från "Lyssna, skriv svaret på papper och tryck Rätta..." till "Lyssna, skriv svaret på papper eller direkt på skärmen — välj läge nedan".
+  - Cache-bust: `?v=6` → `?v=7` (CSS + JS).
+- **JS (`app.js`):**
+  - Ny modul-state: `let appMode = 'paper';` + `const MODE_KEY = 'glosor-mode';` (localStorage-persistens).
+  - Nya funktioner `loadMode()` / `saveMode()` / `setAppMode(mode)` — togglar UI, hint, input-row, nollställer revealed-state.
+  - `checkGuess()` förgrenad på `appMode`:
+    - **Paper:** oförändrat från v4 (visar `Svar: <en-answer>`, ingen input-jämförelse).
+    - **App:** läser `guessInput.value`, normalize:ar, jämför mot `buildAcceptedAnswers(card)` = `[normalize(card.en), ...card.en_alts.split(',')]`. Rätt → `feedback-correct` + grön + self-mark visas. Fel → bokstav-för-bokstav diff (rätt = vanlig text, fel = `<span class="wrong-letter">`, saknas = `<span class="missing-letter">`) + feedback-wrong + self-mark visas.
+  - `renderCard()` rensar `guessInput.value` och sätter fokus på input om app-läge (500ms delay efter SV-audio-start, så tangentbordet hinner upp på skärmen).
+  - `guessInput` keydown handler för `Enter` → `checkGuess()` (lokalt — global Enter-handler skippar INPUT-targets).
+  - `modeToggle` click-handler → `setAppMode(newMode)` + `renderCard()` (samma ord, nytt läge).
+  - localStorage-nyckel `glosor-mode` persisterar valet över sessioner.
+- **CSS (`styles.css`):**
+  - `.mode-toggle` + `.mode-opt` (aktiv = primary-blå, inaktiv = grå) — portad från rättstavning.
+  - `.input-row` + `.guess-input` (fokus-ring primary, mörk-mode-anpassad) — portad från rättstavning.
+  - `.wrong-letter` + `.missing-letter` fanns redan (från tidigare v3-implementation) — återanvänds.
+  - 480px media query: `.mode-toggle` margin tightare, `.guess-input` fontstorlek ned.
+  - Dark mode: `.guess-input` + `.mode-opt` får mörka bakgrundsfärger.
+- **SW:** `CACHE_NAME` `glosor-v6` → `glosor-v7` (säkerhets bump — undviker ev. kollision med audio-relaterad v6-cache från tidigare).
+
+**Läge-persistens (v6):**
+
+- localStorage-nyckel: `glosor-mode`, värde: `'paper'` eller `'app'`.
+- Läses vid script-start (`loadMode()`), sparas vid varje toggle-byte (`saveMode()` i `setAppMode`).
+- Default = `'paper'` om nyckeln saknas (bryter inget för användare som bara vill köra papper-läge).
+- localStorage-fel (privacy mode, etc.) hanteras tyst — app faller tillbaka till paper.
+
+**Tangetbord (v6 — samma shortcuts i båda lägen):**
+
+- `Enter` (i input-fältet, app-läge): Rätta
+- `Enter` (utanför input, papper-läge): Rätta
+- `R` / `r`: Rätt (om revealed)
+- `F` / `f`: Fel (om revealed)
+- `S` / `s`: Spela SV-audio
+- `E` / `e`: Spela EN-audio
+
+**Diff-markering (v6, app-läge fel-svar):**
+
+Samma mönster som rättstavning. Exempel: facit = "Sunday", gissning = "sundag":
+- Position 0-3: `Sund` (rätt, vanlig text)
+- Position 4: `a` istället för `a`... men matcha... faktiskt "Sunday"[4] = 'a', "sundag"[4] = 'a' → match, men "sundag"[5] = 'g' istället för "Sunday"[5] = 'y' → fel
+- Resultat: `Sund` + `<span class="wrong-letter">a</span>` + `<span class="missing-letter">y</span>`
+
+Färgkodning:
+- `.wrong-letter`: röd bakgrund (`#fee2e2`), overstruken (`text-decoration: line-through`)
+- `.missing-letter`: grön bakgrund (`#dcfce7`), understruken
+
+---
+
 ## Steg-för-steg: Lägg till nytt ord
 
 ### 1. Redigera `glosor-data.json`
@@ -341,6 +399,14 @@ mmx auth login --api-key "$(cat /tmp/.mmx-key)"   # UTAN --region!
 
 ## Historik (för kontext)
 
+- **2026-10-01**: **v6 — mode-toggle (papper/app)**
+  - Mode-toggle infogad: 📝 Papper / ⌨️ App. Default = papper (befintligt beteende).
+  - App-läge: input-fält + bokstav-för-bokstav diff-markering vid fel (rätt/fel/saknas), samma mönster som rättstavning.
+  - `en_alts`-stöd: alternativa engelska översättningar accepteras (komma-separerade i JSON).
+  - localStorage-persistens av valt läge (`glosor-mode`).
+  - Subtitle-text uppdaterad.
+  - SW `CACHE_NAME`: `glosor-v6` → `glosor-v7`
+  - README + UPDATE.md uppdaterade
 - **2026-09-15**: **v5 — pronunciation_dict** (verifierat IPA, kort y via dubbel-k)
   - worksheten "Do you like cars?" har `cykel/bike` (inte `cykler/cycles`)
   - IPA verifierat mot sv.wiktionary.org/wiki/cykel (citerar SAOL)

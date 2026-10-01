@@ -121,6 +121,86 @@ h1[contenteditable]:focus { background: var(--primary-soft); box-shadow: 0 0 0 2
   transform: translateY(-1px);
 }
 
+/* v6: Mode-toggle (papper/app) — samma mönster som rättstavning */
+.mode-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  max-width: 560px;
+  width: 100%;
+}
+
+.mode-opt {
+  flex: 1;
+  max-width: 140px;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: inherit;
+  background: #f1f5f9;
+  color: var(--text-muted);
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-height: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.mode-opt.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}
+
+.mode-opt:hover:not(.active) { background: #e2e8f0; transform: translateY(-1px); }
+.mode-opt:active:not(.active) { transform: translateY(0); }
+
+/* v6: Input-row + guess-input (app-läge) */
+.input-row {
+  margin-bottom: 1rem;
+}
+
+.input-row[hidden] { display: none; }
+
+.guess-input {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 500;
+  padding: 0.85rem 1.1rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: #fafbfc;
+  color: var(--text);
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.guess-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.guess-input::placeholder {
+  color: var(--text-subtle);
+  font-weight: 400;
+}
+
+.guess-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f1f5f9;
+}
+
 .card.slide-out-left { transform: translateX(-40px); opacity: 0; }
 .card.slide-out-right { transform: translateX(40px); opacity: 0; }
 .card.slide-in { transform: translateX(0); opacity: 1; }
@@ -489,6 +569,9 @@ button.danger:hover:not(:disabled) {
   .nav button { padding: 0.6rem 0.5rem; font-size: 0.85rem; min-height: 42px; }
   .kbd-hint { display: none; }
   .reveal-main { width: calc(100% - 1.5rem); font-size: 1rem; padding: 0.7rem 0.8rem; margin-bottom: 0.6rem; }
+  .mode-toggle { margin-bottom: 0.6rem; }
+  .mode-opt { padding: 0.45rem 0.6rem; font-size: 0.78rem; }
+  .guess-input { font-size: 1.05rem; padding: 0.65rem 0.85rem; }
   .primary-next { padding: 0.7rem; font-size: 0.95rem; }
   h1 { font-size: 1.1rem; margin-bottom: 0.2rem; }
   .subtitle { font-size: 0.85rem; }
@@ -514,4 +597,10 @@ button.danger:hover:not(:disabled) {
   .feedback-hint { background: #334155; }
   button { background: #334155; color: var(--text); }
   button:hover:not(:disabled) { background: #475569; }
+
+  /* v6: Dark-mode-justering för input-fältet */
+  .guess-input { background: #0f172a; border-color: #475569; color: var(--text); }
+  .guess-input:focus { background: #1e293b; }
+  .mode-opt { background: #334155; color: var(--text-muted); border-color: #475569; }
+  .mode-opt:hover:not(.active) { background: #475569; }
 }

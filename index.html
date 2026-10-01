@@ -11,15 +11,20 @@
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
   <title>Glosor</title>
 </head>
 <body>
   <header>
     <h1 id="title" contenteditable="true">Glosor — Klass 4 Lejonskolan</h1>
-    <p class="subtitle">Lyssna, skriv svaret på papper och tryck Rätta för att se facit</p>
+    <p class="subtitle">Lyssna, skriv svaret på papper eller direkt på skärmen — välj läge nedan</p>
     <button id="shuffleBtn" class="shuffle-btn" aria-label="Blanda om orden">🔀 Blanda om</button>
   </header>
+
+  <div class="mode-toggle" id="modeToggle" aria-label="Läge">
+    <button class="mode-opt active" data-mode="paper" aria-pressed="true">📝 Papper</button>
+    <button class="mode-opt" data-mode="app" aria-pressed="false">⌨️ App</button>
+  </div>
 
   <main class="card">
     <div class="streak-counter" id="streakCounter" aria-label="Radda rätt">🔥 <span id="streakNum">0</span></div>
@@ -30,6 +35,19 @@
     <p class="hint" id="hint">Lyssna, skriv svaret på papper och tryck Rätta för att se facit.</p>
 
     <div class="audio-indicator" id="audioIndicator" role="status" aria-live="polite">🔊 Spelar…</div>
+
+    <div class="input-row" id="inputRow" hidden>
+      <input type="text"
+             id="guessInput"
+             class="guess-input"
+             placeholder="Skriv den engelska översättningen…"
+             autocomplete="off"
+             autocorrect="off"
+             autocapitalize="off"
+             spellcheck="false"
+             inputmode="text"
+             aria-label="Skriv ditt svar">
+    </div>
 
     <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
 
@@ -67,6 +85,6 @@
     <button id="dismissInstall" aria-label="Stäng">✕</button>
   </footer>
 
-  <script src="app.js?v=6"></script>
+  <script src="app.js?v=7"></script>
 </body>
 </html>
