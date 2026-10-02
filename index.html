@@ -11,7 +11,7 @@
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=9">
   <title>Glosor</title>
 </head>
 <body>
@@ -19,6 +19,9 @@
     <h1 id="title" contenteditable="true">Glosor — Klass 4 Lejonskolan</h1>
     <p class="subtitle">Lyssna, skriv svaret på papper eller direkt på skärmen — välj läge nedan</p>
     <button id="shuffleBtn" class="shuffle-btn" aria-label="Blanda om orden">🔀 Blanda om</button>
+    <button id="refreshDataBtn" class="refresh-link" aria-label="Uppdatera data från servern">
+      <span class="refresh-icon" aria-hidden="true">↻</span> <span class="refresh-label">Uppdatera</span>
+    </button>
   </header>
 
   <div class="mode-toggle" id="modeToggle" aria-label="Läge">
@@ -91,6 +94,6 @@
     <button id="dismissInstall" aria-label="Stäng">✕</button>
   </footer>
 
-  <script src="app.js?v=8"></script>
+  <script src="app.js?v=9"></script>
 </body>
 </html>

@@ -23,6 +23,7 @@ let deferredInstallPrompt = null;
 
 let appMode = 'paper'; // 'paper' | 'app' (persists in localStorage)
 const MODE_KEY = 'glosor-mode';
+const INSTALL_HINT_DISMISSED_KEY = 'glosor-install-hint-dismissed';
 
 const audio = new Audio();
 audio.preload = 'auto';
@@ -56,6 +57,7 @@ const modeToggle = document.getElementById('modeToggle');
 const installHint = document.getElementById('installHint');
 const installBtn = document.getElementById('installBtn');
 const dismissInstallBtn = document.getElementById('dismissInstall');
+const refreshDataBtn = document.getElementById('refreshDataBtn');
 const summaryEl = document.getElementById('summary');
 const startOverBtn = document.getElementById('startOverBtn');
 const summaryMasteredEl = document.getElementById('summaryMastered');
@@ -474,6 +476,8 @@ audio.addEventListener('error', () => {
 
 // PWA install
 window.addEventListener('beforeinstallprompt', e => {
+  if (isInstallHintDismissed()) return;
+  if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) return;
   e.preventDefault();
   deferredInstallPrompt = e;
   installHint.hidden = false;
@@ -489,12 +493,72 @@ installBtn?.addEventListener('click', async () => {
   if (outcome === 'accepted') console.log('PWA install accepted');
 });
 
-dismissInstallBtn?.addEventListener('click', () => { installHint.hidden = true; });
+dismissInstallBtn?.addEventListener('click', () => {
+  installHint.hidden = true;
+  try { localStorage.setItem(INSTALL_HINT_DISMISSED_KEY, 'true'); } catch {}
+});
+
+function isInstallHintDismissed() {
+  try {
+    return localStorage.getItem(INSTALL_HINT_DISMISSED_KEY) === 'true';
+  } catch {
+    return false;
+  }
+}
+
+// v9: Data refresh — töm SW-cache + hämta färsk JSON (Johanna-pushback 2026-10-02 07:12)
+async function refreshData() {
+  const btn = refreshDataBtn;
+  if (!btn) return;
+  const label = btn.querySelector('.refresh-label');
+  const originalText = label ? label.textContent : '';
+
+  btn.disabled = true;
+  btn.classList.add('is-loading');
+  if (label) label.textContent = 'Uppdaterar';
+
+  try {
+    if ('caches' in window) {
+      const keys = await caches.keys();
+      await Promise.all(keys.map(k => caches.delete(k)));
+    }
+    const res = await fetch('glosor-data.json?t=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    allWords = (data.words || []).filter(w => w.active !== false);
+    const newMeta = data.meta || {};
+    if (newMeta.title) titleEl.textContent = newMeta.title;
+    if (newMeta.subtitle) subtitleEl.textContent = newMeta.subtitle;
+    if (!allWords.length) throw new Error('Inga glosor i datafilen');
+    init();
+    btn.classList.remove('is-loading');
+    btn.classList.add('is-success');
+    if (label) label.textContent = 'Klar!';
+    setTimeout(() => {
+      btn.classList.remove('is-success');
+      if (label) label.textContent = originalText || 'Uppdatera';
+    }, 1500);
+  } catch (err) {
+    console.error('Kunde inte uppdatera data:', err);
+    btn.classList.remove('is-loading');
+    btn.classList.add('is-error');
+    if (label) label.textContent = 'Fel';
+    setTimeout(() => {
+      btn.classList.remove('is-error');
+      if (label) label.textContent = originalText || 'Uppdatera';
+    }, 2500);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+refreshDataBtn?.addEventListener('click', refreshData);
 
 // Service worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js')
+    // Cache-bust ?v=N på sw.js matchar CACHE_NAME — tvingar ny SW (Johanna-incident 2026-10-02)
+    navigator.serviceWorker.register('sw.js?v=9')
       .then(reg => console.log('SW registered:', reg.scope))
       .catch(err => console.error('SW registration failed:', err));
   });
