@@ -1,0 +1,629 @@
+{
+  "meta": {
+    "title": "It's Sunday today — Klass 4 Lejonskolan",
+    "subtitle": "Lyssna, skriv det engelska ordet och jämför med facit",
+    "source": "Glosor.eu (Lejonskolan), 2026-09-28"
+  },
+  "words": [
+    {
+      "id": "01",
+      "sv": "söndag",
+      "en": "Sunday",
+      "en_alts": "",
+      "audio_sv": "audio/01-sv.mp3",
+      "audio_en": "audio/01-en.mp3"
+    },
+    {
+      "id": "02",
+      "sv": "idag",
+      "en": "today",
+      "en_alts": "",
+      "audio_sv": "audio/02-sv.mp3",
+      "audio_en": "audio/02-en.mp3"
+    },
+    {
+      "id": "03",
+      "sv": "tycka, tro",
+      "en": "think",
+      "en_alts": "",
+      "audio_sv": "audio/03-sv.mp3",
+      "audio_en": "audio/03-en.mp3"
+    },
+    {
+      "id": "04",
+      "sv": "stängt",
+      "en": "closed",
+      "en_alts": "",
+      "audio_sv": "audio/04-sv.mp3",
+      "audio_en": "audio/04-en.mp3"
+    },
+    {
+      "id": "05",
+      "sv": "imorgon",
+      "en": "tomorrow",
+      "en_alts": "",
+      "audio_sv": "audio/05-sv.mp3",
+      "audio_en": "audio/05-en.mp3"
+    },
+    {
+      "id": "06",
+      "sv": "då",
+      "en": "then",
+      "en_alts": "",
+      "audio_sv": "audio/06-sv.mp3",
+      "audio_en": "audio/06-en.mp3"
+    },
+    {
+      "id": "07",
+      "sv": "arbeta",
+      "en": "work",
+      "en_alts": "",
+      "audio_sv": "audio/07-sv.mp3",
+      "audio_en": "audio/07-en.mp3"
+    },
+    {
+      "id": "08",
+      "sv": "måndag",
+      "en": "Monday",
+      "en_alts": "",
+      "audio_sv": "audio/08-sv.mp3",
+      "audio_en": "audio/08-en.mp3"
+    },
+    {
+      "id": "09",
+      "sv": "tisdag",
+      "en": "Tuesday",
+      "en_alts": "",
+      "audio_sv": "audio/09-sv.mp3",
+      "audio_en": "audio/09-en.mp3"
+    },
+    {
+      "id": "10",
+      "sv": "onsdag",
+      "en": "Wednesday",
+      "en_alts": "",
+      "audio_sv": "audio/10-sv.mp3",
+      "audio_en": "audio/10-en.mp3"
+    },
+    {
+      "id": "11",
+      "sv": "torsdag",
+      "en": "Thursday",
+      "en_alts": "",
+      "audio_sv": "audio/11-sv.mp3",
+      "audio_en": "audio/11-en.mp3"
+    },
+    {
+      "id": "12",
+      "sv": "lektion",
+      "en": "lesson",
+      "en_alts": "",
+      "audio_sv": "audio/12-sv.mp3",
+      "audio_en": "audio/12-en.mp3"
+    },
+    {
+      "id": "13",
+      "sv": "dit",
+      "en": "there",
+      "en_alts": "",
+      "audio_sv": "audio/13-sv.mp3",
+      "audio_en": "audio/13-en.mp3"
+    },
+    {
+      "id": "14",
+      "sv": "fredag",
+      "en": "Friday",
+      "en_alts": "",
+      "audio_sv": "audio/14-sv.mp3",
+      "audio_en": "audio/14-en.mp3"
+    },
+    {
+      "id": "15",
+      "sv": "cirka, ungefär",
+      "en": "about",
+      "en_alts": "",
+      "audio_sv": "audio/15-sv.mp3",
+      "audio_en": "audio/15-en.mp3"
+    },
+    {
+      "id": "pm-old-01",
+      "sv": "skabbig",
+      "en": "scruffy",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-28T13:25:00Z",
+      "audio_sv": "audio/pm-old-01-sv.mp3",
+      "audio_en": "audio/pm-old-01-en.mp3"
+    },
+    {
+      "id": "pm-old-02",
+      "sv": "mamma",
+      "en": "mum",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-28T13:25:00Z",
+      "audio_sv": "audio/pm-old-02-sv.mp3",
+      "audio_en": "audio/pm-old-02-en.mp3"
+    },
+    {
+      "id": "pm-old-03",
+      "sv": "snälla",
+      "en": "please",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-28T13:25:00Z",
+      "audio_sv": "audio/pm-old-03-sv.mp3",
+      "audio_en": "audio/pm-old-03-en.mp3"
+    },
+    {
+      "id": "pm-old-04",
+      "sv": "hus, villa",
+      "en": "house",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-28T13:25:00Z",
+      "audio_sv": "audio/pm-old-04-sv.mp3",
+      "audio_en": "audio/pm-old-04-en.mp3"
+    },
+    {
+      "id": "pm-old-05",
+      "sv": "vet",
+      "en": "know",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-28T13:25:00Z",
+      "audio_sv": "audio/pm-old-05-sv.mp3",
+      "audio_en": "audio/pm-old-05-en.mp3"
+    },
+    {
+      "id": "pm-old-06",
+      "sv": "galen",
+      "en": "mad",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-28T13:25:00Z",
+      "audio_sv": "audio/pm-old-06-sv.mp3",
+      "audio_en": "audio/pm-old-06-en.mp3"
+    },
+    {
+      "id": "pm-old-07",
+      "sv": "husdjur",
+      "en": "pet",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-28T13:25:00Z",
+      "audio_sv": "audio/pm-old-07-sv.mp3",
+      "audio_en": "audio/pm-old-07-en.mp3"
+    },
+    {
+      "id": "pm-old-08",
+      "sv": "tråkig",
+      "en": "boring",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-28T13:25:00Z",
+      "audio_sv": "audio/pm-old-08-sv.mp3",
+      "audio_en": "audio/pm-old-08-en.mp3"
+    },
+    {
+      "id": "pm-old-09",
+      "sv": "Vad sägs om en...?",
+      "en": "How about a...?",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-28T13:25:00Z",
+      "audio_sv": "audio/pm-old-09-sv.mp3",
+      "audio_en": "audio/pm-old-09-en.mp3"
+    },
+    {
+      "id": "pm-old-10",
+      "sv": "fluffig",
+      "en": "fluffy",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-28T13:25:00Z",
+      "audio_sv": "audio/pm-old-10-sv.mp3",
+      "audio_en": "audio/pm-old-10-en.mp3"
+    },
+    {
+      "id": "pm-old-11",
+      "sv": "affär",
+      "en": "shop",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-28T13:25:00Z",
+      "audio_sv": "audio/pm-old-11-sv.mp3",
+      "audio_en": "audio/pm-old-11-en.mp3"
+    },
+    {
+      "id": "pm-old-12",
+      "sv": "bra",
+      "en": "fine",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-28T13:25:00Z",
+      "audio_sv": "audio/pm-old-12-sv.mp3",
+      "audio_en": "audio/pm-old-12-en.mp3"
+    },
+    {
+      "id": "pm-old-13",
+      "sv": "titta",
+      "en": "look",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-28T13:25:00Z",
+      "audio_sv": "audio/pm-old-13-sv.mp3",
+      "audio_en": "audio/pm-old-13-en.mp3"
+    },
+    {
+      "id": "pm-old-14",
+      "sv": "köpa",
+      "en": "buy",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-28T13:25:00Z",
+      "audio_sv": "audio/pm-old-14-sv.mp3",
+      "audio_en": "audio/pm-old-14-en.mp3"
+    },
+    {
+      "id": "cars-old-01",
+      "sv": "saker",
+      "en": "things",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-01-sv.mp3",
+      "audio_en": "audio/cars-old-01-en.mp3"
+    },
+    {
+      "id": "cars-old-02",
+      "sv": "hjul",
+      "en": "wheel",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-02-sv.mp3",
+      "audio_en": "audio/cars-old-02-en.mp3"
+    },
+    {
+      "id": "cars-old-03",
+      "sv": "lillasyster",
+      "en": "little sister",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-03-sv.mp3",
+      "audio_en": "audio/cars-old-03-en.mp3"
+    },
+    {
+      "id": "cars-old-04",
+      "sv": "hennes",
+      "en": "her",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-04-sv.mp3",
+      "audio_en": "audio/cars-old-04-en.mp3"
+    },
+    {
+      "id": "cars-old-05",
+      "sv": "cykel",
+      "en": "bike",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-05-sv.mp3",
+      "audio_en": "audio/cars-old-05-en.mp3"
+    },
+    {
+      "id": "cars-old-06",
+      "sv": "vild",
+      "en": "wild",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-06-sv.mp3",
+      "audio_en": "audio/cars-old-06-en.mp3"
+    },
+    {
+      "id": "cars-old-07",
+      "sv": "hans",
+      "en": "his",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-07-sv.mp3",
+      "audio_en": "audio/cars-old-07-en.mp3"
+    },
+    {
+      "id": "cars-old-08",
+      "sv": "motorcykel",
+      "en": "motorbike",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-08-sv.mp3",
+      "audio_en": "audio/cars-old-08-en.mp3"
+    },
+    {
+      "id": "cars-old-09",
+      "sv": "häftig",
+      "en": "awesome",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-09-sv.mp3",
+      "audio_en": "audio/cars-old-09-en.mp3"
+    },
+    {
+      "id": "cars-old-10",
+      "sv": "dotter",
+      "en": "daughter",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-10-sv.mp3",
+      "audio_en": "audio/cars-old-10-en.mp3"
+    },
+    {
+      "id": "cars-old-11",
+      "sv": "förare",
+      "en": "driver",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-11-sv.mp3",
+      "audio_en": "audio/cars-old-11-en.mp3"
+    },
+    {
+      "id": "cars-old-12",
+      "sv": "personer",
+      "en": "people",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-21T12:05:00Z",
+      "audio_sv": "audio/cars-old-12-sv.mp3",
+      "audio_en": "audio/cars-old-12-en.mp3"
+    },
+    {
+      "id": "01-old",
+      "sv": "ursäkta mig",
+      "en": "Excuse me",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/01-old-sv.mp3",
+      "audio_en": "audio/01-old-en.mp3"
+    },
+    {
+      "id": "02-old",
+      "sv": "med",
+      "en": "with",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/02-old-sv.mp3",
+      "audio_en": "audio/02-old-en.mp3"
+    },
+    {
+      "id": "03-old",
+      "sv": "hitta",
+      "en": "find",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/03-old-sv.mp3",
+      "audio_en": "audio/03-old-en.mp3"
+    },
+    {
+      "id": "04-old",
+      "sv": "han är",
+      "en": "he's",
+      "en_alts": "he is",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/04-old-sv.mp3",
+      "audio_en": "audio/04-old-en.mp3"
+    },
+    {
+      "id": "05-old",
+      "sv": "någonstans",
+      "en": "somewhere",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/05-old-sv.mp3",
+      "audio_en": "audio/05-old-en.mp3"
+    },
+    {
+      "id": "06-old",
+      "sv": "Har du...?",
+      "en": "Have you got...?",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/06-old-sv.mp3",
+      "audio_en": "audio/06-old-en.mp3"
+    },
+    {
+      "id": "07-old",
+      "sv": "på väg",
+      "en": "on my way",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/07-old-sv.mp3",
+      "audio_en": "audio/07-old-en.mp3"
+    },
+    {
+      "id": "08-old",
+      "sv": "vid",
+      "en": "by",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/08-old-sv.mp3",
+      "audio_en": "audio/08-old-en.mp3"
+    },
+    {
+      "id": "09-old",
+      "sv": "telefon",
+      "en": "phone",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/09-old-sv.mp3",
+      "audio_en": "audio/09-old-en.mp3"
+    },
+    {
+      "id": "10-old",
+      "sv": "gata",
+      "en": "street",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/10-old-sv.mp3",
+      "audio_en": "audio/10-old-en.mp3"
+    },
+    {
+      "id": "11-old",
+      "sv": "väg",
+      "en": "street",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-08T05:13:00Z",
+      "audio_sv": "audio/11-old-sv.mp3",
+      "audio_en": "audio/11-old-en.mp3"
+    },
+    {
+      "id": "tf-old-01",
+      "sv": "morfar/farfar",
+      "en": "grandpa",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-01-sv.mp3",
+      "audio_en": "audio/tf-old-01-en.mp3"
+    },
+    {
+      "id": "tf-old-02",
+      "sv": "honung",
+      "en": "honey",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-02-sv.mp3",
+      "audio_en": "audio/tf-old-02-en.mp3"
+    },
+    {
+      "id": "tf-old-03",
+      "sv": "Herr",
+      "en": "Mr",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-03-sv.mp3",
+      "audio_en": "audio/tf-old-03-en.mp3"
+    },
+    {
+      "id": "tf-old-04",
+      "sv": "kött",
+      "en": "meat",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-04-sv.mp3",
+      "audio_en": "audio/tf-old-04-en.mp3"
+    },
+    {
+      "id": "tf-old-05",
+      "sv": "rakt",
+      "en": "straight",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-05-sv.mp3",
+      "audio_en": "audio/tf-old-05-en.mp3"
+    },
+    {
+      "id": "tf-old-06",
+      "sv": "Fru",
+      "en": "Mrs",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-06-sv.mp3",
+      "audio_en": "audio/tf-old-06-en.mp3"
+    },
+    {
+      "id": "tf-old-07",
+      "sv": "hud",
+      "en": "skin",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-07-sv.mp3",
+      "audio_en": "audio/tf-old-07-en.mp3"
+    },
+    {
+      "id": "tf-old-08",
+      "sv": "också",
+      "en": "too",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-08-sv.mp3",
+      "audio_en": "audio/tf-old-08-en.mp3"
+    },
+    {
+      "id": "tf-old-09",
+      "sv": "familj",
+      "en": "family",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-09-sv.mp3",
+      "audio_en": "audio/tf-old-09-en.mp3"
+    },
+    {
+      "id": "tf-old-10",
+      "sv": "lockigt",
+      "en": "curly",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-10-sv.mp3",
+      "audio_en": "audio/tf-old-10-en.mp3"
+    },
+    {
+      "id": "tf-old-11",
+      "sv": "mat",
+      "en": "food",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-11-sv.mp3",
+      "audio_en": "audio/tf-old-11-en.mp3"
+    },
+    {
+      "id": "tf-old-12",
+      "sv": "fisk",
+      "en": "fish",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-12-sv.mp3",
+      "audio_en": "audio/tf-old-12-en.mp3"
+    },
+    {
+      "id": "tf-old-13",
+      "sv": "godis",
+      "en": "candy",
+      "en_alts": "",
+      "active": false,
+      "archived_at": "2026-09-14T13:30:00Z",
+      "audio_sv": "audio/tf-old-13-sv.mp3",
+      "audio_en": "audio/tf-old-13-en.mp3"
+    }
+  ]
+}

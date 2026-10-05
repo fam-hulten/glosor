@@ -1,129 +1,159 @@
 {
   "meta": {
-    "title": "It's Sunday today — Klass 4 Lejonskolan",
+    "title": "Keep your Goldfish happy — Klass 4 Lejonskolan",
     "subtitle": "Lyssna, skriv det engelska ordet och jämför med facit",
-    "source": "Glosor.eu (Lejonskolan), 2026-09-28"
+    "source": "Glosor.eu (Lejonskolan), 2026-10-05"
   },
   "words": [
     {
-      "id": "01",
+      "id": "sunday-old-01",
       "sv": "söndag",
       "en": "Sunday",
       "en_alts": "",
       "audio_sv": "audio/01-sv.mp3",
-      "audio_en": "audio/01-en.mp3"
+      "audio_en": "audio/01-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-05T12:00:00Z"
     },
     {
-      "id": "02",
+      "id": "sunday-old-02",
       "sv": "idag",
       "en": "today",
       "en_alts": "",
       "audio_sv": "audio/02-sv.mp3",
-      "audio_en": "audio/02-en.mp3"
+      "audio_en": "audio/02-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-05T12:00:00Z"
     },
     {
-      "id": "03",
+      "id": "sunday-old-03",
       "sv": "tycka, tro",
       "en": "think",
       "en_alts": "",
       "audio_sv": "audio/03-sv.mp3",
-      "audio_en": "audio/03-en.mp3"
+      "audio_en": "audio/03-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-05T12:00:00Z"
     },
     {
-      "id": "04",
+      "id": "sunday-old-04",
       "sv": "stängt",
       "en": "closed",
       "en_alts": "",
       "audio_sv": "audio/04-sv.mp3",
-      "audio_en": "audio/04-en.mp3"
+      "audio_en": "audio/04-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-05T12:00:00Z"
     },
     {
-      "id": "05",
+      "id": "sunday-old-05",
       "sv": "imorgon",
       "en": "tomorrow",
       "en_alts": "",
       "audio_sv": "audio/05-sv.mp3",
-      "audio_en": "audio/05-en.mp3"
+      "audio_en": "audio/05-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-05T12:00:00Z"
     },
     {
-      "id": "06",
+      "id": "sunday-old-06",
       "sv": "då",
       "en": "then",
       "en_alts": "",
       "audio_sv": "audio/06-sv.mp3",
-      "audio_en": "audio/06-en.mp3"
+      "audio_en": "audio/06-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-05T12:00:00Z"
     },
     {
-      "id": "07",
+      "id": "sunday-old-07",
       "sv": "arbeta",
       "en": "work",
       "en_alts": "",
       "audio_sv": "audio/07-sv.mp3",
-      "audio_en": "audio/07-en.mp3"
+      "audio_en": "audio/07-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-05T12:00:00Z"
     },
     {
-      "id": "08",
+      "id": "sunday-old-08",
       "sv": "måndag",
       "en": "Monday",
       "en_alts": "",
       "audio_sv": "audio/08-sv.mp3",
-      "audio_en": "audio/08-en.mp3"
+      "audio_en": "audio/08-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-05T12:00:00Z"
     },
     {
-      "id": "09",
+      "id": "sunday-old-09",
       "sv": "tisdag",
       "en": "Tuesday",
       "en_alts": "",
       "audio_sv": "audio/09-sv.mp3",
-      "audio_en": "audio/09-en.mp3"
+      "audio_en": "audio/09-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-05T12:00:00Z"
     },
     {
-      "id": "10",
+      "id": "sunday-old-10",
       "sv": "onsdag",
       "en": "Wednesday",
       "en_alts": "",
       "audio_sv": "audio/10-sv.mp3",
-      "audio_en": "audio/10-en.mp3"
+      "audio_en": "audio/10-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-05T12:00:00Z"
     },
     {
-      "id": "11",
+      "id": "sunday-old-11",
       "sv": "torsdag",
       "en": "Thursday",
       "en_alts": "",
       "audio_sv": "audio/11-sv.mp3",
-      "audio_en": "audio/11-en.mp3"
+      "audio_en": "audio/11-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-05T12:00:00Z"
     },
     {
-      "id": "12",
+      "id": "sunday-old-12",
       "sv": "lektion",
       "en": "lesson",
       "en_alts": "",
       "audio_sv": "audio/12-sv.mp3",
-      "audio_en": "audio/12-en.mp3"
+      "audio_en": "audio/12-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-05T12:00:00Z"
     },
     {
-      "id": "13",
+      "id": "sunday-old-13",
       "sv": "dit",
       "en": "there",
       "en_alts": "",
       "audio_sv": "audio/13-sv.mp3",
-      "audio_en": "audio/13-en.mp3"
+      "audio_en": "audio/13-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-05T12:00:00Z"
     },
     {
-      "id": "14",
+      "id": "sunday-old-14",
       "sv": "fredag",
       "en": "Friday",
       "en_alts": "",
       "audio_sv": "audio/14-sv.mp3",
-      "audio_en": "audio/14-en.mp3"
+      "audio_en": "audio/14-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-05T12:00:00Z"
     },
     {
-      "id": "15",
+      "id": "sunday-old-15",
       "sv": "cirka, ungefär",
       "en": "about",
       "en_alts": "",
       "audio_sv": "audio/15-sv.mp3",
-      "audio_en": "audio/15-en.mp3"
+      "audio_en": "audio/15-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-05T12:00:00Z"
     },
     {
       "id": "pm-old-01",
@@ -624,6 +654,150 @@
       "archived_at": "2026-09-14T13:30:00Z",
       "audio_sv": "audio/tf-old-13-sv.mp3",
       "audio_en": "audio/tf-old-13-en.mp3"
+    },
+    {
+      "id": "01",
+      "sv": "håll",
+      "en": "keep",
+      "en_alts": "",
+      "audio_sv": "audio/01-sv.mp3",
+      "audio_en": "audio/01-en.mp3"
+    },
+    {
+      "id": "02",
+      "sv": "några",
+      "en": "some",
+      "en_alts": "",
+      "audio_sv": "audio/02-sv.mp3",
+      "audio_en": "audio/02-en.mp3"
+    },
+    {
+      "id": "03",
+      "sv": "ge",
+      "en": "give",
+      "en_alts": "",
+      "audio_sv": "audio/03-sv.mp3",
+      "audio_en": "audio/03-en.mp3"
+    },
+    {
+      "id": "04",
+      "sv": "mycket",
+      "en": "much",
+      "en_alts": "",
+      "audio_sv": "audio/04-sv.mp3",
+      "audio_en": "audio/04-en.mp3"
+    },
+    {
+      "id": "05",
+      "sv": "fånga",
+      "en": "catch",
+      "en_alts": "",
+      "audio_sv": "audio/05-sv.mp3",
+      "audio_en": "audio/05-en.mp3"
+    },
+    {
+      "id": "06",
+      "sv": "färsk",
+      "en": "fresh",
+      "en_alts": "",
+      "audio_sv": "audio/06-sv.mp3",
+      "audio_en": "audio/06-en.mp3"
+    },
+    {
+      "id": "07",
+      "sv": "ställa eller lägga",
+      "en": "put",
+      "en_alts": "",
+      "audio_sv": "audio/07-sv.mp3",
+      "audio_en": "audio/07-en.mp3"
+    },
+    {
+      "id": "08",
+      "sv": "smutsig",
+      "en": "dirty",
+      "en_alts": "",
+      "audio_sv": "audio/08-sv.mp3",
+      "audio_en": "audio/08-en.mp3"
+    },
+    {
+      "id": "09",
+      "sv": "omvårdnad eller sköta",
+      "en": "care",
+      "en_alts": "",
+      "audio_sv": "audio/09-sv.mp3",
+      "audio_en": "audio/09-en.mp3"
+    },
+    {
+      "id": "10",
+      "sv": "varje",
+      "en": "every",
+      "en_alts": "",
+      "audio_sv": "audio/10-sv.mp3",
+      "audio_en": "audio/10-en.mp3"
+    },
+    {
+      "id": "11",
+      "sv": "gullig",
+      "en": "cute",
+      "en_alts": "",
+      "audio_sv": "audio/11-sv.mp3",
+      "audio_en": "audio/11-en.mp3"
+    },
+    {
+      "id": "12",
+      "sv": "adoptera",
+      "en": "adopt",
+      "en_alts": "",
+      "audio_sv": "audio/12-sv.mp3",
+      "audio_en": "audio/12-en.mp3"
+    },
+    {
+      "id": "13",
+      "sv": "trädgård",
+      "en": "garden",
+      "en_alts": "",
+      "audio_sv": "audio/13-sv.mp3",
+      "audio_en": "audio/13-en.mp3"
+    },
+    {
+      "id": "14",
+      "sv": "gräs",
+      "en": "grass",
+      "en_alts": "",
+      "audio_sv": "audio/14-sv.mp3",
+      "audio_en": "audio/14-en.mp3"
+    },
+    {
+      "id": "15",
+      "sv": "alla",
+      "en": "everyone",
+      "en_alts": "",
+      "audio_sv": "audio/15-sv.mp3",
+      "audio_en": "audio/15-en.mp3"
+    },
+    {
+      "id": "16",
+      "sv": "pengar",
+      "en": "money",
+      "en_alts": "",
+      "audio_sv": "audio/16-sv.mp3",
+      "audio_en": "audio/16-en.mp3"
+    },
+    {
+      "id": "17",
+      "sv": "liten eller lilla",
+      "en": "little",
+      "en_alts": "",
+      "audio_sv": "audio/17-sv.mp3",
+      "audio_en": "audio/17-en.mp3"
+    },
+    {
+      "id": "18",
+      "sv": "bambu",
+      "en": "bamboo",
+      "en_alts": "",
+      "audio_sv": "audio/18-sv.mp3",
+      "audio_en": "audio/18-en.mp3"
     }
   ]
 }
