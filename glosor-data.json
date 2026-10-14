@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "Keep your Goldfish happy — Klass 4 Lejonskolan",
-    "subtitle": "Lyssna, skriv det engelska ordet och jämför med facit",
-    "source": "Glosor.eu (Lejonskolan), 2026-10-05"
+    "title": "Do you like snails? — Klass 4 Lejonskolan",
+    "subtitle": "Lyssna, skriv svaret på papper och tryck Rätta för att se facit",
+    "source": "Glosor.eu (Lejonskolan), 2026-10-13"
   },
   "words": [
     {
@@ -656,148 +656,336 @@
       "audio_en": "audio/tf-old-13-en.mp3"
     },
     {
-      "id": "01",
+      "id": "goldfish-old-01",
       "sv": "håll",
       "en": "keep",
+      "en_alts": "",
+      "audio_sv": "audio/01-sv.mp3",
+      "audio_en": "audio/01-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-02",
+      "sv": "några",
+      "en": "some",
+      "en_alts": "",
+      "audio_sv": "audio/02-sv.mp3",
+      "audio_en": "audio/02-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-03",
+      "sv": "ge",
+      "en": "give",
+      "en_alts": "",
+      "audio_sv": "audio/03-sv.mp3",
+      "audio_en": "audio/03-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-04",
+      "sv": "mycket",
+      "en": "much",
+      "en_alts": "",
+      "audio_sv": "audio/04-sv.mp3",
+      "audio_en": "audio/04-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-05",
+      "sv": "fånga",
+      "en": "catch",
+      "en_alts": "",
+      "audio_sv": "audio/05-sv.mp3",
+      "audio_en": "audio/05-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-06",
+      "sv": "färsk",
+      "en": "fresh",
+      "en_alts": "",
+      "audio_sv": "audio/06-sv.mp3",
+      "audio_en": "audio/06-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-07",
+      "sv": "ställa eller lägga",
+      "en": "put",
+      "en_alts": "",
+      "audio_sv": "audio/07-sv.mp3",
+      "audio_en": "audio/07-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-08",
+      "sv": "smutsig",
+      "en": "dirty",
+      "en_alts": "",
+      "audio_sv": "audio/08-sv.mp3",
+      "audio_en": "audio/08-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-09",
+      "sv": "omvårdnad eller sköta",
+      "en": "care",
+      "en_alts": "",
+      "audio_sv": "audio/09-sv.mp3",
+      "audio_en": "audio/09-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-10",
+      "sv": "varje",
+      "en": "every",
+      "en_alts": "",
+      "audio_sv": "audio/10-sv.mp3",
+      "audio_en": "audio/10-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-11",
+      "sv": "gullig",
+      "en": "cute",
+      "en_alts": "",
+      "audio_sv": "audio/11-sv.mp3",
+      "audio_en": "audio/11-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-12",
+      "sv": "adoptera",
+      "en": "adopt",
+      "en_alts": "",
+      "audio_sv": "audio/12-sv.mp3",
+      "audio_en": "audio/12-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-13",
+      "sv": "trädgård",
+      "en": "garden",
+      "en_alts": "",
+      "audio_sv": "audio/13-sv.mp3",
+      "audio_en": "audio/13-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-14",
+      "sv": "gräs",
+      "en": "grass",
+      "en_alts": "",
+      "audio_sv": "audio/14-sv.mp3",
+      "audio_en": "audio/14-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-15",
+      "sv": "alla",
+      "en": "everyone",
+      "en_alts": "",
+      "audio_sv": "audio/15-sv.mp3",
+      "audio_en": "audio/15-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-16",
+      "sv": "pengar",
+      "en": "money",
+      "en_alts": "",
+      "audio_sv": "audio/16-sv.mp3",
+      "audio_en": "audio/16-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-17",
+      "sv": "liten eller lilla",
+      "en": "little",
+      "en_alts": "",
+      "audio_sv": "audio/17-sv.mp3",
+      "audio_en": "audio/17-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "goldfish-old-18",
+      "sv": "bambu",
+      "en": "bamboo",
+      "en_alts": "",
+      "audio_sv": "audio/18-sv.mp3",
+      "audio_en": "audio/18-en.mp3",
+      "active": false,
+      "archived_at": "2026-10-14T12:40:00Z"
+    },
+    {
+      "id": "01",
+      "sv": "snigel",
+      "en": "snail",
       "en_alts": "",
       "audio_sv": "audio/01-sv.mp3",
       "audio_en": "audio/01-en.mp3"
     },
     {
       "id": "02",
-      "sv": "några",
-      "en": "some",
+      "sv": "igelkott",
+      "en": "hedgehog",
       "en_alts": "",
       "audio_sv": "audio/02-sv.mp3",
       "audio_en": "audio/02-en.mp3"
     },
     {
       "id": "03",
-      "sv": "ge",
-      "en": "give",
+      "sv": "saftig",
+      "en": "juicy",
       "en_alts": "",
       "audio_sv": "audio/03-sv.mp3",
       "audio_en": "audio/03-en.mp3"
     },
     {
       "id": "04",
-      "sv": "mycket",
-      "en": "much",
+      "sv": "mask",
+      "en": "worm",
       "en_alts": "",
       "audio_sv": "audio/04-sv.mp3",
       "audio_en": "audio/04-en.mp3"
     },
     {
       "id": "05",
-      "sv": "fånga",
-      "en": "catch",
+      "sv": "ibland",
+      "en": "sometimes",
       "en_alts": "",
       "audio_sv": "audio/05-sv.mp3",
       "audio_en": "audio/05-en.mp3"
     },
     {
       "id": "06",
-      "sv": "färsk",
-      "en": "fresh",
+      "sv": "skål",
+      "en": "bowl",
       "en_alts": "",
       "audio_sv": "audio/06-sv.mp3",
       "audio_en": "audio/06-en.mp3"
     },
     {
       "id": "07",
-      "sv": "ställa eller lägga",
-      "en": "put",
+      "sv": "mjölk",
+      "en": "milk",
       "en_alts": "",
       "audio_sv": "audio/07-sv.mp3",
       "audio_en": "audio/07-en.mp3"
     },
     {
       "id": "08",
-      "sv": "smutsig",
-      "en": "dirty",
+      "sv": "aldrig",
+      "en": "never",
       "en_alts": "",
       "audio_sv": "audio/08-sv.mp3",
       "audio_en": "audio/08-en.mp3"
     },
     {
       "id": "09",
-      "sv": "omvårdnad eller sköta",
-      "en": "care",
+      "sv": "aldrig",
+      "en": "wait",
       "en_alts": "",
       "audio_sv": "audio/09-sv.mp3",
       "audio_en": "audio/09-en.mp3"
     },
     {
       "id": "10",
-      "sv": "varje",
-      "en": "every",
+      "sv": "känna lukten",
+      "en": "smell",
       "en_alts": "",
       "audio_sv": "audio/10-sv.mp3",
       "audio_en": "audio/10-en.mp3"
     },
     {
       "id": "11",
-      "sv": "gullig",
-      "en": "cute",
+      "sv": "groda",
+      "en": "frog",
       "en_alts": "",
       "audio_sv": "audio/11-sv.mp3",
       "audio_en": "audio/11-en.mp3"
     },
     {
       "id": "12",
-      "sv": "adoptera",
-      "en": "adopt",
+      "sv": "dem",
+      "en": "them",
       "en_alts": "",
       "audio_sv": "audio/12-sv.mp3",
       "audio_en": "audio/12-en.mp3"
     },
     {
       "id": "13",
-      "sv": "trädgård",
-      "en": "garden",
+      "sv": "knaprig",
+      "en": "crunchy",
       "en_alts": "",
       "audio_sv": "audio/13-sv.mp3",
       "audio_en": "audio/13-en.mp3"
     },
     {
       "id": "14",
-      "sv": "gräs",
-      "en": "grass",
+      "sv": "mätt",
+      "en": "full up",
       "en_alts": "",
       "audio_sv": "audio/14-sv.mp3",
       "audio_en": "audio/14-en.mp3"
     },
     {
       "id": "15",
-      "sv": "alla",
-      "en": "everyone",
+      "sv": "rap",
+      "en": "burp",
       "en_alts": "",
       "audio_sv": "audio/15-sv.mp3",
       "audio_en": "audio/15-en.mp3"
     },
     {
       "id": "16",
-      "sv": "pengar",
-      "en": "money",
+      "sv": "höra",
+      "en": "hear",
       "en_alts": "",
       "audio_sv": "audio/16-sv.mp3",
       "audio_en": "audio/16-en.mp3"
     },
     {
       "id": "17",
-      "sv": "liten eller lilla",
-      "en": "little",
+      "sv": "frukost",
+      "en": "breakfast",
       "en_alts": "",
       "audio_sv": "audio/17-sv.mp3",
       "audio_en": "audio/17-en.mp3"
     },
     {
       "id": "18",
-      "sv": "bambu",
-      "en": "bamboo",
+      "sv": "känna sig",
+      "en": "feel",
       "en_alts": "",
       "audio_sv": "audio/18-sv.mp3",
       "audio_en": "audio/18-en.mp3"
+    },
+    {
+      "id": "19",
+      "sv": "sömnig",
+      "en": "sleepy",
+      "en_alts": "",
+      "audio_sv": "audio/19-sv.mp3",
+      "audio_en": "audio/19-en.mp3"
     }
   ]
 }
