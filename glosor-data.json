@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "Do you like snails? — Klass 4 Lejonskolan",
+    "title": "Pass me the sugar, please — Klass 4 Lejonskolan",
     "subtitle": "Lyssna, skriv svaret på papper och tryck Rätta för att se facit",
-    "source": "Glosor.eu (Lejonskolan), 2026-10-13"
+    "source": "Glosor.eu (Lejonskolan), 2026-10-19"
   },
   "words": [
     {
@@ -836,156 +836,330 @@
       "archived_at": "2026-10-14T12:40:00Z"
     },
     {
-      "id": "01",
+      "id": "snails-old-01",
       "sv": "snigel",
       "en": "snail",
       "en_alts": "",
-      "audio_sv": "audio/01-sv.mp3",
-      "audio_en": "audio/01-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-01-sv.mp3",
+      "audio_en": "audio/snails-old-01-en.mp3"
     },
     {
-      "id": "02",
+      "id": "snails-old-02",
       "sv": "igelkott",
       "en": "hedgehog",
       "en_alts": "",
-      "audio_sv": "audio/02-sv.mp3",
-      "audio_en": "audio/02-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-02-sv.mp3",
+      "audio_en": "audio/snails-old-02-en.mp3"
     },
     {
-      "id": "03",
+      "id": "snails-old-03",
       "sv": "saftig",
       "en": "juicy",
       "en_alts": "",
-      "audio_sv": "audio/03-sv.mp3",
-      "audio_en": "audio/03-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-03-sv.mp3",
+      "audio_en": "audio/snails-old-03-en.mp3"
     },
     {
-      "id": "04",
+      "id": "snails-old-04",
       "sv": "mask",
       "en": "worm",
       "en_alts": "",
-      "audio_sv": "audio/04-sv.mp3",
-      "audio_en": "audio/04-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-04-sv.mp3",
+      "audio_en": "audio/snails-old-04-en.mp3"
     },
     {
-      "id": "05",
+      "id": "snails-old-05",
       "sv": "ibland",
       "en": "sometimes",
       "en_alts": "",
-      "audio_sv": "audio/05-sv.mp3",
-      "audio_en": "audio/05-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-05-sv.mp3",
+      "audio_en": "audio/snails-old-05-en.mp3"
     },
     {
-      "id": "06",
+      "id": "snails-old-06",
       "sv": "skål",
       "en": "bowl",
       "en_alts": "",
-      "audio_sv": "audio/06-sv.mp3",
-      "audio_en": "audio/06-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-06-sv.mp3",
+      "audio_en": "audio/snails-old-06-en.mp3"
     },
     {
-      "id": "07",
+      "id": "snails-old-07",
       "sv": "mjölk",
       "en": "milk",
       "en_alts": "",
-      "audio_sv": "audio/07-sv.mp3",
-      "audio_en": "audio/07-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-07-sv.mp3",
+      "audio_en": "audio/snails-old-07-en.mp3"
     },
     {
-      "id": "08",
+      "id": "snails-old-08",
       "sv": "aldrig",
       "en": "never",
       "en_alts": "",
-      "audio_sv": "audio/08-sv.mp3",
-      "audio_en": "audio/08-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-08-sv.mp3",
+      "audio_en": "audio/snails-old-08-en.mp3"
     },
     {
-      "id": "09",
+      "id": "snails-old-09",
       "sv": "vänta",
       "en": "wait",
       "en_alts": "",
-      "audio_sv": "audio/09-sv.mp3",
-      "audio_en": "audio/09-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-09-sv.mp3",
+      "audio_en": "audio/snails-old-09-en.mp3"
     },
     {
-      "id": "10",
+      "id": "snails-old-10",
       "sv": "känna lukten",
       "en": "smell",
       "en_alts": "",
-      "audio_sv": "audio/10-sv.mp3",
-      "audio_en": "audio/10-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-10-sv.mp3",
+      "audio_en": "audio/snails-old-10-en.mp3"
     },
     {
-      "id": "11",
+      "id": "snails-old-11",
       "sv": "groda",
       "en": "frog",
       "en_alts": "",
-      "audio_sv": "audio/11-sv.mp3",
-      "audio_en": "audio/11-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-11-sv.mp3",
+      "audio_en": "audio/snails-old-11-en.mp3"
     },
     {
-      "id": "12",
+      "id": "snails-old-12",
       "sv": "dem",
       "en": "them",
       "en_alts": "",
-      "audio_sv": "audio/12-sv.mp3",
-      "audio_en": "audio/12-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-12-sv.mp3",
+      "audio_en": "audio/snails-old-12-en.mp3"
     },
     {
-      "id": "13",
+      "id": "snails-old-13",
       "sv": "knaprig",
       "en": "crunchy",
       "en_alts": "",
-      "audio_sv": "audio/13-sv.mp3",
-      "audio_en": "audio/13-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-13-sv.mp3",
+      "audio_en": "audio/snails-old-13-en.mp3"
     },
     {
-      "id": "14",
+      "id": "snails-old-14",
       "sv": "mätt",
       "en": "full up",
       "en_alts": "",
-      "audio_sv": "audio/14-sv.mp3",
-      "audio_en": "audio/14-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-14-sv.mp3",
+      "audio_en": "audio/snails-old-14-en.mp3"
     },
     {
-      "id": "15",
+      "id": "snails-old-15",
       "sv": "rap",
       "en": "burp",
       "en_alts": "",
-      "audio_sv": "audio/15-sv.mp3",
-      "audio_en": "audio/15-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-15-sv.mp3",
+      "audio_en": "audio/snails-old-15-en.mp3"
     },
     {
-      "id": "16",
+      "id": "snails-old-16",
       "sv": "höra",
       "en": "hear",
       "en_alts": "",
-      "audio_sv": "audio/16-sv.mp3",
-      "audio_en": "audio/16-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-16-sv.mp3",
+      "audio_en": "audio/snails-old-16-en.mp3"
     },
     {
-      "id": "17",
+      "id": "snails-old-17",
       "sv": "frukost",
       "en": "breakfast",
       "en_alts": "",
-      "audio_sv": "audio/17-sv.mp3",
-      "audio_en": "audio/17-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-17-sv.mp3",
+      "audio_en": "audio/snails-old-17-en.mp3"
     },
     {
-      "id": "18",
+      "id": "snails-old-18",
       "sv": "känna sig",
       "en": "feel",
       "en_alts": "",
-      "audio_sv": "audio/18-sv.mp3",
-      "audio_en": "audio/18-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-18-sv.mp3",
+      "audio_en": "audio/snails-old-18-en.mp3"
     },
     {
-      "id": "19",
+      "id": "snails-old-19",
       "sv": "sömnig",
       "en": "sleepy",
       "en_alts": "",
-      "audio_sv": "audio/19-sv.mp3",
-      "audio_en": "audio/19-en.mp3"
+      "active": false,
+      "archived_at": "2026-10-19T12:05:00Z",
+      "audio_sv": "audio/snails-old-19-sv.mp3",
+      "audio_en": "audio/snails-old-19-en.mp3"
+    },
+    {
+      "id": "20",
+      "sv": "räck mig, skicka mig",
+      "en": "pass me",
+      "en_alts": "",
+      "audio_sv": "audio/20-sv.mp3",
+      "audio_en": "audio/20-en.mp3"
+    },
+    {
+      "id": "21",
+      "sv": "socker",
+      "en": "sugar",
+      "en_alts": "",
+      "audio_sv": "audio/21-sv.mp3",
+      "audio_en": "audio/21-en.mp3"
+    },
+    {
+      "id": "22",
+      "sv": "skulle du vilja ha",
+      "en": "would you like",
+      "en_alts": "",
+      "audio_sv": "audio/22-sv.mp3",
+      "audio_en": "audio/22-en.mp3"
+    },
+    {
+      "id": "23",
+      "sv": "rostat bröd",
+      "en": "some toast",
+      "en_alts": "",
+      "audio_sv": "audio/23-sv.mp3",
+      "audio_en": "audio/23-en.mp3"
+    },
+    {
+      "id": "24",
+      "sv": "smör",
+      "en": "butter",
+      "en_alts": "",
+      "audio_sv": "audio/24-sv.mp3",
+      "audio_en": "audio/24-en.mp3"
+    },
+    {
+      "id": "25",
+      "sv": "skinka",
+      "en": "ham",
+      "en_alts": "",
+      "audio_sv": "audio/25-sv.mp3",
+      "audio_en": "audio/25-en.mp3"
+    },
+    {
+      "id": "26",
+      "sv": "söt",
+      "en": "sweet",
+      "en_alts": "",
+      "audio_sv": "audio/26-sv.mp3",
+      "audio_en": "audio/26-en.mp3"
+    },
+    {
+      "id": "27",
+      "sv": "flingor",
+      "en": "cereal",
+      "en_alts": "",
+      "audio_sv": "audio/27-sv.mp3",
+      "audio_en": "audio/27-en.mp3"
+    },
+    {
+      "id": "28",
+      "sv": "choklad",
+      "en": "chocolate",
+      "en_alts": "",
+      "audio_sv": "audio/28-sv.mp3",
+      "audio_en": "audio/28-en.mp3"
+    },
+    {
+      "id": "29",
+      "sv": "flinga",
+      "en": "flake",
+      "en_alts": "",
+      "audio_sv": "audio/29-sv.mp3",
+      "audio_en": "audio/29-en.mp3"
+    },
+    {
+      "id": "30",
+      "sv": "vad mycket",
+      "en": "so much",
+      "en_alts": "",
+      "audio_sv": "audio/30-sv.mp3",
+      "audio_en": "audio/30-en.mp3"
+    },
+    {
+      "id": "31",
+      "sv": "ta en...",
+      "en": "have a...",
+      "en_alts": "",
+      "audio_sv": "audio/31-sv.mp3",
+      "audio_en": "audio/31-en.mp3"
+    },
+    {
+      "id": "32",
+      "sv": "sena",
+      "en": "late",
+      "en_alts": "",
+      "audio_sv": "audio/32-sv.mp3",
+      "audio_en": "audio/32-en.mp3"
+    },
+    {
+      "id": "33",
+      "sv": "sätt på",
+      "en": "put on",
+      "en_alts": "",
+      "audio_sv": "audio/33-sv.mp3",
+      "audio_en": "audio/33-en.mp3"
+    },
+    {
+      "id": "34",
+      "sv": "era, din, ditt",
+      "en": "your",
+      "en_alts": "",
+      "audio_sv": "audio/34-sv.mp3",
+      "audio_en": "audio/34-en.mp3"
+    },
+    {
+      "id": "35",
+      "sv": "skoluniform",
+      "en": "school uniform",
+      "en_alts": "",
+      "audio_sv": "audio/35-sv.mp3",
+      "audio_en": "audio/35-en.mp3"
+    },
+    {
+      "id": "36",
+      "sv": "skynda på",
+      "en": "hurry up",
+      "en_alts": "",
+      "audio_sv": "audio/36-sv.mp3",
+      "audio_en": "audio/36-en.mp3"
     }
   ]
 }
