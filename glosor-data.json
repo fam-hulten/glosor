@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "Pass me the sugar, please — Klass 4 Lejonskolan",
+    "title": "In my lunchbox — Klass 4 Lejonskolan",
     "subtitle": "Lyssna, skriv svaret på papper och tryck Rätta för att se facit",
-    "source": "Glosor.eu (Lejonskolan), 2026-10-19"
+    "source": "Glosor.eu (Lejonskolan), 2026-11-02"
   },
   "words": [
     {
@@ -1026,140 +1026,318 @@
       "audio_en": "audio/snails-old-19-en.mp3"
     },
     {
-      "id": "20",
+      "id": "sugar-old-01",
       "sv": "räck mig, skicka mig",
       "en": "pass me",
       "en_alts": "",
-      "audio_sv": "audio/20-sv.mp3",
-      "audio_en": "audio/20-en.mp3"
+      "audio_sv": "audio/sugar-old-01-sv.mp3",
+      "audio_en": "audio/sugar-old-01-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "21",
+      "id": "sugar-old-02",
       "sv": "socker",
       "en": "sugar",
       "en_alts": "",
-      "audio_sv": "audio/21-sv.mp3",
-      "audio_en": "audio/21-en.mp3"
+      "audio_sv": "audio/sugar-old-02-sv.mp3",
+      "audio_en": "audio/sugar-old-02-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "22",
+      "id": "sugar-old-03",
       "sv": "skulle du vilja ha",
       "en": "would you like",
       "en_alts": "",
-      "audio_sv": "audio/22-sv.mp3",
-      "audio_en": "audio/22-en.mp3"
+      "audio_sv": "audio/sugar-old-03-sv.mp3",
+      "audio_en": "audio/sugar-old-03-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "23",
+      "id": "sugar-old-04",
       "sv": "rostat bröd",
       "en": "some toast",
       "en_alts": "",
-      "audio_sv": "audio/23-sv.mp3",
-      "audio_en": "audio/23-en.mp3"
+      "audio_sv": "audio/sugar-old-04-sv.mp3",
+      "audio_en": "audio/sugar-old-04-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "24",
+      "id": "sugar-old-05",
       "sv": "smör",
       "en": "butter",
       "en_alts": "",
-      "audio_sv": "audio/24-sv.mp3",
-      "audio_en": "audio/24-en.mp3"
+      "audio_sv": "audio/sugar-old-05-sv.mp3",
+      "audio_en": "audio/sugar-old-05-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "25",
+      "id": "sugar-old-06",
       "sv": "skinka",
       "en": "ham",
       "en_alts": "",
-      "audio_sv": "audio/25-sv.mp3",
-      "audio_en": "audio/25-en.mp3"
+      "audio_sv": "audio/sugar-old-06-sv.mp3",
+      "audio_en": "audio/sugar-old-06-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "26",
+      "id": "sugar-old-07",
       "sv": "söt",
       "en": "sweet",
       "en_alts": "",
-      "audio_sv": "audio/26-sv.mp3",
-      "audio_en": "audio/26-en.mp3"
+      "audio_sv": "audio/sugar-old-07-sv.mp3",
+      "audio_en": "audio/sugar-old-07-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "27",
+      "id": "sugar-old-08",
       "sv": "flingor",
       "en": "cereal",
       "en_alts": "",
-      "audio_sv": "audio/27-sv.mp3",
-      "audio_en": "audio/27-en.mp3"
+      "audio_sv": "audio/sugar-old-08-sv.mp3",
+      "audio_en": "audio/sugar-old-08-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "28",
+      "id": "sugar-old-09",
       "sv": "choklad",
       "en": "chocolate",
       "en_alts": "",
-      "audio_sv": "audio/28-sv.mp3",
-      "audio_en": "audio/28-en.mp3"
+      "audio_sv": "audio/sugar-old-09-sv.mp3",
+      "audio_en": "audio/sugar-old-09-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "29",
+      "id": "sugar-old-10",
       "sv": "flinga",
       "en": "flake",
       "en_alts": "",
-      "audio_sv": "audio/29-sv.mp3",
-      "audio_en": "audio/29-en.mp3"
+      "audio_sv": "audio/sugar-old-10-sv.mp3",
+      "audio_en": "audio/sugar-old-10-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "30",
+      "id": "sugar-old-11",
       "sv": "vad mycket",
       "en": "so much",
       "en_alts": "",
-      "audio_sv": "audio/30-sv.mp3",
-      "audio_en": "audio/30-en.mp3"
+      "audio_sv": "audio/sugar-old-11-sv.mp3",
+      "audio_en": "audio/sugar-old-11-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "31",
+      "id": "sugar-old-12",
       "sv": "ta en...",
       "en": "have a...",
       "en_alts": "",
-      "audio_sv": "audio/31-sv.mp3",
-      "audio_en": "audio/31-en.mp3"
+      "audio_sv": "audio/sugar-old-12-sv.mp3",
+      "audio_en": "audio/sugar-old-12-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "32",
+      "id": "sugar-old-13",
       "sv": "sena",
       "en": "late",
       "en_alts": "",
-      "audio_sv": "audio/32-sv.mp3",
-      "audio_en": "audio/32-en.mp3"
+      "audio_sv": "audio/sugar-old-13-sv.mp3",
+      "audio_en": "audio/sugar-old-13-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "33",
+      "id": "sugar-old-14",
       "sv": "sätt på",
       "en": "put on",
       "en_alts": "",
-      "audio_sv": "audio/33-sv.mp3",
-      "audio_en": "audio/33-en.mp3"
+      "audio_sv": "audio/sugar-old-14-sv.mp3",
+      "audio_en": "audio/sugar-old-14-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "34",
+      "id": "sugar-old-15",
       "sv": "era, din, ditt",
       "en": "your",
       "en_alts": "",
-      "audio_sv": "audio/34-sv.mp3",
-      "audio_en": "audio/34-en.mp3"
+      "audio_sv": "audio/sugar-old-15-sv.mp3",
+      "audio_en": "audio/sugar-old-15-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "35",
+      "id": "sugar-old-16",
       "sv": "skoluniform",
       "en": "school uniform",
       "en_alts": "",
-      "audio_sv": "audio/35-sv.mp3",
-      "audio_en": "audio/35-en.mp3"
+      "audio_sv": "audio/sugar-old-16-sv.mp3",
+      "audio_en": "audio/sugar-old-16-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "36",
+      "id": "sugar-old-17",
       "sv": "skynda på",
       "en": "hurry up",
       "en_alts": "",
-      "audio_sv": "audio/36-sv.mp3",
-      "audio_en": "audio/36-en.mp3"
+      "audio_sv": "audio/sugar-old-17-sv.mp3",
+      "audio_en": "audio/sugar-old-17-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-03T15:40:00Z"
+    },
+    {
+      "id": "37",
+      "sv": "redo",
+      "en": "ready",
+      "en_alts": "",
+      "audio_sv": "audio/37-sv.mp3",
+      "audio_en": "audio/37-en.mp3"
+    },
+    {
+      "id": "38",
+      "sv": "törstig",
+      "en": "thirsty",
+      "en_alts": "",
+      "audio_sv": "audio/38-sv.mp3",
+      "audio_en": "audio/38-en.mp3"
+    },
+    {
+      "id": "39",
+      "sv": "hungrig",
+      "en": "hungry",
+      "en_alts": "",
+      "audio_sv": "audio/39-sv.mp3",
+      "audio_en": "audio/39-en.mp3"
+    },
+    {
+      "id": "40",
+      "sv": "andra gången",
+      "en": "twice",
+      "en_alts": "",
+      "audio_sv": "audio/40-sv.mp3",
+      "audio_en": "audio/40-en.mp3"
+    },
+    {
+      "id": "41",
+      "sv": "byta",
+      "en": "swap",
+      "en_alts": "",
+      "audio_sv": "audio/41-sv.mp3",
+      "audio_en": "audio/41-en.mp3"
+    },
+    {
+      "id": "42",
+      "sv": "tonfisk",
+      "en": "tuna fish",
+      "en_alts": "",
+      "audio_sv": "audio/42-sv.mp3",
+      "audio_en": "audio/42-en.mp3"
+    },
+    {
+      "id": "43",
+      "sv": "vem",
+      "en": "who",
+      "en_alts": "",
+      "audio_sv": "audio/43-sv.mp3",
+      "audio_en": "audio/43-en.mp3"
+    },
+    {
+      "id": "44",
+      "sv": "svara",
+      "en": "answer",
+      "en_alts": "",
+      "audio_sv": "audio/44-sv.mp3",
+      "audio_en": "audio/44-en.mp3"
+    },
+    {
+      "id": "45",
+      "sv": "recept",
+      "en": "recipe",
+      "en_alts": "",
+      "audio_sv": "audio/45-sv.mp3",
+      "audio_en": "audio/45-en.mp3"
+    },
+    {
+      "id": "46",
+      "sv": "matsked",
+      "en": "tablespoon",
+      "en_alts": "",
+      "audio_sv": "audio/46-sv.mp3",
+      "audio_en": "audio/46-en.mp3"
+    },
+    {
+      "id": "47",
+      "sv": "mixer",
+      "en": "blender",
+      "en_alts": "",
+      "audio_sv": "audio/47-sv.mp3",
+      "audio_en": "audio/47-en.mp3"
+    },
+    {
+      "id": "48",
+      "sv": "skivad",
+      "en": "sliced",
+      "en_alts": "",
+      "audio_sv": "audio/48-sv.mp3",
+      "audio_en": "audio/48-en.mp3"
+    },
+    {
+      "id": "49",
+      "sv": "lägg till",
+      "en": "add",
+      "en_alts": "",
+      "audio_sv": "audio/49-sv.mp3",
+      "audio_en": "audio/49-en.mp3"
+    },
+    {
+      "id": "50",
+      "sv": "blanda",
+      "en": "blend",
+      "en_alts": "",
+      "audio_sv": "audio/50-sv.mp3",
+      "audio_en": "audio/50-en.mp3"
+    },
+    {
+      "id": "51",
+      "sv": "häll",
+      "en": "pour",
+      "en_alts": "",
+      "audio_sv": "audio/51-sv.mp3",
+      "audio_en": "audio/51-en.mp3"
+    },
+    {
+      "id": "52",
+      "sv": "servera",
+      "en": "serve",
+      "en_alts": "",
+      "audio_sv": "audio/52-sv.mp3",
+      "audio_en": "audio/52-en.mp3"
+    },
+    {
+      "id": "53",
+      "sv": "njut",
+      "en": "enjoy",
+      "en_alts": "",
+      "audio_sv": "audio/53-sv.mp3",
+      "audio_en": "audio/53-en.mp3"
+    },
+    {
+      "id": "54",
+      "sv": "frusen",
+      "en": "frozen",
+      "en_alts": "",
+      "audio_sv": "audio/54-sv.mp3",
+      "audio_en": "audio/54-en.mp3"
     }
   ]
 }
