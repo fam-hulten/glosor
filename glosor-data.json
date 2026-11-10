@@ -1518,6 +1518,14 @@
       "en_alts": "",
       "audio_sv": "audio/72-sv.mp3",
       "audio_en": "audio/72-en.mp3"
+    },
+    {
+      "id": "73",
+      "sv": "vad skulle du vilja ha?",
+      "en": "what would you like?",
+      "en_alts": "",
+      "audio_sv": "audio/73-sv.mp3",
+      "audio_en": "audio/73-en.mp3"
     }
   ]
 }
