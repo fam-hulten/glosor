@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "In my lunchbox — Klass 4 Lejonskolan",
+    "title": "What would you like? — Klass 4 Lejonskolan",
     "subtitle": "Lyssna, skriv svaret på papper och tryck Rätta för att se facit",
-    "source": "Glosor.eu (Lejonskolan), 2026-11-02"
+    "source": "Glosor.eu (Lejonskolan), 2026-11-10"
   },
   "words": [
     {
@@ -1196,148 +1196,328 @@
       "archived_at": "2026-11-03T15:40:00Z"
     },
     {
-      "id": "37",
+      "id": "lunchbox-old-01",
       "sv": "redo",
       "en": "ready",
       "en_alts": "",
-      "audio_sv": "audio/37-sv.mp3",
-      "audio_en": "audio/37-en.mp3"
+      "audio_sv": "audio/lunchbox-old-01-sv.mp3",
+      "audio_en": "audio/lunchbox-old-01-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "38",
+      "id": "lunchbox-old-02",
       "sv": "törstig",
       "en": "thirsty",
       "en_alts": "",
-      "audio_sv": "audio/38-sv.mp3",
-      "audio_en": "audio/38-en.mp3"
+      "audio_sv": "audio/lunchbox-old-02-sv.mp3",
+      "audio_en": "audio/lunchbox-old-02-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "39",
+      "id": "lunchbox-old-03",
       "sv": "hungrig",
       "en": "hungry",
       "en_alts": "",
-      "audio_sv": "audio/39-sv.mp3",
-      "audio_en": "audio/39-en.mp3"
+      "audio_sv": "audio/lunchbox-old-03-sv.mp3",
+      "audio_en": "audio/lunchbox-old-03-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "40",
+      "id": "lunchbox-old-04",
       "sv": "andra gången",
       "en": "twice",
       "en_alts": "",
-      "audio_sv": "audio/40-sv.mp3",
-      "audio_en": "audio/40-en.mp3"
+      "audio_sv": "audio/lunchbox-old-04-sv.mp3",
+      "audio_en": "audio/lunchbox-old-04-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "41",
+      "id": "lunchbox-old-05",
       "sv": "byta",
       "en": "swap",
       "en_alts": "",
-      "audio_sv": "audio/41-sv.mp3",
-      "audio_en": "audio/41-en.mp3"
+      "audio_sv": "audio/lunchbox-old-05-sv.mp3",
+      "audio_en": "audio/lunchbox-old-05-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "42",
+      "id": "lunchbox-old-06",
       "sv": "tonfisk",
       "en": "tuna fish",
       "en_alts": "",
-      "audio_sv": "audio/42-sv.mp3",
-      "audio_en": "audio/42-en.mp3"
+      "audio_sv": "audio/lunchbox-old-06-sv.mp3",
+      "audio_en": "audio/lunchbox-old-06-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "43",
+      "id": "lunchbox-old-07",
       "sv": "vem",
       "en": "who",
       "en_alts": "",
-      "audio_sv": "audio/43-sv.mp3",
-      "audio_en": "audio/43-en.mp3"
+      "audio_sv": "audio/lunchbox-old-07-sv.mp3",
+      "audio_en": "audio/lunchbox-old-07-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "44",
+      "id": "lunchbox-old-08",
       "sv": "svara",
       "en": "answer",
       "en_alts": "",
-      "audio_sv": "audio/44-sv.mp3",
-      "audio_en": "audio/44-en.mp3"
+      "audio_sv": "audio/lunchbox-old-08-sv.mp3",
+      "audio_en": "audio/lunchbox-old-08-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "45",
+      "id": "lunchbox-old-09",
       "sv": "recept",
       "en": "recipe",
       "en_alts": "",
-      "audio_sv": "audio/45-sv.mp3",
-      "audio_en": "audio/45-en.mp3"
+      "audio_sv": "audio/lunchbox-old-09-sv.mp3",
+      "audio_en": "audio/lunchbox-old-09-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "46",
+      "id": "lunchbox-old-10",
       "sv": "matsked",
       "en": "tablespoon",
       "en_alts": "",
-      "audio_sv": "audio/46-sv.mp3",
-      "audio_en": "audio/46-en.mp3"
+      "audio_sv": "audio/lunchbox-old-10-sv.mp3",
+      "audio_en": "audio/lunchbox-old-10-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "47",
+      "id": "lunchbox-old-11",
       "sv": "mixer",
       "en": "blender",
       "en_alts": "",
-      "audio_sv": "audio/47-sv.mp3",
-      "audio_en": "audio/47-en.mp3"
+      "audio_sv": "audio/lunchbox-old-11-sv.mp3",
+      "audio_en": "audio/lunchbox-old-11-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "48",
+      "id": "lunchbox-old-12",
       "sv": "skivad",
       "en": "sliced",
       "en_alts": "",
-      "audio_sv": "audio/48-sv.mp3",
-      "audio_en": "audio/48-en.mp3"
+      "audio_sv": "audio/lunchbox-old-12-sv.mp3",
+      "audio_en": "audio/lunchbox-old-12-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "49",
+      "id": "lunchbox-old-13",
       "sv": "lägg till",
       "en": "add",
       "en_alts": "",
-      "audio_sv": "audio/49-sv.mp3",
-      "audio_en": "audio/49-en.mp3"
+      "audio_sv": "audio/lunchbox-old-13-sv.mp3",
+      "audio_en": "audio/lunchbox-old-13-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "50",
+      "id": "lunchbox-old-14",
       "sv": "blanda",
       "en": "blend",
       "en_alts": "",
-      "audio_sv": "audio/50-sv.mp3",
-      "audio_en": "audio/50-en.mp3"
+      "audio_sv": "audio/lunchbox-old-14-sv.mp3",
+      "audio_en": "audio/lunchbox-old-14-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "51",
+      "id": "lunchbox-old-15",
       "sv": "häll",
       "en": "pour",
       "en_alts": "",
-      "audio_sv": "audio/51-sv.mp3",
-      "audio_en": "audio/51-en.mp3"
+      "audio_sv": "audio/lunchbox-old-15-sv.mp3",
+      "audio_en": "audio/lunchbox-old-15-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "52",
+      "id": "lunchbox-old-16",
       "sv": "servera",
       "en": "serve",
       "en_alts": "",
-      "audio_sv": "audio/52-sv.mp3",
-      "audio_en": "audio/52-en.mp3"
+      "audio_sv": "audio/lunchbox-old-16-sv.mp3",
+      "audio_en": "audio/lunchbox-old-16-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "53",
+      "id": "lunchbox-old-17",
       "sv": "njut",
       "en": "enjoy",
       "en_alts": "",
-      "audio_sv": "audio/53-sv.mp3",
-      "audio_en": "audio/53-en.mp3"
+      "audio_sv": "audio/lunchbox-old-17-sv.mp3",
+      "audio_en": "audio/lunchbox-old-17-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
     },
     {
-      "id": "54",
+      "id": "lunchbox-old-18",
       "sv": "frusen",
       "en": "frozen",
       "en_alts": "",
-      "audio_sv": "audio/54-sv.mp3",
-      "audio_en": "audio/54-en.mp3"
+      "audio_sv": "audio/lunchbox-old-18-sv.mp3",
+      "audio_en": "audio/lunchbox-old-18-en.mp3",
+      "active": false,
+      "archived_at": "2026-11-10T15:05:00Z"
+    },
+    {
+      "id": "55",
+      "sv": "servitris",
+      "en": "waitress",
+      "en_alts": "",
+      "audio_sv": "audio/55-sv.mp3",
+      "audio_en": "audio/55-en.mp3"
+    },
+    {
+      "id": "56",
+      "sv": "servitör",
+      "en": "waiter",
+      "en_alts": "",
+      "audio_sv": "audio/56-sv.mp3",
+      "audio_en": "audio/56-en.mp3"
+    },
+    {
+      "id": "57",
+      "sv": "varsågod",
+      "en": "here you are",
+      "en_alts": "",
+      "audio_sv": "audio/57-sv.mp3",
+      "audio_en": "audio/57-en.mp3"
+    },
+    {
+      "id": "58",
+      "sv": "bord för tre",
+      "en": "table for three",
+      "en_alts": "",
+      "audio_sv": "audio/58-sv.mp3",
+      "audio_en": "audio/58-en.mp3"
+    },
+    {
+      "id": "59",
+      "sv": "jag skulle",
+      "en": "I'd",
+      "en_alts": "",
+      "audio_sv": "audio/59-sv.mp3",
+      "audio_en": "audio/59-en.mp3"
+    },
+    {
+      "id": "60",
+      "sv": "där borta",
+      "en": "over there",
+      "en_alts": "",
+      "audio_sv": "audio/60-sv.mp3",
+      "audio_en": "audio/60-en.mp3"
+    },
+    {
+      "id": "61",
+      "sv": "få",
+      "en": "get",
+      "en_alts": "",
+      "audio_sv": "audio/61-sv.mp3",
+      "audio_en": "audio/61-en.mp3"
+    },
+    {
+      "id": "62",
+      "sv": "gaffel",
+      "en": "fork",
+      "en_alts": "",
+      "audio_sv": "audio/62-sv.mp3",
+      "audio_en": "audio/62-en.mp3"
+    },
+    {
+      "id": "63",
+      "sv": "sked",
+      "en": "spoon",
+      "en_alts": "",
+      "audio_sv": "audio/63-sv.mp3",
+      "audio_en": "audio/63-en.mp3"
+    },
+    {
+      "id": "64",
+      "sv": "kniv",
+      "en": "knife",
+      "en_alts": "",
+      "audio_sv": "audio/64-sv.mp3",
+      "audio_en": "audio/64-en.mp3"
+    },
+    {
+      "id": "65",
+      "sv": "korg",
+      "en": "basket",
+      "en_alts": "",
+      "audio_sv": "audio/65-sv.mp3",
+      "audio_en": "audio/65-en.mp3"
+    },
+    {
+      "id": "66",
+      "sv": "tallrik",
+      "en": "plate",
+      "en_alts": "",
+      "audio_sv": "audio/66-sv.mp3",
+      "audio_en": "audio/66-en.mp3"
+    },
+    {
+      "id": "67",
+      "sv": "het, varm",
+      "en": "hot",
+      "en_alts": "",
+      "audio_sv": "audio/67-sv.mp3",
+      "audio_en": "audio/67-en.mp3"
+    },
+    {
+      "id": "68",
+      "sv": "svälta",
+      "en": "starve",
+      "en_alts": "",
+      "audio_sv": "audio/68-sv.mp3",
+      "audio_en": "audio/68-en.mp3"
+    },
+    {
+      "id": "69",
+      "sv": "jag är väldhungrig",
+      "en": "I'm starving",
+      "en_alts": "",
+      "audio_sv": "audio/69-sv.mp3",
+      "audio_en": "audio/69-en.mp3"
+    },
+    {
+      "id": "70",
+      "sv": "jättegod",
+      "en": "delicious",
+      "en_alts": "",
+      "audio_sv": "audio/70-sv.mp3",
+      "audio_en": "audio/70-en.mp3"
+    },
+    {
+      "id": "71",
+      "sv": "efterrätt",
+      "en": "dessert",
+      "en_alts": "",
+      "audio_sv": "audio/71-sv.mp3",
+      "audio_en": "audio/71-en.mp3"
+    },
+    {
+      "id": "72",
+      "sv": "födelsedagstårta",
+      "en": "birthday cake",
+      "en_alts": "",
+      "audio_sv": "audio/72-sv.mp3",
+      "audio_en": "audio/72-en.mp3"
     }
   ]
 }
